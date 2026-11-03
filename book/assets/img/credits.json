@@ -1,0 +1,460 @@
+[
+  {
+    "order": 1,
+    "house": "Irwin Pool House (Gores Pavilion)",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. Commons has nothing; Flickr CC search found nothing. LOC Gottscho-Schleisner 1964 photos of the 'Mr. and Mrs. John N. Irwin residence on Weed St.' show the main Irwin manor house, not the Gores pool house, so they were not used. The pavilion is town-owned (Irwin Park, usually given as 848 Weed St), so the Town of New Canaan or the Friends of the Gores Pavilion are likely permission sources.",
+    "nonFreeSources": [
+      "https://nchistory.org/gores-pavilion/",
+      "https://historicbuildingsct.com/gores-pavillion-1959/",
+      "https://www.midcenturyhome.com/new-canaan-gores-pavilion-restoration/",
+      "https://newcanaanite.com/?p=67834",
+      "https://ctmq.org/255-gores-pavilion",
+      "https://www.usmodernist.org/gores.htm"
+    ]
+  },
+  {
+    "order": 2,
+    "house": "Irwin House (Victor Christ-Janer)",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist lists the 1953 William Irwin Jr. House with no street address; the 237 Wahackme Rd address could not be confirmed. Rebuilt after a 1972 fire.",
+    "nonFreeSources": [
+      "https://historicbuildingsct.com/the-irwin-house-1953/",
+      "https://www.usmodernist.org/cj.htm"
+    ]
+  },
+  {
+    "order": 3,
+    "house": "Techbuilt/Swallen House",
+    "file": "03-techbuilt-swallen-house.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_SwallenHouse.jpg",
+    "author": "Magicpiano",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "confidence": "high",
+    "note": "NRHP-listed James Swallen House, 257 Wahackme Rd (NRHP 10000570). Carl Koch Techbuilt design (1953), built 1954; Landis Gores addition 1964. Original upload is only 1024px wide."
+  },
+  {
+    "order": 4,
+    "house": "Beaven Mills House",
+    "file": "04-beaven-mills-house.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_BeavenWMillsHouse.jpg",
+    "author": "Magicpiano",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "confidence": "high",
+    "note": "NRHP-listed Beaven W. Mills House, 31 Chichester Rd (NRHP 10000565). Original upload is only 1024px wide."
+  },
+  {
+    "order": 5,
+    "house": "Lee House 2",
+    "file": "05-lee-house-2.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 21 of 26: looking south at the Lee II House, 202 Chichester Rd; the new addition is at the right edge. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 5,
+    "house": "Lee House 2",
+    "file": "05-lee-house-2-2.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 22 of 26: looking north at the Lee II House; the new addition is at the left edge. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 5,
+    "house": "Lee House 2",
+    "file": "05-lee-house-2-3.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 24 of 26: interior view toward the chimney and front door of the main room in the original building. Extracted from the nomination PDF at its native 1431px width (no upscaling). Interior shot. | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 6,
+    "house": "Parsons House",
+    "file": "06-parsons-house.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 17 of 26: looking southwest at the Parsons House, 188 Chichester Rd. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 6,
+    "house": "Parsons House",
+    "file": "06-parsons-house-2.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 18 of 26: looking northeast at the Parsons House. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 6,
+    "house": "Parsons House",
+    "file": "06-parsons-house-3.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 16 of 26: looking southwest at 188 Chichester Rd, with the 1971 garage in the foreground and the house behind. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 7,
+    "house": "Smallen House",
+    "file": "07-smallen-house.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 11 of 26: looking east at the facade of 160 Chichester Rd. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 7,
+    "house": "Smallen House",
+    "file": "07-smallen-house-2.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 12 of 26: looking southeast at 160 Chichester Rd; original building at left, recent addition at right. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 7,
+    "house": "Smallen House",
+    "file": "07-smallen-house-3.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 13 of 26: looking north at the south side; addition at left, original building at right. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 8,
+    "house": "Becker House",
+    "file": "08-becker-house.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 7 of 26: looking northwest at 136 Chichester Rd (stone entry wall). Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 8,
+    "house": "Becker House",
+    "file": "08-becker-house-2.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 8 of 26: looking southwest at the north and east sides of 136 Chichester Rd. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 8,
+    "house": "Becker House",
+    "file": "08-becker-house-3.jpg",
+    "sourceUrl": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+    "author": "James Sexton",
+    "license": "NRHP nomination photo, courtesy CT SHPO",
+    "licenseUrl": "https://www.nps.gov/subjects/nationalregister/index.htm",
+    "confidence": "high",
+    "note": "Nomination Photograph 9 of 26: looking east at the west side of 136 Chichester Rd. Extracted from the nomination PDF at its native 1431px width (no upscaling). | License detail: NRHP nomination photograph (Chichester Road Historic District, NRHP ref. 100012774, listed 2026-03-02); treated as public domain under project policy. Photographer is a private consultant and the form does not state a copyright waiver, so a courtesy credit is advisable."
+  },
+  {
+    "order": 9,
+    "house": "Gratwick House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. The street is spelled 'Myanos Rd' in sources, not 'Mayanos'. USModernist says a second story was added in 1988 and the porches were enclosed, so the house is heavily altered.",
+    "nonFreeSources": [
+      "https://www.usmodernist.org/cj.htm"
+    ]
+  },
+  {
+    "order": 10,
+    "house": "Blod/Roles House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist calls it Robert Roles House I (aka Blod House), 383 Wahackme Rd, remodeled. It sold in 2022 and real-estate listing photos exist.",
+    "nonFreeSources": [
+      "https://www.coldwellbankerhomes.com/ct/new-canaan/383-wahackme-rd/pid_49076452/",
+      "https://www.homes.com/property/383-wahackme-rd-new-canaan-ct/gt790lqzzgwpv",
+      "https://www.usmodernist.org/cj.htm"
+    ]
+  },
+  {
+    "order": 11,
+    "house": "Hodgson House",
+    "file": "11-hodgson-house.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_HodgsonHouse.jpg",
+    "author": "Magicpiano",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "confidence": "high",
+    "note": "NRHP-listed Richard and Geraldine Hodgson House, 881 Ponus Ridge (NRHP 04001549). Original upload is only 1024px wide."
+  },
+  {
+    "order": 12,
+    "house": "Glass House",
+    "file": "12-glass-house.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Glass_House_2006.jpg",
+    "author": "Carol M. Highsmith",
+    "license": "Public domain",
+    "licenseUrl": "https://www.loc.gov/pictures/collection/highsm/",
+    "confidence": "high",
+    "note": "Carol M. Highsmith photo, public domain (Highsmith gift to the Library of Congress). Credit line requested: Carol M. Highsmith's America, Library of Congress, Prints and Photographs Division."
+  },
+  {
+    "order": 12,
+    "house": "Glass House",
+    "file": "12-glass-house-2.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fall_view_of_Philip_Johnson%27s_Glass_House,_New_Canaan,_Connecticut_LCCN2010630799.tif",
+    "author": "Carol M. Highsmith",
+    "license": "Public domain",
+    "licenseUrl": "https://www.loc.gov/pictures/collection/highsm/",
+    "confidence": "high",
+    "note": "Fall view, Carol M. Highsmith (LOC LCCN 2010630799), public domain. Same credit line as above."
+  },
+  {
+    "order": 12,
+    "house": "Glass House",
+    "file": "12-glass-house-3.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Philip_Johnson%27s_Glass_House,_New_Canaan,_Connecticut_LCCN2010630351.tif",
+    "author": "Carol M. Highsmith",
+    "license": "Public domain",
+    "licenseUrl": "https://www.loc.gov/pictures/collection/highsm/",
+    "confidence": "high",
+    "note": "Winter view, Carol M. Highsmith (LOC LCCN 2010630351), public domain. Same credit line as above."
+  },
+  {
+    "order": 13,
+    "house": "Mills House 2",
+    "file": "13-mills-house-2.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Willis_N._Mills_House.jpg",
+    "author": "Zachary Groz",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "confidence": "high",
+    "note": "NRHP-listed Willis N. Mills House, 1380 Ponus Ridge Rd (NRHP 10000567)."
+  },
+  {
+    "order": 14,
+    "house": "Breuer House 2 (628 West Rd)",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. In Breuer's own numbering this is his second New Canaan house (1951); Wikipedia calls it 'Marcel Breuer House IV'. Expanded by Toshiko Mori. Listing photos are by Michael Biondo for Houlihan Lawrence; renovation photos are by Paul Warchol.",
+    "nonFreeSources": [
+      "https://www.dwell.com/article/marcel-breuers-revived-home-could-be-yours-for-just-over-dollar5-million-68c80b5b",
+      "https://www.6sqft.com/4-35m-connecticut-home-marcel-breuer-designed-for-himself-got-a-glass-and-steel-addition/",
+      "https://thespaces.com/marcel-breuers-midcentury-connecticut-home-4-35m/",
+      "https://www.midcenturyhome.com/marcel-breuer-new-canaan-toshiko-mori/",
+      "https://breuer.syr.edu/"
+    ]
+  },
+  {
+    "order": 15,
+    "house": "Isabelle Daine House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No photo found. USModernist marks the Isabelle Daine House, 92 Briscoe Rd, as DESTROYED, and a New Canaanite article reports plans for a new 6,080 sq ft house on that lot. Verify the house still stands before including it on the tour.",
+    "nonFreeSources": [
+      "https://usmodernist.org/cj.htm",
+      "https://newcanaanite.com/?p=52244"
+    ]
+  },
+  {
+    "order": 16,
+    "house": "Landis Gores House",
+    "file": "16-landis-gores-house.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Landis_Gores_House.jpg",
+    "author": "Zachary Groz",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "confidence": "high",
+    "note": "NRHP-listed Landis Gores House, 192 Cross Ridge Rd (NRHP 02000189)."
+  },
+  {
+    "order": 17,
+    "house": "Lee House 1",
+    "file": "17-lee-house-1.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_FirstJohnBlackLeeHouse.jpg",
+    "author": "Magicpiano",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "confidence": "high",
+    "note": "NRHP-listed John Black Lee House I, 729 Laurel Rd (NRHP 10000568). Original upload is only 1024px wide."
+  },
+  {
+    "order": 18,
+    "house": "Naill House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist lists the Eugene J. Naill Residence, 635 Laurel Rd, 1954, with a later second-story addition.",
+    "nonFreeSources": [
+      "https://www.usmodernist.org/woollen.htm"
+    ]
+  },
+  {
+    "order": 19,
+    "house": "Arlt House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist lists the Paul Arlt Residence, 607 Laurel Rd, 1954; a commenter says it was completely altered.",
+    "nonFreeSources": [
+      "https://www.usmodernist.org/woollen.htm",
+      "https://virtualglobetrotting.com/map/arlt-house-by-evans-woollen/view/bing/"
+    ]
+  },
+  {
+    "order": 20,
+    "house": "Spotts House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist dates the Wendy and Jules Spotts House to 1972. It says Alan Goldberg designed it, resigned during construction, and Richard Henderson finished the job. It notes the Ice Storm connection and gives the address as '581 Laurel Street'.",
+    "nonFreeSources": [
+      "https://usmodernist.org/goldberg.htm"
+    ]
+  },
+  {
+    "order": 21,
+    "house": "Noyes House 2",
+    "file": "21-noyes-house-2.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_NoyesHouse.jpg",
+    "author": "Magicpiano",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "confidence": "high",
+    "note": "NRHP-listed Noyes House (NRHP 08000948), listed with the address 'Country Club Road'. USModernist gives 210 Country Club Rd. This is Noyes's second family house; his first, at 51 Lambert Rd, was destroyed in 2005. Original upload is only 1024px wide."
+  },
+  {
+    "order": 22,
+    "house": "Lee Ault House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist and Wikipedia date it to 1951 (the sheet says 1956); listings say 1952. Renovated after a 2018 sale.",
+    "nonFreeSources": [
+      "https://www.usmodernist.org/noyes.htm",
+      "https://dwell.com/article/midcentury-homes-for-sale-new-canaan-eliot-noyes-cc85ba3d",
+      "https://thespaces.com/modernist-glass-house-hits-the-market-in-new-canaan-for-the-first-time-ever/",
+      "https://elliman.com/listing/90-lambert-rd-new-canaan-ct-06840/12960158"
+    ]
+  },
+  {
+    "order": 23,
+    "house": "Alice Ball House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found.",
+    "nonFreeSources": [
+      "https://historicbuildingsct.com/the-alice-ball-house-1953/",
+      "https://newcanaanite.com/philip-johnson-designed-midcentury-modern-on-oenoke-ridge-sells-for-2-3-million-24721",
+      "https://www.6sqft.com/storied-philip-johnson-house-in-new-canaan-ct-asks-7-7m-including-plans-for-a-modern-mansion/",
+      "https://connecticut.news12.com/historic-alice-ball-house-at-risk-of-demolition-34856938",
+      "https://architectureforsale.com/?p=26031"
+    ]
+  },
+  {
+    "order": 24,
+    "house": "Celanese House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found.",
+    "nonFreeSources": [
+      "https://historicbuildingsct.com/celanese-house-1959/",
+      "https://newcanaanpreservationalliance.org/?p=886",
+      "https://raveis.com/mls/24080615/565-oenoke-ridge-new-canaan-ct-06840"
+    ]
+  },
+  {
+    "order": 25,
+    "house": "Breuer House 1 (122 Sunset Hill Rd)",
+    "file": "25-breuer-house-1.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_MarcelBreuerHouseII.jpg",
+    "author": "Magicpiano",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "confidence": "high",
+    "note": "Wikipedia and the NRHP (ref. 10000572) call this house 'Marcel Breuer House II' (122 Sunset Hill Rd, 1947), counting Breuer's earlier Lincoln, MA house as I. Breuer's own papers call it 'Breuer House, New Canaan I', which matches the sheet's 'Breuer House 1'. Original upload is only 1024px wide."
+  },
+  {
+    "order": 26,
+    "house": "Bremer House",
+    "file": null,
+    "sourceUrl": null,
+    "author": null,
+    "license": null,
+    "licenseUrl": null,
+    "confidence": null,
+    "note": "No freely licensed photo found. USModernist dates it to 1951 (Wikipedia says 1950), with a guesthouse added in 1953 and a pool in 1969.",
+    "nonFreeSources": [
+      "https://www.usmodernist.org/noyes.htm"
+    ]
+  }
+]

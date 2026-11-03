@@ -48,6 +48,8 @@
   .ride b { font-size: 22px; font-weight: 400; letter-spacing: 0; margin-right: 4px; }
   .ride .go { color: #E58A62; }
   .ride:hover .go { color: #fff; }
+  .solo { color: #CF5127; cursor: pointer; }
+  .solo:hover { text-decoration: underline; }
   @media (max-width: 860px) { main { grid-template-columns: 1fr; } .sw { aspect-ratio: 16 / 11; } }
 </style>
 </head>
@@ -63,7 +65,7 @@
 <main>
   <a class="card" href="directions/a-monograph/">
     <div class="sw a"><div class="sun"></div><div class="slab"></div><div class="gl"></div><div class="t">Modern<em>New Canaan</em></div></div>
-    <div class="info"><div class="eyebrow">Direction A</div><h2>The Monograph</h2>
+    <div class="info"><div class="eyebrow">Direction A · <span class="solo" onclick="event.preventDefault();location.href='book/'">Standalone version ↗</span></div><h2>The Monograph</h2>
       <p>A cream-paper architecture book in the spirit of 1950s design monographs. Futura-style type, one persimmon accent, and generous margins.</p>
       <ul><li>Two-page spreads on desktop, photo left and story right</li><li>On a phone, each page turns like a real leaf from the left edge</li><li>An index of the full route up front</li></ul></div>
   </a>

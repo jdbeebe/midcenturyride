@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modern New Canaan · A ride through the houses</title>
+<meta name="description" content="26 mid-century modern houses on a 17.4-mile bike ride through New Canaan, CT. Hosted by Bill Adamsen and the Ridgefield Bicycle Club.">
+<meta name="theme-color" content="#2B2925">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modern New Canaan · A ride through the houses">
+<meta property="og:description" content="26 mid-century modern houses on a 17.4-mile bike ride through New Canaan, CT. Hosted by Bill Adamsen and the Ridgefield Bicycle Club.">
+<meta property="og:url" content="https://jdbeebe.github.io/midcenturyride/book/">
+<meta property="og:image" content="https://jdbeebe.github.io/midcenturyride/book/assets/img/12-glass-house.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23CF5127'/%3E%3Ccircle cx='42' cy='22' r='12' fill='%23F3EEE3'/%3E%3Crect x='6' y='36' width='44' height='4' fill='%231C1B18'/%3E%3Cpath d='M12 40v14M22 40v14M32 40v14M42 40v14' stroke='%231C1B18' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Flipbook core: 3D leaves hinged on the left (x) or top (y) edge. */
+@property --a { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+.fb {
+  position: relative;
+  perspective: 2000px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.fb-y { touch-action: none; perspective: 1600px; }
+
+.fb-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.25, .8, .25, 1);
+}
+/* A closed book sits centred: shift by half a page at the covers. */
+.fb-x.fb-spread.fb-at-start .fb-stage { transform: translateX(-25%); }
+.fb-x.fb-spread.fb-at-end .fb-stage { transform: translateX(25%); }
+
+.fb-leaf {
+  position: absolute;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.fb-x .fb-leaf { top: 0; bottom: 0; left: 0; width: 100%; transform-origin: left center; }
+.fb-x.fb-spread .fb-leaf { left: 50%; width: 50%; }
+.fb-y .fb-leaf { left: 0; right: 0; top: 0; height: 100%; transform-origin: center top; }
+.fb-y.fb-spread .fb-leaf { top: 50%; height: 50%; }
+.fb-far { visibility: hidden; }
+
+.fb-anim {
+  transition:
+    transform var(--fb-dur, .7s) cubic-bezier(.3, .75, .25, 1),
+    --a var(--fb-dur, .7s) cubic-bezier(.3, .75, .25, 1);
+}
+
+.fb-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.fb-x .fb-back { transform: rotateY(180deg); }
+.fb-y .fb-back { transform: rotateX(180deg); }
+
+/* Lighting: the front darkens as it lifts, the back brightens as it lands. */
+.fb-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+.fb-x .fb-front::after { background: linear-gradient(to left, rgba(0,0,0,.55), rgba(0,0,0,.08) 70%, rgba(255,255,255,.06)); opacity: calc(var(--a) * 1.5); }
+.fb-x .fb-back::after  { background: linear-gradient(to right, rgba(0,0,0,.5), rgba(0,0,0,.05) 70%); opacity: calc((1 - var(--a)) * 1.5); }
+.fb-y .fb-front::after { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.08) 70%); opacity: calc(var(--a) * 1.5); }
+.fb-y .fb-back::after  { background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,.05) 70%); opacity: calc((1 - var(--a)) * 1.5); }
+
+/* Gutter shadow along the spine in spread mode. */
+.fb-spread.fb-x .fb-face::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; width: 9%;
+  pointer-events: none;
+  z-index: 49;
+}
+.fb-spread.fb-x .fb-front::before { left: 0; background: linear-gradient(to right, rgba(0,0,0,.16), transparent); }
+.fb-spread.fb-x .fb-back::before  { right: 0; background: linear-gradient(to left, rgba(0,0,0,.16), transparent); }
+
+/* A lifted leaf casts a soft shadow. */
+.fb-lifted .fb-face { box-shadow: 0 0 40px rgba(0,0,0,.25); }
+
+.fb-jump .fb-leaf { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fb-anim { --fb-dur: .01s !important; }
+}
+</style>
+<style>
+  :root {
+    --paper: #F3EEE3; --ink: #1C1B18; --rust: #CF5127; --mute: #857F73; --rule: #D3CBBA;
+    --table: #2B2925;
+    --sans: 'Jost', system-ui, sans-serif; --serif: 'Newsreader', Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--table); overflow: hidden; font-family: var(--sans); color: var(--ink); }
+  body { background: radial-gradient(120% 90% at 50% 40%, #3A3732, var(--table)); }
+
+  .wrap { position: fixed; inset: 0; display: grid; place-items: center; padding-bottom: 64px; }
+  #book { --ph: min(84dvh - 64px, 46vw / .72); height: var(--ph); width: calc(var(--ph) * .72 * 2); }
+  #book .fb-face { container-type: size; }
+  #book.fb-spread .fb-stage { filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+
+  /* ---------- page primitives ---------- */
+  .pg { position: absolute; inset: 0; background: var(--paper); padding: 8cqw 8cqw 7cqw; display: flex; flex-direction: column; }
+  .fb-verso { background: var(--paper); }
+  .fb-verso::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(0,0,0,.018) 11px 12px); }
+  .folio { margin-top: auto; display: flex; justify-content: space-between; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .18em; text-transform: uppercase; color: var(--mute); padding-top: 3cqw; }
+  .eyebrow { font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .24em; text-transform: uppercase; color: var(--mute); font-weight: 500; }
+
+  .hero { position: absolute; inset: 0; margin: 0; background: #CFC6B2; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.85) contrast(1.02); }
+  .hero .credit { position: absolute; right: 3cqw; bottom: 2.4cqw; font-size: clamp(8px, 1.9cqw, 10px); color: rgba(255,255,255,.8); letter-spacing: .04em; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+  .hero-drawn { background: #E4DCCB; }
+  .hero-drawn .credit { color: var(--mute); text-shadow: none; }
+  .ph { width: 100%; height: 100%; display: block; }
+  .ph-line { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+  .ph-fill { fill: var(--paper); }
+  .ph-glass { fill: #B9C3BE; }
+  .ph-solid, .ph-core { fill: var(--ink); }
+  .ph-sun { fill: var(--rust); }
+
+  /* ---------- cover ---------- */
+  .cover { background: var(--rust); color: var(--ink); }
+  .cv-meta { display: flex; justify-content: space-between; font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .22em; text-transform: uppercase; font-weight: 500; }
+  .cv-art { position: relative; flex: 1; margin: 6cqw 0; }
+  .cv-art .sun { position: absolute; width: 34cqw; height: 34cqw; border-radius: 50%; background: var(--paper); right: 4cqw; top: 2cqw; }
+  .cv-art .slab { position: absolute; left: -8cqw; right: 14cqw; bottom: 22cqw; height: 2.4cqw; background: var(--ink); }
+  .cv-art .glass { position: absolute; left: 6cqw; right: 26cqw; bottom: 0; height: 22cqw; border: .5cqw solid var(--ink); border-top: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 calc(8cqw - .5cqw), var(--ink) calc(8cqw - .5cqw) 8cqw); }
+  .cv-art .bike { position: absolute; left: 0; top: 4cqw; width: 22cqw; color: var(--ink); }
+  .cv-title { font-weight: 500; font-size: 15cqw; line-height: .9; letter-spacing: -.02em; margin: 0; }
+  .cv-title em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; display: block; font-size: .78em; margin-top: .12em; }
+  .cv-sub { margin: 4cqw 0 0; font-size: clamp(11px, 3cqw, 15px); line-height: 1.45; letter-spacing: .02em; }
+
+  /* ---------- intro ---------- */
+  .intro h2 { font-weight: 400; font-size: 9cqw; line-height: 1; margin: 5cqw 0 6cqw; letter-spacing: -.01em; }
+  .intro h2 em { font-family: var(--serif); color: var(--rust); }
+  .intro p { font-family: var(--serif); font-size: clamp(13px, 3.4cqw, 18px); line-height: 1.55; margin: 0 0 1em; }
+  .figs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-top: auto; }
+  .figs div { padding: 3cqw 0 0; }
+  .figs b { display: block; font-weight: 300; font-size: 11cqw; line-height: 1; }
+  .figs span { font-size: clamp(8px, 2.1cqw, 11px); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+
+  .index ol { list-style: none; margin: 4cqw 0 0; padding: 0; columns: 2; column-gap: 5cqw; flex: 1; }
+  .index li { break-inside: avoid; }
+  .index button { all: unset; cursor: pointer; display: grid; grid-template-columns: 5.5cqw 1fr auto; gap: 1.6cqw; align-items: baseline; width: 100%; padding: .9cqw 0; border-bottom: 1px solid var(--rule); font-size: clamp(9px, 2.55cqw, 13px); line-height: 1.2; }
+  .index button:hover .nm { color: var(--rust); }
+  .index .no { color: var(--mute); font-variant-numeric: tabular-nums; }
+  .dot { width: 1.7cqw; height: 1.7cqw; border-radius: 50%; border: 1.5px solid var(--ink); align-self: center; }
+  .dot.stop { background: var(--rust); border-color: var(--rust); }
+  .legend { display: flex; gap: 5cqw; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-top: 3cqw; }
+  .legend span { display: inline-flex; align-items: center; gap: 1.5cqw; }
+
+  /* ---------- home spread ---------- */
+  .photo-pg { padding: 0; background: #CFC6B2; }
+  .plate { position: absolute; left: 6cqw; top: 6cqw; z-index: 2; background: var(--paper); padding: 2cqw 3cqw; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .2em; text-transform: uppercase; font-weight: 500; }
+
+  .text-pg .top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .num { font-weight: 300; font-size: 30cqw; line-height: .78; letter-spacing: -.04em; margin-left: -1.2cqw; }
+  .tag { font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .2em; text-transform: uppercase; font-weight: 600; padding: 1.6cqw 2.8cqw; border: 1.5px solid var(--ink); margin-top: 1cqw; }
+  .tag.stop { background: var(--rust); border-color: var(--rust); color: var(--paper); }
+  .text-pg h2 { font-weight: 500; font-size: 8.4cqw; line-height: 1.02; letter-spacing: -.01em; margin: 5cqw 0 4cqw; }
+  .meta { display: grid; grid-template-columns: auto 1fr; gap: 1cqw 4cqw; font-size: clamp(10px, 2.7cqw, 14px); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 2.6cqw 0; }
+  .meta dt { letter-spacing: .16em; text-transform: uppercase; color: var(--mute); font-size: .82em; padding-top: .15em; }
+  .meta dd { margin: 0; }
+  .notes { font-family: var(--serif); font-size: clamp(13px, 3.25cqw, 17px); line-height: 1.55; overflow: auto; flex: 1; margin-top: 4cqw; padding-right: 1cqw; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent); mask-image: linear-gradient(to bottom, #000 82%, transparent); padding-bottom: 3em; overscroll-behavior: contain; }
+  .notes p { margin: 0; }
+  .notes p::first-letter { font-family: var(--sans); font-weight: 500; float: left; font-size: 3.1em; line-height: .82; padding: .06em .08em 0 0; color: var(--rust); }
+
+  /* ---------- end matter ---------- */
+  .colophon h3 { font-weight: 500; font-size: 6cqw; margin: 4cqw 0; }
+  .colophon p { font-family: var(--serif); font-size: clamp(12px, 3cqw, 16px); line-height: 1.5; margin: 0 0 .8em; }
+  .finish { background: var(--ink); color: var(--paper); align-items: flex-start; }
+  .finish .bike { width: 30cqw; color: var(--rust); margin-top: auto; }
+  .finish h3 { font-weight: 300; font-size: 12cqw; line-height: .95; margin: 5cqw 0 3cqw; }
+  .finish p { font-size: clamp(11px, 3cqw, 15px); line-height: 1.5; letter-spacing: .02em; color: #CFC8BA; margin: 0 0 auto; }
+  .back-cover { background: var(--ink); color: var(--paper); justify-content: center; align-items: center; text-align: center; }
+  .back-cover .ring { width: 26cqw; height: 26cqw; border-radius: 50%; background: var(--rust); margin-bottom: 6cqw; }
+  .back-cover p { font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .24em; text-transform: uppercase; line-height: 2; margin: 0; }
+
+  /* ---------- route ---------- */
+  .rmap { width: 100%; height: 100%; display: block; }
+  .rm-path { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+  .rm-done { fill: none; stroke: var(--rust); stroke-width: 3.2; stroke-linejoin: round; stroke-linecap: round; }
+  .rm-dot { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+  .rm-stop { fill: var(--rust); stroke: var(--ink); }
+  .rm-cur { fill: var(--rust); stroke: var(--ink); stroke-width: 2.6; }
+  .rm-lbl { font: 500 10px var(--sans); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 3px; }
+  .rm-start { fill: var(--ink); }
+  .rm-extra path { stroke: var(--mute); stroke-width: 1.6; }
+  .map-pg { padding: 6cqw; }
+  .map-pg .mapbox { flex: 1; min-height: 0; margin: 2cqw -2cqw 0; }
+  .map-key { display: flex; flex-wrap: wrap; gap: 1.5cqw 4cqw; font-size: clamp(8px, 2.1cqw, 11px); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .map-key span { display: inline-flex; align-items: center; gap: 1.4cqw; }
+  .map-key .sq { width: 1.8cqw; height: 1.8cqw; background: var(--ink); }
+  .map-key .x { font-size: 1.4em; line-height: 1; }
+  .facts h2 { font-weight: 400; font-size: 9cqw; line-height: 1; margin: 5cqw 0 4cqw; letter-spacing: -.01em; }
+  .facts dl { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); margin: 0; }
+  .facts dl div { padding: 2.6cqw 0 2.4cqw; border-bottom: 1px solid var(--rule); }
+  .facts dt { font-size: clamp(8px, 2.1cqw, 11px); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+  .facts dd { margin: .6cqw 0 0; font-size: 6.4cqw; font-weight: 300; line-height: 1; }
+  .facts dd small { font-size: .42em; letter-spacing: .06em; }
+  .rprof { width: 100%; height: 14cqw; display: block; margin: 4cqw 0 1cqw; }
+  .rp-fill { fill: rgba(207, 81, 39, .14); } .rp-line { fill: none; stroke: var(--rust); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .rp-cur { stroke: var(--ink); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .prof-cap { display: flex; justify-content: space-between; font-size: clamp(8px, 2cqw, 10px); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 2cqw; background: var(--ink); color: var(--paper); text-decoration: none; font-size: clamp(10px, 2.6cqw, 13px); letter-spacing: .16em; text-transform: uppercase; font-weight: 500; padding: 3cqw 4cqw; margin-top: 4cqw; }
+  .btn:hover { background: var(--rust); }
+  .facts .sub { font-family: var(--serif); font-size: clamp(12px, 3cqw, 15px); line-height: 1.5; margin: 3cqw 0 0; color: #4A463F; }
+  .facts .sub a { color: inherit; }
+  .locator { position: absolute; right: 5cqw; top: 5cqw; width: 26cqw; aspect-ratio: .8; background: var(--paper); z-index: 2; padding: 1cqw; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+  .locator .rm-path { stroke-width: 4; } .locator .rm-done { stroke-width: 6; } .locator .rm-dot:not(.rm-cur) { display: none; } .locator .rm-cur { stroke-width: 4; }
+  .meta dd a { color: var(--rust); text-decoration: none; margin-left: .6em; font-size: .82em; letter-spacing: .1em; text-transform: uppercase; }
+  .nextleg { display: flex; gap: 2.4cqw; align-items: baseline; font-size: clamp(10px, 2.5cqw, 13px); padding-top: 2.6cqw; border-top: 1px solid var(--rule); margin-top: 1cqw; color: var(--mute); }
+  .nextleg b { color: var(--ink); font-weight: 500; }
+  .nextleg i { font-style: normal; color: var(--rust); font-size: 1.2em; }
+  .folio a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .index .mi { color: var(--mute); font-size: .86em; font-variant-numeric: tabular-nums; }
+  .index button { grid-template-columns: 5.5cqw 1fr auto auto; }
+
+  /* ---------- chrome ---------- */
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; gap: 18px; padding: 0 max(20px, env(safe-area-inset-left)) env(safe-area-inset-bottom); color: #E9E3D6; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+  .bar a { color: inherit; text-decoration: none; opacity: .7; }
+  .bar a:hover { opacity: 1; color: var(--rust); }
+  .bar .where { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .bar .where span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .track { height: 2px; background: rgba(255,255,255,.15); position: relative; }
+  .track i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--rust); transition: width .5s; }
+  .bar button { all: unset; cursor: pointer; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; font-size: 16px; letter-spacing: 0; }
+  .bar button:hover { border-color: var(--rust); color: var(--rust); }
+
+  @media (max-width: 959px) {
+    .wrap { padding: 0; place-items: start center; }
+    #book { width: 100vw; height: calc(100dvh - 56px); }
+    .bar { height: 56px; background: var(--table); }
+    .bar a.back { display: none; }
+    .bar a.route-link { order: 3; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap"><div id="book" aria-label="Modern New Canaan, a book of houses"></div></div>
+<nav class="bar">
+  <a class="route-link" href="https://ridewithgps.com/routes/54307217" target="_blank" rel="noopener">Route ↗</a>
+  <div class="where"><span id="where">Cover</span><div class="track"><i id="track"></i></div></div>
+  <button id="prev" aria-label="Previous page">←</button>
+  <button id="next" aria-label="Next page">→</button>
+</nav>
+
+<script>window.MCR_ROOT = '';</script>
+<script>
+// Source: "New Canaan Mid-Century Modern" Google Sheet (gid=0), pulled 2026-11-03.
+// Fields: order (route order), name, architect, visit ("Stop" | "Ride by"), address, year,
+// surveyId / surveyPage (ID No. / Pg columns), notes.
+window.HOMES = [
+  { order: 1, name: "Irwin Pool House", architect: "Landis Gores", visit: "Stop", address: "843 Weed Street", year: 1960, surveyId: 31, surveyPage: 143,
+    notes: "Designed by architect Landis Gores in 1960 as a pool house for Jane and John Irwin. Jane was the daughter of IBM Founder Thomas Watson. Landis Gores grew up in the Midwest and graduated summa cum laude from Princeton in 1939, before continuing his education at Harvard. There he became close with fellow student Philip Johnson and professor Marcel Breuer. All later become members of the Harvard Five modern architectural group along with John Johansen and Eliot Noyes. In the Second World War Gores took part in a top-secret operation known as Ultra, which broke the code of the German high command. By the time he completed active duty he had been awarded both the Legion of Merit and the Order of the British Empire. After WW2 he worked with Philip Johnson where Johnson would design, and Gores would draft ideas to a polished resolved result. Gores helped Johnson on Early Miesian-inspired (Mies Van Der Rohe) houses which included the Booth House, the Rockefeller townhouse, the MOMA garden, and the famous Glass House. Upon complaints that Johnson had not yet passed his New York architectural exam and therefore could not practice in New York state, the two left their office in New York City and relocated their practice to New Canaan, Connecticut. In 1951 Johnson and Gores parted professionally, and on November 1 Gores opened his own architectural practice. Three years later, Gores was stricken with polio. It was just a year before the US government approved the distribution of the polio vaccine. Gores was initially confined to an iron lung and for the rest of his life and doctors informed him that his physical activities would be severely restricted. Nevertheless, he slowly began to resume his work with the help of close friend John Irwin who fashioned Gores a special electric typewriter so that he would be able to continue his architectural career." },
+  { order: 2, name: "Irwin House", architect: "Victor Christ-Janer", visit: "Ride by", address: "237 Wahackme Road", year: 1954, surveyId: 8, surveyPage: 57,
+    notes: "The Irwin House was almost certainly one of the houses referred to in a January 1953 article in House & Home, in which Victor Christ-Janer remarked that he had convinced Roles to construct two Modern speculative houses on Wahackme Road, and Roles responded, “I now think we can do a good modern speculative house in this area. I don’t care whether it has a flat roof or not; give me the plans of a house that makes sense and I’ll build it” (House & Home, January 1953, 137). A fire in 1972 caused substantial damage to the house, but it was rebuilt following the original plans. Alterations were made in the 1980s to the house’s porches and balcony." },
+  { order: 3, name: "Techbuilt / Swallen House", architect: "Hugh Smallen", visit: "Ride by", address: "257 Wahackme Road", year: 1954, surveyId: 45, surveyPage: 197,
+    notes: "The Techbuilt House/Swallen House is situated on a heavily wooded lot, which runs north-to-south on the north side of a hill. The lot slopes upwards towards the west and north. The hill has been terraced to fit the house, patio, and play area. The exterior design of the Techbuilt House was characterized by a pitched roof, large plate glass windows on the gable ends, and deep eaves. Koch had determined that the most economical use of space was achieved by a two-story plan that was essentially an “attic” with high side walls stacked on a partially recessed “basement,” allowing for adequate light and ventilation at both levels. The shell of the house was composed of stress skinned panels on a four-foot-wide module. The main entrance could be located either at the gable ends or on the side walls, depending on how the building was situated to the street. The utility core and stairs were located at the core of the house to allow for flexible use of the interior spaces. The pre-fabricated shell of the house, which included wall panels, end panels, floor panels, roof panels, and beams, girders, and trim, was designed for shipment in a single truckload delivery to a site with a prepared foundation. Once on site, four men could unload the components, frame the house, and roof it within two days. All of the finishing work could then be completed inside. The primary cost savings were created through the delivery method and fast pace of construction. The Techbuilt House could be customized to different sizes and floor plans and allowed owners to finish the interiors to individual taste and budget." },
+  { order: 4, name: "Beaven Mills House", architect: "William Pedersen", visit: "Stop", address: "31 Chichester Road", year: 1956, surveyId: 63, surveyPage: 269,
+    notes: "Architect William Pedersen was a prolific architect, with a B.Arch. '61 from University of Minnesota, a Master of Architecture from Massachusetts Institute of Technology, recipient of the Rome Prize in Architecture in 1965 (IM Pei sat on jury), elected member of the National Academy and seven time recipient of the AIA National Honor Award. One of the founding Partners of Kohn Pedersen Fox, Pedersen is perhaps best known today for soaring skyscrapers in Asia. The Beaven Mills House is a single-story, flat-roofed house with an irregular plan set on a sloping, wooded site designed by Pedersen when he was just 18 years old and before he had even earned his degree in architecture. It is one of the first modern houses built on Chichester Road." },
+  { order: 5, name: "Lee House 2", architect: "John Black Lee", visit: "Stop", address: "202 Chichester Road", year: 1956, surveyId: 49, surveyPage: 213,
+    notes: "John Black Lee's college years at Brown University were interrupted by service in the US Navy. Returning after the war he graduated and joined Eliot Noyes' firm in New Canaan before opening his own office. Lee House 2 was designed by John Black Lee for his family after they had outgrown their first house on Laurel Road, acquiring the lot in 1955. The house has been featured in several publications, including the New York Times Magazine, Architectural Record, Better Homes and Gardens, and House & Home. In 1959, Lee House 2 won an award of merit from the American Institute of Architects." },
+  { order: 6, name: "Parsons House", architect: "Hugh Smallen", visit: "Ride by", address: "188 Chichester Road", year: 1964, surveyId: 73, surveyPage: 309,
+    notes: "Sited on top of a rock ledge forty feet above street level on a three-acre woodland site, the Parsons House is clad and framed in wood, and supported by eight exterior thin steel columns set in concrete footings. Architect Hugh Smallen enhanced the parcel’s dramatic grade changes in both the siting of the house and its design. Although the footprint of the house is square and its roof is flat, the base of the house is angled to match the grade change of the rock ledge it straddles, resulting in two stories at one end of the house and one story on grade at the opposite side of the house. Stone stairs lead up from the driveway at street level to the entrance of the house." },
+  { order: 7, name: "Smallen House", architect: "Hugh Smallen", visit: "Ride by", address: "160 Chichester Road", year: 1957, surveyId: 70, surveyPage: 297,
+    notes: "Designed by architect Hugh Smallen for his family and completed in 1957. The Smallen House was part of a Modern enclave along Chichester Road. The Smallen House is set in a clearing on a gently sloping wooded site. The one-story house is simply finished with flush vertical wood siding painted white, large fixed sash, and flush doors. Geometric in its design, the shed-roofed house is sited to provide one floor of fenestration at its lowest pitch, and two floors of fenestration at its highest pitch. The main entrance is at the slope of the roof and consists of a flush door flanked by fixed sidelights and an irregularly shaped transom that follows the line of the low-pitched shed roof. The entrance is accessed by a wood deck anchored at one end by a mortared stone wall that bridges the slope at the front of the house." },
+  { order: 8, name: "Becker House", architect: "Hugh Smallen", visit: "Ride by", address: "136 Chichester Road", year: 1963, surveyId: 72, surveyPage: 305,
+    notes: "The Becker House is set on a hillside overlooking a pond and stream. The street-facing façade of the house is sheltered by a high fieldstone wall. The main entrance is through a narrow opening in the fieldstone wall which leads to a secluded courtyard with a pergola roof. A carport is located adjacent to the courtyard, also behind the stone wall. The main part of the house is rectangular in plan. At the lower level of the hill, the house is two stories high; this rear wall is heavily glazed. A wood deck extends across the back of the house. The house is clad in flush vertical wood siding, which contrasts with the heavy stone wall and stone base of the building." },
+  { order: 9, name: "Gratwick House", architect: "Victor Christ-Janer", visit: "Ride by", address: "53 Myanos Road", year: 1953, surveyId: 7, surveyPage: 53,
+    notes: "The Gratwick House was designed by Victor Christ-Janer and constructed in 1953. Christ-Janer acquired the property from builder Robert Roles in 1952 and may have designed the dwelling as a speculative house. Although no builder is specifically identified, the house was likely constructed by Roles, who worked with Christ-Janer on a number of projects in New Canaan. The appearance has been significantly changed by alterations over the years." },
+  { order: 10, name: "Blod / Roles House", architect: "Victor Christ-Janer", visit: "Ride by", address: "383 Wahackme Road", year: 1953, surveyId: 6, surveyPage: 49,
+    notes: "Christ-Janer’s plan for the house clustered utility spaces at the core of the rectangular footprint and moved living and sleeping uses to the perimeter to take advantage of the natural light from the window walls. An interior terrace with a reflecting pool and rolling partition storage walls were also character-defining features for this highly individualistic house. The Roles House was one of six houses shown on the 1953 Modern House Tour." },
+  { order: 11, name: "Hodgson House", architect: "Johnson & Gores", visit: "Stop", address: "881 Ponus Ridge", year: 1951, surveyId: 36, surveyPage: 161,
+    notes: "The Hodgson House was designed for Richard and Geraldine Hodgson by architect Philip Johnson with Landis Gores acting as associate. The engineer on the project was the Eipel Engineering Company and the builder was John Smith. According to Bill Earls, Johnson received the commission for the house after introducing himself to a couple who was looking at the site across the street from his Glass House." },
+  { order: 12, name: "Glass House", architect: "Philip Johnson", visit: "Stop", address: "842 Ponus Ridge", year: 1948, surveyId: 35, surveyPage: 157,
+    notes: "The Glass House has been called the “signature work” of Philip Johnson. The Glass House may have been derived from the glass Farnsworth House in Plano, Illinois, by Ludwig Mies van der Rohe, which was completed in 1951, two years after the Glass House. Johnson curated an exhibit of Mies's work at the Museum of Modern Art in 1947, featuring a model of the Farnsworth House. It was an important and influential project for Johnson and for modern architecture. The building is an example of minimal structure, geometry, proportion, and the effects of transparency and reflection. The estate includes other buildings designed by Johnson that span his career. It was designated a National Historic Landmark in 1997. It is now owned by the National Trust for Historic Preservation." },
+  { order: 13, name: "Mills House 2", architect: "Willis N. Mills", visit: "Stop", address: "1380 Ponus Ridge", year: 1956, surveyId: 69, surveyPage: 293,
+    notes: "Mills House 2 was designed by Willis N. Mills, a principal in the architectural firm of Sherwood, Mills & Smith, as his private residence. It was built by Borglum and Meek and completed in 1956. The house received design awards from Architectural Record and the Boston Arts Festival. It was constructed on a rocky slope where many thought it was impossible to build. The uncomplicated geometry of the rectangular floor plans was offset by the diagonal balconies and terraces." },
+  { order: 14, name: "Breuer House 2", architect: "Marcel Breuer", visit: "Stop", address: "628 West Road", year: 1951, surveyId: 4, surveyPage: 41,
+    notes: "Breuer House 2 was designed by architect Marcel Breuer for his own family after they decided to move from their original house in New Canaan on Sunset Hill Road. Unlike his first house, Breuer’s second house was designed to be grounded rather than floating, and the flat-roofed, one-story structure was clad in fieldstone veneer and glass. The property also had a flat-roofed carport. The house had an U-shaped plan enclosing a courtyard with a flagstone terrace. The plan concentrated the public living spaces (living room and dining room) and master bedroom and bath at one end, the utility spaces (kitchen, utility room, heating room) in the center, and the children’s room, bath, and guest rooms at the other end of the house. As in his first house, Breuer used neutral colors on the interior with splashes of bright color provided by artwork and by painting individual walls primary colors." },
+  { order: 15, name: "Isabelle Daine House", architect: "Victor Christ-Janer", visit: "Stop", address: "92 Briscoe Road", year: 1953, surveyId: 9, surveyPage: 61,
+    notes: "Victor Christ-Janer designed this modest 1953 house to blend into the surrounding landscape, but its flat roofs, floor-to-ceiling fixed plate glass sash and open-plan are clearly modern. Christ-Janer graduated from Yale with honors in 1940 then served in WWII. He moved to New Canaan CT and in 1955, he created his own firm Elm Street. He taught at Columbia from 1963 to 1977." },
+  { order: 16, name: "Landis Gores House", architect: "Landis Gores", visit: "Stop", address: "192 Cross Ridge Road", year: 1948, surveyId: 30, surveyPage: 139,
+    notes: "In 1946, Landis Gores purchased a four-acre lot to design and construct his family's first home in New Canaan, considered one of the first modern homes built in New Canaan. It was featured in national publications including a large spread in the January 1952 issue of House & Home and an article in the New York Times Magazine. The Gores House was listed in the National Register of Historic Places in 2002. The nomination states: “The Landis Gores House is significant because it epitomizes the ‘modern’ architecture of post-World War II America...Among the distinguishing characteristics of the type embodied in the Gores House are its flat-roofed single-story form, emphasis on horizontal planes, extensive use of full-height glass walls, informal open plan, the absence of any reference to historical precedence, and a close relationship between the house and its environment. Leavening the International style’s glass-walled austerity with natural wood and stone in the manner of Frank Lloyd Wright, the house was considered avant-garde...when built.” The property is currently still held in the Gores family." },
+  { order: 17, name: "Lee House 1", architect: "John Black Lee", visit: "Stop", address: "729 Laurel Road", year: 1952, surveyId: 48, surveyPage: 209,
+    notes: "Built in 1952, this is first of several houses John Black Lee designed for his family's use. The house is an excellent expression of minimalist Bauhaus style Modern architecture, and was listed on the National Register of Historic Places in 2010." },
+  { order: 18, name: "Naill House", architect: "Evans Woollen III", visit: "Ride by", address: "635 Laurel Road", year: 1954, surveyId: 80, surveyPage: 333,
+    notes: "The Naills acquired this property in 1954 partly because Laurel Road was considered less desirable than Oenoke, Ponus, or Smith Ridge. The owner of the land had commissioned Evans Woollen III to design a house for the lot but didn’t like it and refused to pay for the plans. The Naills acquired the property for about $1900 and contacted Woollen to purchase the plans. He had just graduated from Yale University and was working as a caretaker to pay his rent. He assisted the Naills with choosing interior furnishings and was paid an architectural fee of about $1800. Woollen eventually spent his honeymoon at the house." },
+  { order: 19, name: "Arlt House", architect: "Evans Woollen III", visit: "Ride by", address: "607 Laurel Road", year: 1954, surveyId: 79, surveyPage: 329,
+    notes: "Evans Woollen III had wanted to be an architect since his youth and studied under modern architects Philip Johnson and Louis Kahn at Yale University and trained locally under John M. Johansen. Graduating from Yale School of Architecture in 1952, Woollen apprenticed at Johnson's firm in New Canaan and later opened a solo practice in New Canaan before relocating to Indianapolis. The Arlt House - designed in 1954 - was one of the houses he designed during that solo practice in New Canaan. Some of Woollen's later designs serve as examples of Modernism and Brutalism architectural styles and were built in Indianapolis where he is considered the giant of architecture!" },
+  { order: 20, name: "Spotts House", architect: "Richard Henderson", visit: "Ride by", address: "581 Laurel Road", year: 1972, surveyId: 27, surveyPage: 127,
+    notes: "The Spotts House was designed in 1972 or much earlier as some believe (property cards missing in New Canaan) by Architect Richard Henderson. In 1997 the house was featured in the movie “The Ice Storm” - directed by Ang Lee - starring Kevin Kline, Joan Allen, Sigourney Weaver and Elijah Wood." },
+  { order: 21, name: "Noyes House 2", architect: "Eliot Noyes", visit: "Ride by", address: "210 Country Club Road", year: 1954, surveyId: 59, surveyPage: 253,
+    notes: "Noyes House 2 was designed in 1954 by Eliot Noyes. In Noyes’s words, the house is “a fortress on one side and all glass on the other.” The house was among the first to use wall-size sheets of glass to open up the living area into the outside courtyard. Noyes wrote in his 1963 essay in Life magazine, “It is no coincidence that an architect often expresses himself most clearly in a house designed for himself and his family. As an architect, he will have thought a lot about how people could live as opposed to how they do and how by architectural means he could expand the scope and richness of life within the house.”" },
+  { order: 22, name: "Lee Ault House", architect: "Eliot Noyes", visit: "Ride by", address: "90 Lambert Road", year: 1956, surveyId: 57, surveyPage: 245,
+    notes: "The Ault House (1952) was designed by architect Eliot Noyes for Lee Ault, the editor of Art in America. Noyes designed the house with a glass-walled gallery along an open courtyard to display Ault's extensive art collection. It was featured in the November 1958 issue of Architectural Record." },
+  { order: 23, name: "Alice Ball House", architect: "Philip Johnson", visit: "Ride by", address: "523 Oenoke Ridge", year: 1953, surveyId: 38, surveyPage: 169,
+    notes: "Philip Johnson designed the Alice Ball house as a modest one-story, two-bedroom home with an offset axial plan, a flat roof, symmetrically arranged terraces with slate paving, and pink stucco wall surfaces relieved by linearly grouped and symmetrically arranged painted entrance ensembles. The entrance ensembles were glazed wood-frame window and door configurations including fixed plate glass windows, glazed narrow-stile doors, fixed or operable transom windows, and screen doors with bronze rails. Skylights above the hall and kitchen provided additional light to interior spaces. A stucco finish chimney projected approximately 3’ from the east end of the north façade." },
+  { order: 24, name: "Celanese House", architect: "Edward Durell Stone", visit: "Stop", address: "565 Oenoke Ridge", year: 1959, surveyId: 74, surveyPage: 313,
+    notes: "The Celanese Corporation of America commissioned Edward Durell Stone to design the “Celanese House” to showcase the company’s various products during their 1959 promotional program titled “The American Idea.” An article in the September 20, 1959 New York Times suggested the company hired Stone after executives decided that only Stone or Frank Lloyd Wright would be considered for the commission. The home furnishings consultants for the Celanese Corporation, John and Earline Brice, were in charge of interior design and furnishings, and Dunbar furniture by noted designer Edward Wormley was also showcased. The structural engineer on the project was Henry Gorlin, the mechanical engineer was Harold Hecht, and the contractor was New Canaan builder Ted Hobbs, who built several Modern houses in town." },
+  { order: 25, name: "Breuer House 1", architect: "Marcel Breuer", visit: "Stop", address: "122 Sunset Hill Road", year: 1947, surveyId: 3, surveyPage: 37,
+    notes: "Breuer House 1 was designed by Marcel Breuer for his family in 1947 and was the first house Breuer designed in town. They chose New Canaan in part because Eliot Noyes had chosen New Canaan to live. The house was featured in an eight-page spread in the October 1948 Architectural Record which noted the “irresistible appeal of the cantilever.” Set on a rise overlooking a gently sloping lawn, the property is planted with large ornamental trees including Japanese maples and weeping hemlocks. The house, which has strong horizontal lines, originally featured an upper floor that cantilevered dramatically over the smaller ground-floor base of the building, including a deep corner porch suspended from cables. Currently, the ends of the main façade and the porch are supported by fieldstone walls, minimizing the effect of the overhangs." },
+  { order: 26, name: "Bremer House", architect: "Eliot Noyes", visit: "Stop", address: "60 Windrow Lane", year: 1951, surveyId: 56, surveyPage: 241,
+    notes: "Nina Bremer reached out to her friend Eliot Noyes, who drew up a conservative plan for a house, thinking that’s what the Bremers wanted. When Nina told him she didn’t think his plans were interesting, Noyes was elated and tore up the plan. Inspired by Le Corbusier’s Villa Savoye, Noyes created the “upside-down house” with a deeply overhanging upper floor supported on thin columns. The house was designed on a modular plan with 11’6” bays. Concrete-filled pipe columns partially supported the roof. The upper floor was zoned into public and private spaces: one half contained the kitchen, living room, and dining room, and the other half contained four bedrooms, a dressing room, and two baths. The lower floor contained the service spaces: an entryway, bedroom, bath, playroom, laundry room, dumbwaiter, and heating room. A partially covered open porch extended across the front of the upper floor with a terrace below. One half of the open porch is a deeper, room-sized volume, open to the sky. The Harvard Five often congregated at the Bremer House for parties." }
+];
+</script>
+<script>
+// Generated by scripts/build-route.py from Ride with GPS route 54307217. Do not edit by hand.
+window.ROUTE = {"id":54307217,"url":"https://ridewithgps.com/routes/54307217","name":"New Canaan Mid-Century Modern Tour","reference":{"label":"New Canaan Mid-Century Modern survey (USModernist, 2009, 25 MB PDF)","url":"https://www.usmodernist.org/2009newcanaan.pdf"},"distanceMi":17.45,"gainFt":967,"terrain":"rolling","difficulty":"easy","surface":"paved","type":"loop","start":{"lat":41.14888,"lng":-73.50718,"name":"Irwin Park, Weed Street"},"houses":{"1":{"lat":41.14887,"lng":-73.50958,"mile":0.3,"ti":11,"routeName":"Gores Pavillion","visit":"Stop","stopAt":null,"offRouteM":100,"cuesIn":[{"mile":0.03,"turn":"Right","text":"Right"},{"mile":0.04,"turn":"Left","text":"Left"},{"mile":0.07,"turn":"Sharp Left","text":"Sharp left onto Weed Street"},{"mile":0.18,"turn":"Left","text":"Left onto Wahackme Road"}]},"2":{"lat":41.14806,"lng":-73.51754,"mile":0.75,"ti":26,"routeName":"Wm Irwin House","visit":"Ride by","stopAt":null,"offRouteM":24,"cuesIn":[]},"3":{"lat":41.14769,"lng":-73.51846,"mile":0.77,"ti":28,"routeName":"Swallen Techbuilt House","visit":"Ride by","stopAt":null,"offRouteM":68,"cuesIn":[]},"4":{"lat":41.14837,"lng":-73.51928,"mile":0.92,"ti":38,"routeName":"Beaven Mill House","visit":"Stop","stopAt":null,"offRouteM":78,"cuesIn":[{"mile":0.89,"turn":"Right","text":"Right onto Chichester Road"}]},"5":{"lat":41.15382,"lng":-73.5214,"mile":1.36,"ti":50,"routeName":"Lee House 2","visit":"Stop","stopAt":null,"offRouteM":36,"cuesIn":[]},"6":{"lat":41.15325,"lng":-73.52142,"mile":1.51,"ti":54,"routeName":"Parsons House","visit":"Stop","stopAt":null,"offRouteM":28,"cuesIn":[]},"7":{"lat":41.15239,"lng":-73.52153,"mile":1.56,"ti":55,"routeName":"Smallen House","visit":"Stop","stopAt":null,"offRouteM":41,"cuesIn":[]},"8":{"lat":41.1515,"lng":-73.52133,"mile":1.62,"ti":56,"routeName":"Becker House","visit":"Stop","stopAt":null,"offRouteM":29,"cuesIn":[]},"9":{"lat":41.14951,"lng":-73.52302,"mile":1.85,"ti":62,"routeName":"Gratwick House","visit":"Ride by","stopAt":null,"offRouteM":72,"cuesIn":[{"mile":1.68,"turn":"Right","text":"Right onto Toquam Road"},{"mile":1.83,"turn":"Left","text":"Left onto Toquam Road"},{"mile":1.85,"turn":"Slight Left","text":"Slight left onto Myanos Road"}]},"10":{"lat":41.14813,"lng":-73.52337,"mile":1.97,"ti":65,"routeName":"Blod-Roles House","visit":"Stop","stopAt":"Myanos","offRouteM":30,"cuesIn":[]},"11":{"lat":41.14288,"lng":-73.52698,"mile":2.51,"ti":84,"routeName":"Hodgson House","visit":"Stop","stopAt":"Arrowhead","offRouteM":81,"cuesIn":[{"mile":2.01,"turn":"Sharp Right","text":"Sharp right onto Wahackme Road"},{"mile":2.27,"turn":"Left","text":"Left onto Ponus Ridge Road"}]},"12":{"lat":41.14245,"lng":-73.52804,"mile":2.51,"ti":84,"routeName":"Glass House","visit":"Stop","stopAt":null,"offRouteM":109,"cuesIn":[]},"13":{"lat":41.15818,"lng":-73.5339,"mile":3.76,"ti":132,"routeName":"Mills House 2","visit":null,"stopAt":null,"offRouteM":57,"cuesIn":[{"mile":2.54,"turn":"Sharp Left","text":"Sharp left onto Arrow Head Trail"},{"mile":2.64,"turn":"Sharp Right","text":"Sharp right onto Ponus Ridge Road"}]},"14":{"lat":41.1705,"lng":-73.52505,"mile":5.83,"ti":224,"routeName":"Breuer House 2","visit":"Stop","stopAt":null,"offRouteM":90,"cuesIn":[{"mile":4.5,"turn":"Slight Right","text":"Slight right onto Ponus Ridge Road"},{"mile":4.83,"turn":"Right","text":"Right onto Dans Highway"},{"mile":5.74,"turn":"Right","text":"Right onto West Road"}]},"15":{"lat":41.19557,"lng":-73.50207,"mile":9.82,"ti":432,"routeName":"Isabelle Daine House","visit":"Stop","stopAt":null,"offRouteM":108,"cuesIn":[{"mile":5.85,"turn":"Uturn","text":"U-turn onto West Road"},{"mile":7.03,"turn":"Sharp Right","text":"Sharp right onto Oenoke Ridge"},{"mile":7.64,"turn":"Sharp Left","text":"Sharp left onto Lukes Wood Road"},{"mile":7.99,"turn":"Right","text":"Right onto Michigan Road"},{"mile":9.08,"turn":"Slight Left","text":"Keep left onto Michigan Road"},{"mile":9.1,"turn":"Left","text":"Left onto North Wilton Road"},{"mile":9.49,"turn":"Left","text":"Left onto North Wilton Road"},{"mile":9.66,"turn":"Left","text":"Left onto Briscoe Road"},{"mile":9.78,"turn":"Sharp Right","text":"Sharp right onto Briscoe Road"}]},"16":{"lat":41.19805,"lng":-73.49616,"mile":10.56,"ti":465,"routeName":"Landis Gores House","visit":"Stop","stopAt":null,"offRouteM":85,"cuesIn":[{"mile":10.14,"turn":"Right","text":"Right onto Cross Ridge Road"}]},"17":{"lat":41.18947,"lng":-73.4994,"mile":11.27,"ti":504,"routeName":"Lee House 1","visit":"Stop","stopAt":null,"offRouteM":70,"cuesIn":[{"mile":10.75,"turn":"Right","text":"Right onto North Wilton Road"},{"mile":11.21,"turn":"Straight","text":"Straight onto Laurel Road"}]},"18":{"lat":41.18708,"lng":-73.49735,"mile":11.48,"ti":512,"routeName":"Niall House","visit":"Ride by","stopAt":null,"offRouteM":89,"cuesIn":[]},"19":{"lat":41.18636,"lng":-73.49652,"mile":11.56,"ti":515,"routeName":"Arlt House","visit":"Ride by","stopAt":null,"offRouteM":67,"cuesIn":[]},"20":{"lat":41.18561,"lng":-73.49587,"mile":11.62,"ti":520,"routeName":"Spotts House","visit":"Ride by","stopAt":null,"offRouteM":60,"cuesIn":[]},"21":{"lat":41.16786,"lng":-73.50409,"mile":14.04,"ti":647,"routeName":"Noyes House 2","visit":"Stop","stopAt":null,"offRouteM":46,"cuesIn":[{"mile":13.03,"turn":"Right","text":"Right onto Canoe Hill Road"},{"mile":13.04,"turn":"Right","text":"Right onto Canoe Hill Road"},{"mile":13.47,"turn":"Right","text":"Right onto Smith Ridge Road"},{"mile":13.56,"turn":"Sharp Left","text":"Sharp left onto Country Club Road"}]},"22":{"lat":41.162,"lng":-73.50358,"mile":14.66,"ti":682,"routeName":"Lee Ault House","visit":"Stop","stopAt":null,"offRouteM":71,"cuesIn":[{"mile":14.07,"turn":"Uturn","text":"U-turn onto Country Club Road"},{"mile":14.2,"turn":"Right","text":"Right onto Lambert Road"}]},"23":{"lat":41.16321,"lng":-73.5084,"mile":15.29,"ti":721,"routeName":"Alice Ball House","visit":"Ride by","stopAt":null,"offRouteM":75,"cuesIn":[{"mile":14.87,"turn":"Slight Right","text":"Keep right onto Lambert Road"},{"mile":14.9,"turn":"Slight Right","text":"Slight right onto Oenoke Ridge"},{"mile":15.01,"turn":"Straight","text":"Straight onto Oenoke Ridge"}]},"24":{"lat":41.16442,"lng":-73.50958,"mile":15.4,"ti":726,"routeName":"Celanese House","visit":"Stop","stopAt":null,"offRouteM":54,"cuesIn":[{"mile":15.34,"turn":"Slight Right","text":"Keep right onto Oenoke Ridge"},{"mile":15.4,"turn":"Sharp Left","text":"Sharp left onto Oenoke Ridge"},{"mile":15.4,"turn":"Sharp Left","text":"Sharp left onto Oenoke Ridge"}]},"25":{"lat":41.15593,"lng":-73.50717,"mile":16.41,"ti":798,"routeName":"Breuer House 1","visit":"Stop","stopAt":null,"offRouteM":68,"cuesIn":[{"mile":15.5,"turn":"Right","text":"Right onto Hemlock Hill Road"},{"mile":16.02,"turn":"Left","text":"Left onto West Road"},{"mile":16.14,"turn":"Right","text":"Right onto Sunset Hill Road"}]},"26":{"lat":41.15288,"lng":-73.51155,"mile":16.89,"ti":817,"routeName":"Bremer House","visit":"Stop","stopAt":null,"offRouteM":20,"cuesIn":[]}},"extras":[{"name":"Noyes House 1","lat":41.16157,"lng":-73.50215,"note":"Architect Eliot Noyes 1947 Destroyed in 20005 Location noted for reference"}],"finishCues":[{"mile":17.03,"turn":"Right","text":"Right onto Weed Street"},{"mile":17.38,"turn":"Sharp Right","text":"Sharp right"},{"mile":17.41,"turn":"Right","text":"Right"},{"mile":17.42,"turn":"Left","text":"Left"}],"track":[[41.14888,-73.50718,109],[41.14868,-73.5071,108],[41.1487,-73.50689,109],[41.1485,-73.50681,109],[41.14853,-73.50668,109],[41.14853,-73.50646,110],[41.14852,-73.50621,110],[41.14909,-73.50649,110],[41.14966,-73.50677,111],[41.15002,-73.50696,112],[41.14987,-73.50808,110],[41.14972,-73.5092,106],[41.14972,-73.5092,106],[41.1496,-73.5102,104],[41.14953,-73.51107,103],[41.14947,-73.51164,103],[41.14931,-73.5127,98],[41.14918,-73.51388,89],[41.14913,-73.51419,90],[41.14905,-73.51444,91],[41.14897,-73.51465,92],[41.14874,-73.51502,93],[41.1486,-73.51528,93],[41.14831,-73.51605,90],[41.14829,-73.51611,90],[41.14812,-73.51671,88],[41.14794,-73.5173,93],[41.1479,-73.51738,93],[41.14769,-73.51765,96],[41.14744,-73.51794,97],[41.14728,-73.51817,97],[41.14728,-73.51817,97],[41.14721,-73.51827,97],[41.14716,-73.51842,97],[41.14712,-73.51859,97],[41.14711,-73.51872,97],[41.14711,-73.51893,97],[41.14718,-73.51954,98],[41.14773,-73.51964,98],[41.14809,-73.51973,99],[41.14886,-73.51991,100],[41.14963,-73.52009,99],[41.14991,-73.52019,99],[41.15004,-73.52028,99],[41.15028,-73.52058,99],[41.15053,-73.52084,99],[41.15076,-73.52093,99],[41.15156,-73.52099,100],[41.15236,-73.52104,100],[41.15317,-73.5211,100],[41.15385,-73.52097,99],[41.15454,-73.52083,98],[41.15454,-73.52083,98],[41.15385,-73.52097,99],[41.15317,-73.5211,100],[41.15236,-73.52104,100],[41.15156,-73.52099,100],[41.15076,-73.52093,99],[41.15072,-73.52131,99],[41.15053,-73.52195,98],[41.15034,-73.52259,98],[41.1501,-73.52371,98],[41.14983,-73.52377,99],[41.14956,-73.52352,98],[41.14889,-73.52315,98],[41.14821,-73.52302,99],[41.14753,-73.52289,100],[41.14762,-73.52362,100],[41.14761,-73.52367,100],[41.1476,-73.52387,101],[41.14751,-73.52429,102],[41.14744,-73.52466,103],[41.14744,-73.52466,103],[41.14726,-73.52564,106],[41.14707,-73.52663,108],[41.14689,-73.52761,107],[41.14668,-73.52758,107],[41.14616,-73.52746,107],[41.14565,-73.52734,107],[41.1452,-73.52729,106],[41.14499,-73.52729,106],[41.1447,-73.52733,105],[41.14414,-73.52748,105],[41.14359,-73.52762,105],[41.14339,-73.52767,105],[41.14306,-73.52771,105],[41.14324,-73.52672,105],[41.14324,-73.52672,105],[41.14306,-73.52771,105],[41.14339,-73.52767,105],[41.14359,-73.52762,105],[41.14414,-73.52748,105],[41.1447,-73.52733,105],[41.14499,-73.52729,106],[41.1452,-73.52729,106],[41.14565,-73.52734,107],[41.14616,-73.52746,107],[41.14668,-73.52758,107],[41.1473,-73.52768,107],[41.14783,-73.52779,107],[41.14836,-73.5279,107],[41.14844,-73.52792,107],[41.14854,-73.52797,107],[41.14882,-73.52813,107],[41.14897,-73.52823,107],[41.14945,-73.52862,107],[41.14993,-73.52901,106],[41.15021,-73.52919,105],[41.15037,-73.52927,105],[41.15084,-73.52945,104],[41.15101,-73.52953,103],[41.15146,-73.52982,102],[41.15162,-73.52992,102],[41.15214,-73.53017,102],[41.15295,-73.53055,99],[41.15324,-73.53064,98],[41.15345,-73.53067,97],[41.15395,-73.53073,93],[41.15454,-73.53084,87],[41.15514,-73.53095,82],[41.15552,-73.53099,81],[41.15617,-73.53101,79],[41.1563,-73.53103,79],[41.1564,-73.53107,79],[41.15651,-73.53115,79],[41.15662,-73.53125,79],[41.15709,-73.53183,79],[41.15724,-73.53206,79],[41.15735,-73.53225,79],[41.15752,-73.53258,80],[41.15768,-73.53294,80],[41.15777,-73.53312,80],[41.15793,-73.5333,80],[41.15822,-73.53358,81],[41.15867,-73.53398,82],[41.15901,-73.53424,82],[41.15918,-73.53436,82],[41.15934,-73.53443,82],[41.15976,-73.53459,83],[41.15987,-73.53465,83],[41.15999,-73.53473,83],[41.16004,-73.53479,83],[41.16008,-73.53484,83],[41.16023,-73.53517,83],[41.16039,-73.53556,83],[41.16063,-73.5362,82],[41.16084,-73.53662,82],[41.16094,-73.53683,81],[41.1611,-73.53723,80],[41.16141,-73.53805,79],[41.16149,-73.53834,79],[41.16157,-73.53856,79],[41.1616,-73.53863,79],[41.16166,-73.53875,79],[41.16172,-73.53883,79],[41.16184,-73.53892,80],[41.16232,-73.53914,80],[41.16276,-73.53933,81],[41.16307,-73.53951,82],[41.16314,-73.5396,82],[41.16333,-73.5399,84],[41.16347,-73.5401,85],[41.16396,-73.54057,89],[41.16459,-73.54122,92],[41.16487,-73.54156,91],[41.16496,-73.54168,90],[41.16555,-73.5423,88],[41.16568,-73.54242,88],[41.16608,-73.54242,90],[41.16651,-73.54244,91],[41.1668,-73.54241,92],[41.16689,-73.54238,92],[41.16707,-73.5423,92],[41.16721,-73.54221,93],[41.16756,-73.54193,93],[41.16772,-73.54184,92],[41.16793,-73.54177,92],[41.16815,-73.54175,91],[41.1683,-73.54177,91],[41.16839,-73.5418,92],[41.16897,-73.54208,93],[41.16954,-73.54237,96],[41.17012,-73.54265,98],[41.17017,-73.54269,98],[41.1703,-73.54238,98],[41.17055,-73.54169,101],[41.17081,-73.541,106],[41.17112,-73.54013,109],[41.17121,-73.53993,109],[41.17168,-73.539,111],[41.17215,-73.53808,114],[41.17224,-73.53785,114],[41.17228,-73.53772,115],[41.1723,-73.53755,115],[41.17231,-73.53735,115],[41.17231,-73.53686,115],[41.17229,-73.53624,115],[41.17228,-73.53562,115],[41.17228,-73.53452,110],[41.1723,-73.53367,107],[41.17232,-73.53282,105],[41.1723,-73.53184,105],[41.1723,-73.53157,106],[41.17233,-73.53129,106],[41.17235,-73.53113,107],[41.17238,-73.53096,107],[41.17241,-73.5307,107],[41.17242,-73.53041,107],[41.17239,-73.53015,108],[41.17223,-73.52898,112],[41.17222,-73.52882,113],[41.17223,-73.52835,114],[41.17222,-73.52821,115],[41.1722,-73.52803,115],[41.1721,-73.52741,117],[41.17208,-73.52723,118],[41.17209,-73.52709,118],[41.17211,-73.52686,118],[41.17217,-73.52653,120],[41.17223,-73.52635,120],[41.17233,-73.52609,121],[41.17228,-73.52602,122],[41.17215,-73.52587,122],[41.17172,-73.52549,123],[41.1713,-73.5251,124],[41.17098,-73.52485,126],[41.17098,-73.52485,126],[41.1713,-73.5251,124],[41.17172,-73.52549,123],[41.17215,-73.52587,122],[41.17228,-73.52602,122],[41.17233,-73.52609,121],[41.17253,-73.52632,121],[41.17267,-73.52646,121],[41.17328,-73.52698,120],[41.17356,-73.52725,119],[41.17365,-73.52735,119],[41.17402,-73.52765,118],[41.17481,-73.52821,116],[41.17527,-73.52863,117],[41.1755,-73.52885,116],[41.17554,-73.5289,116],[41.17556,-73.52897,116],[41.17559,-73.52913,116],[41.17564,-73.52936,115],[41.17568,-73.52951,115],[41.17571,-73.52957,115],[41.17577,-73.52963,115],[41.17583,-73.52966,115],[41.17589,-73.52968,115],[41.17614,-73.52971,116],[41.17647,-73.5298,116],[41.17671,-73.52991,117],[41.17693,-73.53003,118],[41.17714,-73.53018,118],[41.17735,-73.53034,118],[41.17773,-73.53068,119],[41.17786,-73.53082,120],[41.17827,-73.53118,121],[41.17868,-73.53154,124],[41.17876,-73.53162,124],[41.1795,-73.53224,128],[41.17975,-73.53248,128],[41.18026,-73.53303,127],[41.18038,-73.53313,127],[41.18074,-73.5334,127],[41.18082,-73.53348,127],[41.18091,-73.5336,127],[41.18101,-73.53377,127],[41.18116,-73.53414,128],[41.1812,-73.53422,128],[41.18122,-73.53425,128],[41.18127,-73.53427,128],[41.18154,-73.53426,128],[41.18173,-73.53424,129],[41.18193,-73.53418,130],[41.18228,-73.53404,132],[41.18248,-73.53398,133],[41.18262,-73.53396,133],[41.18296,-73.5339,135],[41.1832,-73.53378,136],[41.18334,-73.53373,136],[41.18394,-73.53363,137],[41.18417,-73.5336,137],[41.18425,-73.53361,137],[41.18434,-73.53363,137],[41.18473,-73.53383,138],[41.18522,-73.53406,138],[41.18534,-73.53414,139],[41.18533,-73.53335,139],[41.1853,-73.53244,138],[41.18525,-73.53141,138],[41.18521,-73.53038,135],[41.18524,-73.52988,134],[41.18526,-73.52971,134],[41.18536,-73.52906,134],[41.18547,-73.5284,136],[41.1855,-73.52826,137],[41.18559,-73.528,138],[41.18595,-73.52727,138],[41.18622,-73.52655,138],[41.1865,-73.52577,140],[41.18661,-73.52547,140],[41.18666,-73.52526,140],[41.18668,-73.52489,142],[41.18669,-73.52418,146],[41.1867,-73.52348,150],[41.18669,-73.52327,151],[41.18667,-73.52317,152],[41.18662,-73.52303,153],[41.18658,-73.52297,154],[41.18652,-73.52291,154],[41.18662,-73.52282,154],[41.18667,-73.5228,154],[41.18675,-73.52279,154],[41.1869,-73.52273,155],[41.18712,-73.5226,156],[41.18745,-73.52244,156],[41.18803,-73.52225,154],[41.18812,-73.52221,153],[41.18867,-73.52183,151],[41.18883,-73.52174,150],[41.18927,-73.52152,149],[41.18975,-73.52134,149],[41.1899,-73.52126,150],[41.19003,-73.52118,150],[41.19008,-73.52114,150],[41.19011,-73.52109,150],[41.19054,-73.5202,154],[41.19058,-73.52014,154],[41.19069,-73.52002,154],[41.19075,-73.51997,155],[41.19083,-73.51992,155],[41.19082,-73.51958,156],[41.19079,-73.51941,156],[41.19067,-73.51886,157],[41.19062,-73.51871,157],[41.19062,-73.51871,157],[41.19062,-73.51871,157],[41.19048,-73.51835,157],[41.19024,-73.51772,156],[41.19021,-73.51762,156],[41.1902,-73.51753,156],[41.19018,-73.5171,154],[41.1901,-73.51641,151],[41.19002,-73.51572,149],[41.18996,-73.51507,147],[41.18993,-73.51491,147],[41.1899,-73.51483,147],[41.18987,-73.51478,147],[41.18982,-73.5147,146],[41.18934,-73.51421,144],[41.18915,-73.51404,144],[41.18903,-73.51397,143],[41.18895,-73.51394,143],[41.18875,-73.51391,142],[41.18859,-73.51385,142],[41.18841,-73.51378,142],[41.18818,-73.51364,142],[41.18798,-73.51348,141],[41.18791,-73.51337,142],[41.18787,-73.5133,142],[41.1878,-73.5131,142],[41.18778,-73.51293,142],[41.18775,-73.51231,142],[41.18775,-73.51203,143],[41.18773,-73.51108,145],[41.1877,-73.51066,148],[41.18766,-73.51023,150],[41.18762,-73.51009,150],[41.18759,-73.51,151],[41.18755,-73.50993,151],[41.18747,-73.50982,151],[41.18717,-73.50947,152],[41.187,-73.50929,151],[41.18644,-73.50878,152],[41.18588,-73.5083,152],[41.18584,-73.50826,152],[41.18579,-73.50818,152],[41.18576,-73.50811,152],[41.18575,-73.50805,153],[41.18574,-73.5079,153],[41.18578,-73.50729,154],[41.18577,-73.50713,154],[41.18576,-73.50706,154],[41.18571,-73.50689,155],[41.18552,-73.50641,156],[41.18541,-73.50612,157],[41.18533,-73.50587,157],[41.18515,-73.5052,159],[41.1851,-73.50497,159],[41.18509,-73.50487,159],[41.18511,-73.50464,160],[41.18516,-73.50442,159],[41.1852,-73.5043,159],[41.18525,-73.50419,159],[41.18547,-73.50383,157],[41.18552,-73.50374,157],[41.1857,-73.50308,154],[41.18587,-73.50241,151],[41.18606,-73.50219,151],[41.18618,-73.50228,150],[41.18647,-73.50243,151],[41.18668,-73.50247,151],[41.1869,-73.50247,151],[41.18742,-73.50243,150],[41.18794,-73.50239,150],[41.18843,-73.50244,151],[41.18891,-73.5025,151],[41.18916,-73.50249,152],[41.18952,-73.50241,152],[41.1898,-73.5023,152],[41.18993,-73.50224,151],[41.19008,-73.5021,151],[41.19016,-73.50194,150],[41.19034,-73.50143,147],[41.19034,-73.50143,147],[41.19049,-73.501,145],[41.19058,-73.50072,144],[41.1907,-73.50022,142],[41.19134,-73.50034,140],[41.19158,-73.50041,140],[41.19199,-73.50058,140],[41.1921,-73.50059,140],[41.19234,-73.50049,139],[41.19249,-73.50037,139],[41.19273,-73.50007,138],[41.19286,-73.49984,137],[41.19368,-73.50029,140],[41.19449,-73.50074,145],[41.19449,-73.50074,145],[41.19449,-73.50074,145],[41.195,-73.50103,149],[41.19583,-73.50126,154],[41.19665,-73.50149,156],[41.19748,-73.50172,158],[41.19831,-73.50196,159],[41.19914,-73.50219,160],[41.19952,-73.50232,160],[41.19962,-73.50222,160],[41.20002,-73.50198,162],[41.20009,-73.50189,162],[41.20015,-73.5018,162],[41.20027,-73.50122,163],[41.2004,-73.50064,163],[41.2004,-73.50064,163],[41.20051,-73.50013,161],[41.20059,-73.4998,161],[41.20074,-73.49922,158],[41.20076,-73.49903,156],[41.20077,-73.49888,155],[41.20078,-73.4984,149],[41.20076,-73.49833,148],[41.20073,-73.49826,147],[41.20069,-73.49823,146],[41.20052,-73.49815,146],[41.20048,-73.49812,145],[41.20036,-73.49799,143],[41.20017,-73.49775,139],[41.19969,-73.49739,133],[41.19928,-73.49698,126],[41.19916,-73.49691,126],[41.19911,-73.49689,125],[41.19903,-73.49689,126],[41.1989,-73.49691,126],[41.19844,-73.49703,128],[41.19829,-73.49704,129],[41.19814,-73.49702,128],[41.19732,-73.49686,125],[41.19723,-73.49683,125],[41.19715,-73.49679,124],[41.19707,-73.49671,123],[41.19686,-73.49648,120],[41.1968,-73.49643,119],[41.19672,-73.49639,119],[41.19661,-73.49635,118],[41.19579,-73.49616,116],[41.19567,-73.49637,117],[41.19547,-73.49679,120],[41.19547,-73.49679,120],[41.19526,-73.4972,124],[41.1952,-73.49729,125],[41.19509,-73.49742,126],[41.19502,-73.49748,127],[41.19492,-73.49752,128],[41.1946,-73.49758,128],[41.19443,-73.49767,129],[41.19414,-73.49803,132],[41.1937,-73.49844,134],[41.19359,-73.49857,135],[41.19332,-73.49894,136],[41.19311,-73.49932,137],[41.19286,-73.49984,137],[41.19273,-73.50007,138],[41.19249,-73.50037,139],[41.19234,-73.50049,139],[41.1921,-73.50059,140],[41.19199,-73.50058,140],[41.19158,-73.50041,140],[41.19134,-73.50034,140],[41.1907,-73.50022,142],[41.19055,-73.50016,142],[41.19034,-73.50011,142],[41.19006,-73.49999,142],[41.18992,-73.49997,142],[41.18965,-73.49986,142],[41.18913,-73.49955,141],[41.18903,-73.49948,141],[41.18857,-73.49924,141],[41.18819,-73.49888,140],[41.18812,-73.49886,140],[41.18765,-73.49886,139],[41.18711,-73.49842,138],[41.1868,-73.49811,137],[41.18655,-73.49764,137],[41.18641,-73.49731,138],[41.18632,-73.49716,138],[41.18596,-73.49677,141],[41.18582,-73.49668,142],[41.18582,-73.49668,142],[41.18567,-73.49658,142],[41.18557,-73.49645,143],[41.18552,-73.4963,144],[41.18546,-73.4961,145],[41.18542,-73.49596,146],[41.18515,-73.49556,148],[41.18505,-73.4951,149],[41.18501,-73.49502,149],[41.18492,-73.49487,149],[41.18475,-73.4947,149],[41.18434,-73.49431,148],[41.18393,-73.49393,146],[41.18353,-73.49362,144],[41.1834,-73.49345,144],[41.18334,-73.49333,143],[41.18331,-73.49319,143],[41.18326,-73.49253,142],[41.18323,-73.49229,141],[41.18318,-73.49216,141],[41.18313,-73.49209,140],[41.18301,-73.49199,139],[41.18281,-73.4919,138],[41.18232,-73.49162,133],[41.18184,-73.49134,129],[41.18155,-73.49112,127],[41.18131,-73.49084,126],[41.18098,-73.4904,126],[41.18059,-73.49005,126],[41.17988,-73.48951,124],[41.17916,-73.48897,124],[41.17893,-73.48883,123],[41.17879,-73.48872,123],[41.17832,-73.48831,122],[41.17824,-73.48825,122],[41.17807,-73.48814,122],[41.17783,-73.48802,121],[41.17754,-73.48784,120],[41.17717,-73.48758,119],[41.17683,-73.48732,118],[41.17656,-73.48715,117],[41.17642,-73.48708,116],[41.17635,-73.48707,116],[41.17628,-73.48708,116],[41.1758,-73.4872,116],[41.17559,-73.48726,116],[41.17555,-73.48729,116],[41.17555,-73.48729,116],[41.17549,-73.48732,117],[41.17526,-73.48751,118],[41.17479,-73.48794,120],[41.17431,-73.48836,122],[41.17426,-73.4884,122],[41.17411,-73.48847,122],[41.174,-73.48849,122],[41.17387,-73.48847,121],[41.17376,-73.48843,121],[41.17366,-73.48835,121],[41.1736,-73.48827,120],[41.17355,-73.4882,120],[41.17349,-73.48809,120],[41.17342,-73.48792,120],[41.17336,-73.48778,119],[41.1733,-73.4877,119],[41.17324,-73.48763,118],[41.17316,-73.48757,118],[41.17304,-73.4875,118],[41.17282,-73.48737,118],[41.17245,-73.48712,119],[41.17229,-73.48703,119],[41.17222,-73.48701,120],[41.17208,-73.48701,120],[41.17173,-73.48707,120],[41.17151,-73.48712,120],[41.17137,-73.48718,120],[41.17108,-73.4874,120],[41.17096,-73.48746,120],[41.17076,-73.48752,120],[41.17045,-73.48753,121],[41.17027,-73.48751,121],[41.16999,-73.48746,122],[41.16952,-73.48734,124],[41.16906,-73.48723,124],[41.16891,-73.48742,125],[41.16891,-73.48824,126],[41.16894,-73.48872,126],[41.16894,-73.48872,126],[41.16898,-73.4891,127],[41.16904,-73.48947,128],[41.16908,-73.4896,128],[41.16911,-73.48969,128],[41.16932,-73.49006,130],[41.16937,-73.49018,130],[41.16945,-73.49047,131],[41.16949,-73.49058,131],[41.1696,-73.49076,132],[41.16965,-73.49083,132],[41.16976,-73.49093,133],[41.17004,-73.49106,133],[41.17014,-73.49111,134],[41.1702,-73.49116,134],[41.17025,-73.49121,134],[41.1703,-73.4913,134],[41.17034,-73.49141,134],[41.17035,-73.49158,135],[41.17032,-73.49178,136],[41.17025,-73.49199,136],[41.17004,-73.49253,137],[41.16988,-73.4931,137],[41.16966,-73.49399,138],[41.16953,-73.4946,137],[41.17014,-73.49487,140],[41.17076,-73.49514,141],[41.17056,-73.49543,140],[41.17033,-73.49629,138],[41.17009,-73.49715,135],[41.16992,-73.49785,133],[41.16992,-73.49785,133],[41.16966,-73.49892,131],[41.1694,-73.5,128],[41.16925,-73.50059,126],[41.1691,-73.50117,124],[41.16886,-73.50195,119],[41.16874,-73.5022,118],[41.16864,-73.50238,117],[41.16853,-73.50258,116],[41.16849,-73.50269,115],[41.16842,-73.50295,114],[41.16821,-73.5038,113],[41.16818,-73.50402,113],[41.16817,-73.50422,112],[41.16817,-73.50422,112],[41.16818,-73.50402,113],[41.16821,-73.5038,113],[41.16842,-73.50295,114],[41.16849,-73.50269,115],[41.16853,-73.50258,116],[41.16864,-73.50238,117],[41.16874,-73.5022,118],[41.16886,-73.50195,119],[41.1688,-73.5019,120],[41.16842,-73.50201,119],[41.16785,-73.50214,117],[41.16726,-73.5023,113],[41.16718,-73.50234,112],[41.1671,-73.50239,111],[41.16705,-73.50244,110],[41.1669,-73.50262,108],[41.16642,-73.50304,106],[41.16627,-73.50315,105],[41.16616,-73.50324,105],[41.16577,-73.50355,103],[41.16538,-73.50386,107],[41.16525,-73.50394,108],[41.16516,-73.50397,109],[41.16496,-73.50396,110],[41.16461,-73.50383,110],[41.16424,-73.50366,110],[41.16371,-73.5034,110],[41.16359,-73.50336,111],[41.16348,-73.50335,111],[41.16289,-73.50348,114],[41.16273,-73.50351,115],[41.16263,-73.5035,116],[41.16251,-73.50344,116],[41.1622,-73.50321,118],[41.1621,-73.50316,118],[41.16176,-73.50306,119],[41.16169,-73.50303,119],[41.16161,-73.50298,119],[41.16152,-73.50286,118],[41.16139,-73.50262,117],[41.16127,-73.50246,116],[41.16119,-73.50241,116],[41.16105,-73.50237,115],[41.16088,-73.50237,115],[41.1608,-73.50239,115],[41.16051,-73.5025,115],[41.16028,-73.50262,114],[41.1599,-73.50285,114],[41.15978,-73.50295,114],[41.15967,-73.50306,114],[41.1596,-73.50319,115],[41.15956,-73.50327,115],[41.15961,-73.50356,116],[41.15965,-73.50392,117],[41.15967,-73.50421,118],[41.15967,-73.50421,118],[41.15967,-73.50421,118],[41.15971,-73.505,120],[41.15973,-73.50525,121],[41.15976,-73.5054,122],[41.15981,-73.50558,122],[41.15991,-73.5059,123],[41.16006,-73.50622,125],[41.1602,-73.50643,126],[41.16051,-73.50688,128],[41.16082,-73.50733,129],[41.16106,-73.5076,130],[41.16123,-73.50776,131],[41.16186,-73.50819,133],[41.16208,-73.50836,134],[41.16264,-73.50887,136],[41.163,-73.50923,137],[41.16314,-73.50935,137],[41.16325,-73.50944,138],[41.16339,-73.50952,138],[41.16396,-73.50979,139],[41.16394,-73.50978,139],[41.16394,-73.50978,139],[41.16396,-73.50979,139],[41.16339,-73.50952,138],[41.16325,-73.50944,138],[41.16314,-73.50935,137],[41.163,-73.50923,137],[41.16264,-73.50887,136],[41.16256,-73.50905,136],[41.16251,-73.5092,136],[41.16247,-73.50938,136],[41.16242,-73.51002,137],[41.1624,-73.51013,137],[41.16228,-73.51054,137],[41.16226,-73.51072,136],[41.16226,-73.51072,136],[41.16226,-73.51085,136],[41.16228,-73.51113,135],[41.16235,-73.51157,134],[41.16238,-73.51168,134],[41.16244,-73.51179,134],[41.1625,-73.51189,134],[41.16271,-73.51217,134],[41.16275,-73.51226,134],[41.1628,-73.51241,134],[41.16284,-73.51259,133],[41.16285,-73.51277,133],[41.16284,-73.51288,133],[41.16278,-73.51317,132],[41.16272,-73.51341,131],[41.16265,-73.51355,130],[41.16261,-73.51361,129],[41.16246,-73.51375,128],[41.16229,-73.51384,127],[41.16211,-73.51391,126],[41.16202,-73.51392,125],[41.16185,-73.51391,125],[41.16176,-73.51385,125],[41.16165,-73.51374,125],[41.16165,-73.51374,125],[41.16161,-73.51369,125],[41.16155,-73.51356,125],[41.1614,-73.51308,126],[41.1613,-73.51288,126],[41.16122,-73.51278,127],[41.16111,-73.51268,127],[41.16097,-73.51264,127],[41.16079,-73.51261,127],[41.16055,-73.51254,127],[41.16008,-73.51233,128],[41.15961,-73.51212,128],[41.15956,-73.51167,128],[41.15953,-73.51149,128],[41.15941,-73.51063,128],[41.15937,-73.51029,128],[41.15933,-73.50983,127],[41.15886,-73.50977,126],[41.15855,-73.50955,125],[41.15853,-73.50953,125],[41.15853,-73.50953,125],[41.15815,-73.50911,123],[41.15798,-73.50898,123],[41.15748,-73.50883,122],[41.15727,-73.50872,122],[41.15716,-73.50858,122],[41.15708,-73.50842,122],[41.15703,-73.50809,122],[41.15696,-73.50741,121],[41.15693,-73.50724,121],[41.15685,-73.5071,121],[41.15673,-73.50702,121],[41.15651,-73.50693,120],[41.15577,-73.50687,120],[41.15503,-73.5068,119],[41.1544,-73.50663,118],[41.15378,-73.50645,117],[41.15356,-73.50644,116],[41.1534,-73.50652,116],[41.15329,-73.50668,116],[41.15329,-73.50668,116],[41.15326,-73.50673,116],[41.1532,-73.50689,116],[41.15326,-73.50744,117],[41.15327,-73.5077,117],[41.15312,-73.50844,118],[41.15309,-73.5087,118],[41.15311,-73.5088,118],[41.15311,-73.5092,117],[41.15307,-73.50983,116],[41.15304,-73.51062,112],[41.15302,-73.5114,109],[41.15302,-73.5114,109],[41.15304,-73.51062,112],[41.15307,-73.50983,116],[41.15311,-73.5092,117],[41.15311,-73.5088,118],[41.15309,-73.5087,118],[41.15257,-73.50849,118],[41.15205,-73.50828,117],[41.15175,-73.50813,116],[41.15152,-73.50801,115],[41.15107,-73.50769,114],[41.15062,-73.50737,113],[41.15062,-73.50737,113],[41.15002,-73.50696,112],[41.14966,-73.50677,111],[41.14909,-73.50649,110],[41.14852,-73.50621,110],[41.14853,-73.50646,110],[41.14853,-73.50668,109],[41.1485,-73.50681,109],[41.1487,-73.50689,109],[41.14868,-73.5071,108],[41.14888,-73.50718,109]]};
+</script>
+<script>
+// Generated by scripts/build-manifest.py from credits.json. Do not edit by hand.
+window.HOME_IMAGES = {
+ "3": [
+  {
+   "src": "assets/img/03-techbuilt-swallen-house.jpg",
+   "credit": "Magicpiano · CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_SwallenHouse.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "4": [
+  {
+   "src": "assets/img/04-beaven-mills-house.jpg",
+   "credit": "Magicpiano · CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_BeavenWMillsHouse.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "5": [
+  {
+   "src": "assets/img/05-lee-house-2.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/05-lee-house-2-2.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/05-lee-house-2-3.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  }
+ ],
+ "6": [
+  {
+   "src": "assets/img/06-parsons-house.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/06-parsons-house-2.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/06-parsons-house-3.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  }
+ ],
+ "7": [
+  {
+   "src": "assets/img/07-smallen-house.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/07-smallen-house-2.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/07-smallen-house-3.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  }
+ ],
+ "8": [
+  {
+   "src": "assets/img/08-becker-house.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/08-becker-house-2.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/08-becker-house-3.jpg",
+   "credit": "James Sexton · NRHP nomination photo, courtesy CT SHPO",
+   "source": "https://portal.ct.gov/-/media/decd/historic-preservation/06_about_shpo/state-review-board/2025-meetings/september-12/chichester-road-historic-district.pdf",
+   "focus": "50% 50%"
+  }
+ ],
+ "11": [
+  {
+   "src": "assets/img/11-hodgson-house.jpg",
+   "credit": "Magicpiano · CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_HodgsonHouse.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "12": [
+  {
+   "src": "assets/img/12-glass-house.jpg",
+   "credit": "Carol M. Highsmith · Public domain",
+   "source": "https://commons.wikimedia.org/wiki/File:Glass_House_2006.jpg",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/12-glass-house-2.jpg",
+   "credit": "Carol M. Highsmith · Public domain",
+   "source": "https://commons.wikimedia.org/wiki/File:Fall_view_of_Philip_Johnson%27s_Glass_House,_New_Canaan,_Connecticut_LCCN2010630799.tif",
+   "focus": "50% 50%"
+  },
+  {
+   "src": "assets/img/12-glass-house-3.jpg",
+   "credit": "Carol M. Highsmith · Public domain",
+   "source": "https://commons.wikimedia.org/wiki/File:Philip_Johnson%27s_Glass_House,_New_Canaan,_Connecticut_LCCN2010630351.tif",
+   "focus": "50% 50%"
+  }
+ ],
+ "13": [
+  {
+   "src": "assets/img/13-mills-house-2.jpg",
+   "credit": "Zachary Groz · CC BY-SA 3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Willis_N._Mills_House.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "16": [
+  {
+   "src": "assets/img/16-landis-gores-house.jpg",
+   "credit": "Zachary Groz · CC BY-SA 3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Landis_Gores_House.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "17": [
+  {
+   "src": "assets/img/17-lee-house-1.jpg",
+   "credit": "Magicpiano · CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_FirstJohnBlackLeeHouse.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "21": [
+  {
+   "src": "assets/img/21-noyes-house-2.jpg",
+   "credit": "Magicpiano · CC BY-SA 4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_NoyesHouse.jpg",
+   "focus": "50% 50%"
+  }
+ ],
+ "25": [
+  {
+   "src": "assets/img/25-breuer-house-1.jpg",
+   "credit": "Magicpiano · CC BY-SA 3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:NewCanaanCT_MarcelBreuerHouseII.jpg",
+   "focus": "50% 50%"
+  }
+ ]
+};
+</script>
+<script>
+// Shared helpers for every direction. Expects window.HOMES and, optionally, window.HOME_IMAGES.
+(function () {
+  const ROOT = window.MCR_ROOT || '';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const pad = (n) => String(n).padStart(2, '0');
+
+  const images = (h) => ((window.HOME_IMAGES || {})[h.order] || []).map((im) => ({ ...im, src: ROOT + im.src }));
+
+  // First sentence or two, trimmed to roughly `max` characters.
+  function excerpt(text, max = 220) {
+    if (text.length <= max) return text;
+    const cut = text.slice(0, max);
+    const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('.” '));
+    return (end > max * 0.45 ? cut.slice(0, end + 1) : cut.slice(0, cut.lastIndexOf(' ')) + '…');
+  }
+
+  // Line drawing of a modern house, used when a home has no photograph yet.
+  const FORMS = { 3: 'gable', 7: 'shed', 6: 'stilt', 25: 'cantilever', 26: 'cantilever', 12: 'glass', 13: 'stilt', 14: 'court', 21: 'court' };
+  function drawing(h) {
+    const kind = FORMS[h.order] || ['flat', 'court', 'glass', 'shed', 'flat'][h.order % 5];
+    const mull = (x0, x1, y0, y1, step) => {
+      let s = '';
+      for (let x = x0 + step; x < x1; x += step) s += `<line x1="${x}" y1="${y0}" x2="${x}" y2="${y1}"/>`;
+      return s;
+    };
+    let body = '';
+    switch (kind) {
+      case 'gable':
+        body = `<path d="M110 230 V150 L200 80 L290 150 V230 Z" class="ph-fill"/><path d="M150 230 V160 L200 120 L250 160 V230" class="ph-glass"/>${mull(150, 250, 140, 230, 25)}<path d="M96 160 L200 72 L304 160"/>`;
+        break;
+      case 'shed':
+        body = `<path d="M90 230 V170 L310 120 V230 Z" class="ph-fill"/><rect x="200" y="150" width="90" height="80" class="ph-glass"/>${mull(200, 290, 150, 230, 30)}<path d="M76 172 L324 116"/>`;
+        break;
+      case 'cantilever':
+        body = `<rect x="150" y="190" width="90" height="40" class="ph-fill"/><rect x="80" y="130" width="250" height="60" class="ph-fill"/><rect x="100" y="140" width="210" height="34" class="ph-glass"/>${mull(100, 310, 140, 174, 30)}<line x1="320" y1="190" x2="320" y2="230"/><line x1="68" y1="130" x2="342" y2="130"/>`;
+        break;
+      case 'stilt':
+        body = `<rect x="110" y="110" width="190" height="70" class="ph-fill"/><rect x="124" y="122" width="162" height="46" class="ph-glass"/>${mull(124, 286, 122, 168, 27)}${[125, 165, 245, 285].map((x) => `<line x1="${x}" y1="180" x2="${x}" y2="${x < 200 ? 230 : 214}"/>`).join('')}<line x1="96" y1="110" x2="314" y2="110"/><path d="M60 230 L230 230 L340 214" class="ph-ground"/>`;
+        break;
+      case 'court':
+        body = `<rect x="70" y="160" width="110" height="70" class="ph-fill"/><rect x="230" y="160" width="100" height="70" class="ph-fill"/><rect x="180" y="185" width="50" height="45" class="ph-glass"/><rect x="84" y="172" width="82" height="58" class="ph-glass"/>${mull(84, 166, 172, 230, 27)}<line x1="56" y1="160" x2="344" y2="160"/>`;
+        break;
+      case 'glass':
+        body = `<rect x="110" y="150" width="180" height="80" class="ph-glass"/>${mull(110, 290, 150, 230, 45)}<rect x="185" y="175" width="30" height="55" class="ph-fill ph-core"/><line x1="104" y1="150" x2="296" y2="150"/><line x1="104" y1="230" x2="296" y2="230"/>`;
+        break;
+      default:
+        body = `<rect x="80" y="160" width="240" height="70" class="ph-fill"/><rect x="150" y="170" width="150" height="60" class="ph-glass"/>${mull(150, 300, 170, 230, 30)}<rect x="96" y="172" width="34" height="58" class="ph-solid"/><line x1="64" y1="160" x2="336" y2="160"/>`;
+    }
+    return `<svg class="ph" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Drawing of ${esc(h.name)}">
+      <circle cx="${300 - (h.order * 37) % 200}" cy="82" r="34" class="ph-sun"/>
+      <g class="ph-line">${body}<line x1="30" y1="230" x2="370" y2="230" class="ph-ground"/></g>
+    </svg>`;
+  }
+
+  // A photo (with credit) or the drawing fallback.
+  function hero(h, cls = '') {
+    const im = images(h)[0];
+    if (!im) return `<figure class="hero hero-drawn ${cls}">${drawing(h)}<figcaption class="credit">Photograph to come</figcaption></figure>`;
+    return `<figure class="hero ${cls}"><img src="${esc(im.src)}" alt="${esc(h.name)}, ${esc(h.address)}" loading="lazy" draggable="false" style="object-position:${esc(im.focus || '50% 50%')}"><figcaption class="credit">${esc(im.credit || '')}</figcaption></figure>`;
+  }
+
+  // Bicycle mark built from two circles and a frame triangle.
+  const bike = (cls = '') => `<svg class="bike ${cls}" viewBox="0 0 120 70" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><circle cx="26" cy="46" r="20"/><circle cx="94" cy="46" r="20"/><path d="M26 46 L50 18 L82 18 L94 46 M50 18 L60 46 L26 46 M60 46 L82 18 M46 10 H58 M82 18 L78 8 H88"/></g></svg>`;
+
+  const stats = () => {
+    const H = window.HOMES;
+    const yrs = H.map((h) => h.year);
+    return {
+      count: H.length,
+      stops: H.filter((h) => /stop/i.test(h.visit)).length,
+      first: Math.min(...yrs), last: Math.max(...yrs),
+      architects: new Set(H.map((h) => h.architect.replace(/\s+/g, ' ').trim())).size,
+    };
+  };
+
+  const isStop = (h) => /stop/i.test(h.visit);
+
+  // ---------- Ride with GPS route ----------
+  // Merge route data into each house: position, mile marker, stop/ride-by (the route wins),
+  // where to stop, and the turn-by-turn cues that lead on to the next house.
+  const R = window.ROUTE;
+  if (R) {
+    const H = window.HOMES;
+    H.forEach((h, i) => {
+      const r = R.houses[h.order];
+      if (!r) return;
+      Object.assign(h, { lat: r.lat, lng: r.lng, mile: r.mile, ti: r.ti, stopAt: r.stopAt });
+      if (r.visit) h.visit = r.visit;
+      const nx = H[i + 1] && R.houses[H[i + 1].order];
+      h.cuesOut = nx ? nx.cuesIn : R.finishCues;
+    });
+    // Cumulative miles along the track, for the elevation profile.
+    let d = 0;
+    R.track.forEach((p, i) => {
+      if (i) {
+        const q = R.track[i - 1], k = Math.cos(p[0] * Math.PI / 180);
+        d += Math.hypot((p[0] - q[0]) * 69.05, (p[1] - q[1]) * 69.05 * k);
+      }
+      p[3] = d;
+    });
+  }
+
+  const mi = (m) => (m < 0.1 ? '0.1' : m.toFixed(1)) + ' mi';
+  const gmaps = (h) => 'https://www.google.com/maps/search/?api=1&query=' + (h.lat ? `${h.lat},${h.lng}` : encodeURIComponent(`${h.address}, New Canaan, CT`));
+  const ARROWS = { 'Left': '←', 'Right': '→', 'Slight Left': '↖', 'Slight Right': '↗', 'Sharp Left': '↙', 'Sharp Right': '↘', 'Uturn': '↩', 'Straight': '↑' };
+  const arrow = (t) => ARROWS[t] || '↑';
+  // Leg to the next house: distance, the first named turn, and the full cue list.
+  function leg(h) {
+    const H = window.HOMES, i = H.indexOf(h), nx = H[i + 1];
+    const end = nx ? nx.mile : (R ? R.distanceMi : 0);
+    const cues = (h.cuesOut || []).filter((c) => /onto/.test(c.text));
+    return { next: nx, dist: Math.max(0, end - (h.mile || 0)), cues };
+  }
+
+  // Route map as SVG. opts: { cur: order to highlight, labels: bool, pad, w, h }
+  function routeMap(opts = {}) {
+    if (!R) return '';
+    const { cur = null, labels = false, w = 400, h = 520, pad: P = 28, numbers = labels } = opts;
+    const lats = R.track.map((p) => p[0]), lngs = R.track.map((p) => p[1]);
+    const lat0 = (Math.min(...lats) + Math.max(...lats)) / 2, k = Math.cos(lat0 * Math.PI / 180);
+    const x0 = Math.min(...lngs) * k, x1 = Math.max(...lngs) * k, y0 = Math.min(...lats), y1 = Math.max(...lats);
+    const s = Math.min((w - 2 * P) / (x1 - x0), (h - 2 * P) / (y1 - y0));
+    const ox = (w - (x1 - x0) * s) / 2, oy = (h - (y1 - y0) * s) / 2;
+    const X = (lng) => (ox + (lng * k - x0) * s).toFixed(1), Y = (lat) => (oy + (y1 - lat) * s).toFixed(1);
+    const path = (pts) => 'M' + pts.map((p) => `${X(p[1])} ${Y(p[0])}`).join('L');
+    const H = window.HOMES;
+    const c = cur != null ? H.find((x) => x.order === cur) : null;
+    let out = `<svg class="rmap" viewBox="0 0 ${w} ${h}" role="img" aria-label="Route map, ${R.distanceMi} miles">`;
+    out += `<path class="rm-path" d="${path(R.track)}"/>`;
+    if (c && c.ti != null) out += `<path class="rm-done" d="${path(R.track.slice(0, c.ti + 1))}"/>`;
+    (R.extras || []).forEach((e) => { out += `<g class="rm-extra"><path d="M${X(e.lng) - 4} ${Y(e.lat) - 4}l8 8m0-8l-8 8"/></g>`; });
+    H.forEach((x) => {
+      if (x.lat == null) return;
+      const here = c && x.order === c.order;
+      const cls = `rm-dot ${isStop(x) ? 'rm-stop' : 'rm-by'} ${here ? 'rm-cur' : ''} ${c && x.order < c.order ? 'rm-past' : ''}`;
+      out += `<circle class="${cls}" cx="${X(x.lng)}" cy="${Y(x.lat)}" r="${here ? 9 : isStop(x) ? 4.6 : 3.4}" data-goto-house="${x.order}"/>`;
+    });
+    if (numbers) {
+      // Label every house, nudging labels for tight clusters so they don't sit on the line.
+      H.forEach((x, i) => {
+        if (x.lat == null) return;
+        const side = i % 2 ? 1 : -1;
+        out += `<text class="rm-lbl" x="${+X(x.lng) + side * 9}" y="${+Y(x.lat) + 3.5}" text-anchor="${side > 0 ? 'start' : 'end'}">${x.order}</text>`;
+      });
+    }
+    out += `<rect class="rm-start" x="${X(R.start.lng) - 5}" y="${Y(R.start.lat) - 5}" width="10" height="10"/>`;
+    return out + '</svg>';
+  }
+
+  // Elevation profile as SVG.
+  function profile(opts = {}) {
+    if (!R) return '';
+    const { w = 400, h = 70, cur = null } = opts;
+    const E = R.track.map((p) => p[2]), lo = Math.min(...E), hi = Math.max(...E), D = R.track[R.track.length - 1][3];
+    const X = (d) => (d / D * w).toFixed(1), Y = (e) => (h - 4 - (e - lo) / (hi - lo || 1) * (h - 10)).toFixed(1);
+    const line = R.track.map((p, i) => `${i ? 'L' : 'M'}${X(p[3])} ${Y(p[2])}`).join('');
+    let out = `<svg class="rprof" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path class="rp-fill" d="${line}L${w} ${h}L0 ${h}Z"/><path class="rp-line" d="${line}"/>`;
+    const c = cur != null && window.HOMES.find((x) => x.order === cur);
+    if (c && c.ti != null) out += `<line class="rp-cur" x1="${X(R.track[c.ti][3])}" x2="${X(R.track[c.ti][3])}" y1="0" y2="${h}"/>`;
+    return out + '</svg>';
+  }
+
+  // Deep links: #house-12 opens that house; directions keep the hash in sync as you turn.
+  const hash = {
+    read: () => { const m = location.hash.match(/house-(\d+)/); return m ? +m[1] : null; },
+    write: (order) => history.replaceState(null, '', order ? `#house-${order}` : location.pathname + location.search),
+  };
+
+  hash.initial = hash.read(); // captured before any book layout rewrites the URL
+
+  window.MCR = { esc, pad, images, excerpt, drawing, hero, bike, stats, isStop, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R };
+})();
+</script>
+<script>
+/*
+ * Flipbook: a stack of 3D leaves you can drag, tap, swipe or key through.
+ *
+ *   new Flipbook(el, {
+ *     pages: [{ html, cls }],      // in reading order
+ *     axis: 'x' | 'y',             // hinge on the left edge or the top edge
+ *     spread: '(min-width: 960px)',// media query for two-page spreads ('not all' = never)
+ *     verso: (leafIndex) => html,  // back of a leaf in single-page mode
+ *     onChange: (book) => {},
+ *   })
+ *
+ * In spread mode leaf j carries pages 2j (front) and 2j+1 (back), so the open
+ * spread after turning k leaves is pages 2k-1 (left/top) and 2k (right/bottom).
+ */
+(function () {
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+  class Flipbook {
+    constructor(el, opts) {
+      this.el = el;
+      this.o = Object.assign({
+        axis: 'x', spread: 'not all', verso: () => '', onChange: () => {},
+      }, opts);
+      this.pages = opts.pages;
+      this.page = 0;
+      this.busy = false;
+      this.mq = matchMedia(this.o.spread);
+      this.mq.addEventListener('change', () => this.build());
+      this.build();
+      this.bind();
+    }
+
+    get n() { return this.leaves.length; }
+    get x() { return this.o.axis === 'x'; }
+
+    build() {
+      const spread = (this.spread = this.mq.matches);
+      const P = this.pages;
+      this.el.classList.add('fb', 'fb-' + this.o.axis);
+      this.el.classList.toggle('fb-spread', spread);
+      this.el.innerHTML = '';
+      this.stage = document.createElement('div');
+      this.stage.className = 'fb-stage';
+      this.el.append(this.stage);
+
+      const pairs = [];
+      if (spread) for (let i = 0; i < P.length; i += 2) pairs.push([P[i], P[i + 1], i, i + 1]);
+      else P.forEach((p, i) => pairs.push([p, null, i, -1]));
+
+      this.leaves = pairs.map(([f, b, fi, bi], j) => {
+        const leaf = document.createElement('div');
+        leaf.className = 'fb-leaf';
+        leaf.append(this.face(f, 'fb-front', fi, j), this.face(b, 'fb-back', bi, j));
+        this.stage.append(leaf);
+        return leaf;
+      });
+      this.k = spread ? Math.ceil(this.page / 2) : this.page;
+      this.layout();
+    }
+
+    face(p, cls, idx, j) {
+      const d = document.createElement('div');
+      d.className = 'fb-face ' + cls;
+      if (p) {
+        d.innerHTML = p.html;
+        if (p.cls) d.classList.add(...p.cls.split(' '));
+      } else {
+        d.innerHTML = this.o.verso(j);
+        d.classList.add('fb-verso');
+      }
+      d.dataset.page = idx;
+      return d;
+    }
+
+    set(leaf, a) {
+      leaf.style.setProperty('--a', a / 180);
+      leaf.style.transform = this.x ? `rotateY(${-a}deg)` : `rotateX(${a}deg)`;
+      leaf._a = a;
+    }
+
+    layout() {
+      const { k, n } = this;
+      this.leaves.forEach((l, j) => {
+        const turned = j < k;
+        this.set(l, turned ? 180 : 0);
+        l.style.zIndex = turned ? j + 1 : n - j + 1;
+        // Single pages: landed leaves sit off-page, so hide them until they are dragged back.
+        l.classList.toggle('fb-far', this.spread ? (j < k - 2 || j > k + 1) : (j < k || j > k + 1));
+        l.classList.remove('fb-lifted');
+      });
+      this.el.classList.toggle('fb-at-start', k === 0);
+      this.el.classList.toggle('fb-at-end', k === n);
+      this.page = this.spread ? Math.max(0, 2 * k - 1) : k;
+      this.o.onChange(this);
+    }
+
+    lift(leaf) {
+      leaf.style.zIndex = this.n + 5;
+      leaf.classList.remove('fb-far');
+      leaf.classList.add('fb-lifted');
+    }
+
+    // Animate leaf j to angle `to`; resolves once it lands.
+    animate(j, to) {
+      const leaf = this.leaves[j];
+      const from = leaf._a ?? 0;
+      this.busy = true;
+      this.lift(leaf);
+      leaf.style.setProperty('--fb-dur', (0.28 + 0.5 * Math.abs(to - from) / 180).toFixed(2) + 's');
+      leaf.classList.add('fb-anim');
+      requestAnimationFrame(() => this.set(leaf, to));
+      const done = () => {
+        leaf.classList.remove('fb-anim');
+        this.busy = false;
+        const was = this.k;
+        this.k = to === 180 ? j + 1 : j;
+        this.layout();
+        if (this.k !== was && navigator.vibrate) navigator.vibrate(6);
+        const q = this.queued; this.queued = 0;
+        if (q > 0) this.next(); else if (q < 0) this.prev();
+      };
+      let fired = false;
+      const once = (e) => {
+        if (e && e.propertyName !== 'transform') return;
+        if (fired) return;
+        fired = true;
+        leaf.removeEventListener('transitionend', once);
+        done();
+      };
+      leaf.addEventListener('transitionend', once);
+      setTimeout(once, 1200); // safety net if transitionend never fires
+    }
+
+    // Taps that land mid-turn are queued so quick tapping never feels ignored.
+    next() { if (this.busy) { this.queued = 1; return; } if (this.k < this.n) this.animate(this.k, 180); }
+    prev() { if (this.busy) { this.queued = -1; return; } if (this.k > 0) this.animate(this.k - 1, 0); }
+
+    // Jump to the leaf state that shows logical page `p`.
+    goTo(p) {
+      const target = this.spread ? Math.ceil(p / 2) : p;
+      if (target === this.k + 1) return this.next();
+      if (target === this.k - 1) return this.prev();
+      this.el.classList.add('fb-jump');
+      this.k = clamp(target, 0, this.n);
+      this.layout();
+      requestAnimationFrame(() => this.el.classList.remove('fb-jump'));
+    }
+
+    bind() {
+      let s = null;
+      const pt = (e) => ({ x: e.clientX, y: e.clientY, t: performance.now() });
+      const interactive = (t) => t.closest('a, button, input, select, textarea, [data-nodrag], [data-goto], [data-goto-house]');
+
+      this.el.addEventListener('pointerdown', (e) => {
+        if (this.busy || e.button > 0 || interactive(e.target)) return;
+        s = { start: pt(e), last: pt(e), drag: null, id: e.pointerId };
+      });
+
+      this.el.addEventListener('pointermove', (e) => {
+        if (!s || e.pointerId !== s.id) return;
+        const p = pt(e);
+        const d = this.x ? p.x - s.start.x : p.y - s.start.y;
+        const cross = this.x ? p.y - s.start.y : p.x - s.start.x;
+        if (!s.drag) {
+          if (Math.abs(d) < 8 || Math.abs(d) < Math.abs(cross)) return;
+          const fwd = d < 0;
+          const j = fwd ? this.k : this.k - 1;
+          if (j < 0 || j >= this.n) { s = null; return; }
+          s.drag = { j, fwd, leaf: this.leaves[j] };
+          this.lift(s.drag.leaf);
+          try { this.el.setPointerCapture(e.pointerId); } catch (_) {}
+        }
+        const r = this.el.getBoundingClientRect();
+        const size = (this.x ? r.width : r.height) / (this.spread ? 2 : 1);
+        const prog = clamp(Math.abs(d) / (size * 0.85), 0, 1);
+        const sign = s.drag.fwd ? d < 0 : d > 0;
+        const p01 = sign ? prog : 0;
+        this.set(s.drag.leaf, s.drag.fwd ? p01 * 180 : 180 - p01 * 180);
+        s.prev = s.last; s.last = p;
+        e.preventDefault();
+      });
+
+      const end = (e) => {
+        if (!s || e.pointerId !== s.id) return;
+        const st = s; s = null;
+        if (st.drag) {
+          const { j, fwd, leaf } = st.drag;
+          const a = leaf._a;
+          const prev = st.prev || st.start;
+          const dt = Math.max(1, st.last.t - prev.t);
+          const v = (this.x ? st.last.x - prev.x : st.last.y - prev.y) / dt; // px/ms
+          const prog = fwd ? a / 180 : 1 - a / 180;
+          const flick = fwd ? v < -0.45 : v > 0.45;
+          const complete = e.type !== 'pointercancel' && (prog > 0.33 || flick);
+          this.animate(j, fwd === complete ? 180 : 0);
+          return;
+        }
+        if (e.type === 'pointercancel' || interactive(e.target)) return;
+        const moved = Math.hypot(st.last.x - st.start.x, st.last.y - st.start.y);
+        if (moved > 8) return;
+        const r = this.el.getBoundingClientRect();
+        const rel = this.x ? (e.clientX - r.left) / r.width : (e.clientY - r.top) / r.height;
+        const [lo, hi] = this.spread ? [0.5, 0.5] : this.x ? [0.28, 0.62] : [0.22, 0.55];
+        if (rel > hi) this.next();
+        else if (rel < lo) this.prev();
+      };
+      this.el.addEventListener('pointerup', end);
+      this.el.addEventListener('pointercancel', end);
+
+      addEventListener('keydown', (e) => {
+        if (e.target.closest && e.target.closest('input, textarea')) return;
+        if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); this.next(); }
+        if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); this.prev(); }
+      });
+    }
+  }
+
+  window.Flipbook = Flipbook;
+})();
+</script>
+<script>
+  const { esc, pad, hero, bike, stats, isStop, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R } = MCR;
+  const S = stats();
+  const H = HOMES;
+  const pages = [];
+  const homeStart = 5;
+
+  pages.push({ cls: 'pg cover', html: `
+    <div class="cv-meta"><span>The Ridgefield Bicycle Club</span><span>New Canaan, CT</span></div>
+    <div class="cv-art">${bike()}<div class="sun"></div><div class="glass"></div><div class="slab"></div></div>
+    <h1 class="cv-title">Modern<em>New Canaan</em></h1>
+    <p class="cv-sub">${S.count} houses by bicycle, ${S.first}–${S.last}<br>A ride hosted by Bill Adamsen</p>` });
+
+  pages.push({ cls: 'pg intro', html: `
+    <div class="eyebrow">The Ride</div>
+    <h2>A town that became a <em>laboratory</em> for the modern house.</h2>
+    <p>After the war, a handful of young architects, among them Philip Johnson, Marcel Breuer, Eliot Noyes and Landis Gores, settled in New Canaan and began building glass, steel and fieldstone houses in its woods.</p>
+    <p>This ride threads ${S.count} of them on a ${R.distanceMi.toFixed(1)}-mile loop from Irwin Park, along Weed Street, Chichester, Ponus Ridge, Laurel and Oenoke Ridge. We stop at ${S.stops}. The rest we ride past slowly.</p>
+    <div class="figs"><div><b>${S.count}</b><span>Houses</span></div><div><b>${S.stops}</b><span>Stops</span></div><div><b>${R.distanceMi.toFixed(1)}</b><span>Miles</span></div></div>
+    <div class="folio"><span>Modern New Canaan</span><span>i</span></div>` });
+
+  pages.push({ cls: 'pg index', html: `
+    <div class="eyebrow">The Route, in order</div>
+    <ol>${H.map((h, i) => `<li><button data-goto="${homeStart + i * 2}"><span class="no">${pad(h.order)}</span><span class="nm">${esc(h.name)}</span><span class="mi">${h.mile != null ? h.mile.toFixed(1) : ''}</span><span class="dot ${isStop(h) ? 'stop' : ''}"></span></button></li>`).join('')}</ol>
+    <div class="legend"><span><i class="dot stop"></i>Stop</span><span><i class="dot"></i>Ride by</span></div>
+    <div class="folio"><span>Index · miles from start</span><span>ii</span></div>` });
+
+  pages.push({ cls: 'pg map-pg', html: `
+    <div class="eyebrow">The Route</div>
+    <div class="mapbox">${routeMap({ labels: true, w: 400, h: 560, pad: 22 })}</div>
+    <div class="map-key"><span><i class="sq"></i>Start · Irwin Park</span><span><i class="dot stop"></i>Stop</span><span><i class="dot"></i>Ride by</span><span><i class="x">×</i>Noyes House 1, demolished</span></div>
+    <div class="folio"><span>New Canaan, CT</span><span>iii</span></div>` });
+
+  pages.push({ cls: 'pg facts', html: `
+    <div class="eyebrow">The Ride</div>
+    <h2>${esc(R.name)}</h2>
+    <dl>
+      <div><dt>Distance</dt><dd>${R.distanceMi.toFixed(1)} <small>mi</small></dd></div>
+      <div><dt>Climbing</dt><dd>${R.gainFt.toLocaleString()} <small>ft</small></dd></div>
+      <div><dt>Stops</dt><dd>${S.stops} <small>of ${S.count}</small></dd></div>
+      <div><dt>Terrain</dt><dd style="font-size:4.4cqw;text-transform:capitalize">${esc(R.terrain)}, ${esc(R.surface)}</dd></div>
+    </dl>
+    ${profile({ w: 400, h: 60 })}
+    <div class="prof-cap"><span>Start · Irwin Park</span><span>Elevation</span><span>Finish</span></div>
+    <a class="btn" href="${R.url}" target="_blank" rel="noopener">Open the route in Ride with GPS ↗</a>
+    <p class="sub">Load it on your bike computer or phone for turn-by-turn directions. Survey references point to the <a href="${R.reference.url}" target="_blank" rel="noopener">2009 New Canaan modern house survey</a> (PDF, 25 MB).</p>
+    <div class="folio"><span>${esc(R.difficulty || '')} · ${esc(R.type || '')}</span><span>iv</span></div>` });
+
+  H.forEach((h, i) => {
+    pages.push({ cls: 'pg photo-pg', html: `<div class="plate">No. ${pad(h.order)}</div><div class="locator">${routeMap({ cur: h.order, w: 200, h: 250, pad: 14 })}</div>${hero(h)}` });
+    const L = leg(h), first = L.cues[0];
+    pages.push({ cls: 'pg text-pg', html: `
+      <div class="top"><div class="num">${pad(h.order)}</div><div class="tag ${isStop(h) ? 'stop' : ''}">${isStop(h) ? 'Stop' : 'Ride by'}</div></div>
+      <h2>${esc(h.name)}</h2>
+      <dl class="meta"><dt>Architect</dt><dd>${esc(h.architect)}</dd><dt>Built</dt><dd>${h.year}</dd><dt>Address</dt><dd>${esc(h.address)}<a href="${gmaps(h)}" target="_blank" rel="noopener">Map ↗</a></dd><dt>Mile</dt><dd>${h.mile != null ? h.mile.toFixed(1) : '–'}${h.stopAt ? ` · stop on ${esc(h.stopAt)}` : ''}</dd></dl>
+      <div class="notes"><p>${esc(h.notes)}</p></div>
+      <div class="nextleg"><i>${first ? arrow(first.turn) : '↑'}</i><span>${L.next ? `Next <b>${pad(L.next.order)} ${esc(L.next.name)}</b> in ${mi(L.dist)}${first ? ` · ${esc(first.text)}` : ''}` : `<b>Finish</b> in ${mi(L.dist)}, back to Irwin Park`}</span></div>
+      <div class="folio"><a href="${R.reference.url}" target="_blank" rel="noopener">Survey No. ${h.surveyId} · p. ${h.surveyPage}</a><span>${pad(h.order)} / ${S.count}</span></div>` });
+  });
+
+  pages.push({ cls: 'pg colophon', html: `
+    <div class="eyebrow">Colophon</div>
+    <h3>About this book</h3>
+    <p>House notes are from the ride’s research sheet. Route, mileage and stops are from the <a href="${R.url}" target="_blank" rel="noopener" style="color:inherit">Ride with GPS route</a>. Survey numbers refer to the 2009 New Canaan modern house survey.</p>
+    <p>Photographs are credited on each plate. Houses still awaiting a photograph are shown as drawings.</p>
+    <p>All of these are private homes. Please stay on the road and enjoy them from the street.</p>
+    <div class="folio"><span>Modern New Canaan</span><span>v</span></div>` });
+  pages.push({ cls: 'pg finish', html: `
+    <div class="eyebrow" style="color:#9C9585">Finish</div>
+    <h3>Thanks for riding.</h3>
+    <p>The Ridgefield Bicycle Club<br>Hosted by Bill Adamsen</p>
+    ${bike()}` });
+  pages.push({ cls: 'pg back-cover', html: `<div class="ring"></div><p>Modern New Canaan<br>${S.first} – ${S.last}</p>` });
+
+  const where = document.getElementById('where');
+  const track = document.getElementById('track');
+  const label = (p) => {
+    if (p === 0) return 'Cover';
+    if (p < 3) return 'The Ride';
+    if (p < homeStart) return 'The Route';
+    const i = Math.floor((p - homeStart) / 2);
+    if (i < H.length) return `${pad(H[i].order)} · ${H[i].name}`;
+    return 'Finish';
+  };
+
+  const book = new Flipbook(document.getElementById('book'), {
+    pages, axis: 'x', spread: '(min-width: 960px)',
+    onChange: (b) => {
+      const p = b.spread && b.k > 0 ? Math.min(b.page + 1, pages.length - 1) : b.page;
+      where.textContent = label(p);
+      track.style.width = (b.k / b.n * 100) + '%';
+      const i = Math.floor((p - homeStart) / 2);
+      hash.write(p >= homeStart && i < H.length ? H[i].order : null);
+    },
+  });
+  const start = hash.initial;
+  if (start) book.goTo(homeStart + H.findIndex((h) => h.order === start) * 2);
+  addEventListener('hashchange', () => { const o = hash.read(); if (o) book.goTo(homeStart + H.findIndex((h) => h.order === o) * 2); });
+  document.getElementById('next').onclick = () => book.next();
+  document.getElementById('prev').onclick = () => book.prev();
+  document.getElementById('book').addEventListener('click', (e) => {
+    const g = e.target.closest('[data-goto]');
+    if (g) book.goTo(+g.dataset.goto);
+    const d = e.target.closest('[data-goto-house]');
+    if (d) book.goTo(homeStart + H.findIndex((h) => h.order === +d.dataset.gotoHouse) * 2);
+  });
+</script>
+</body>
+</html>

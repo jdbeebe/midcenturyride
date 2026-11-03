@@ -265,7 +265,7 @@
   const book = new Flipbook(document.getElementById('book'), {
     pages, axis: 'x', spread: '(min-width: 960px)',
     onChange: (b) => {
-      const p = b.spread ? Math.min(b.page + 1, pages.length - 1) : b.page;
+      const p = b.spread && b.k > 0 ? Math.min(b.page + 1, pages.length - 1) : b.page;
       where.textContent = label(p);
       track.style.width = (b.k / b.n * 100) + '%';
       const i = Math.floor((p - homeStart) / 2);

@@ -43,3 +43,14 @@ python3 scripts/build-route.py
 ```
 
 Each house is linkable: add `#house-12` (any house number) to a direction's URL.
+
+## Standalone book (Version A)
+
+`book/` is Version A on its own: one `index.html` with everything inlined, plus its photos, and no links
+to the other directions. It's generated from `directions/a-monograph/`, so edit A there and rebuild:
+
+```bash
+python3 scripts/build-standalone.py
+```
+
+The `book/` folder can be copied to any static host as-is.
