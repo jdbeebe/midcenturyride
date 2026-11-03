@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../shared/flipbook.css">
+<link rel="stylesheet" href="../../shared/flipbook.css?v=3">
 <style>
   :root {
     --bg: #0F0E0D; --page: #191715; --brass: #C9A35C; --cream: #ECE4D3; --mute: #8D8576; --walnut: #3A2A1F; --olive: #5E5C35;
@@ -65,6 +65,30 @@
   .end h2 { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: 6cqw; margin: 0 0 2cqw; }
   .end p { font-size: clamp(10px, 1.2cqw, 14px); letter-spacing: .22em; text-transform: uppercase; color: var(--mute); line-height: 2; margin: 0; max-width: 60%; }
 
+  /* route page */
+  .route-pg .mapbox { position: relative; background: radial-gradient(70% 60% at 50% 45%, #221F1B, #141210); padding: 2cqw; }
+  .rmap { width: 100%; height: 100%; display: block; }
+  .rm-path { fill: none; stroke: var(--brass); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 4px rgba(201,163,92,.45)); }
+  .rm-dot { fill: var(--page); stroke: var(--brass); stroke-width: 1.4; cursor: pointer; }
+  .rm-stop { fill: var(--brass); }
+  .rm-lbl { font: 400 10px var(--sans); fill: var(--cream); letter-spacing: .04em; }
+  .rm-start { fill: var(--cream); }
+  .rm-extra path { stroke: var(--mute); stroke-width: 1.4; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3cqw; margin-top: 2.4cqw; }
+  .stats div { padding: 1.4cqw 0; border-bottom: 1px solid rgba(201,163,92,.25); }
+  .stats b { display: block; font-family: var(--serif); font-weight: 400; font-size: 3.6cqw; color: var(--cream); line-height: 1.1; }
+  .stats span { font-size: clamp(9px, .95cqw, 11px); letter-spacing: .28em; text-transform: uppercase; color: var(--mute); }
+  .rprof { width: 100%; height: 5cqw; display: block; margin: 2.4cqw 0 .6cqw; }
+  .rp-fill { fill: rgba(201,163,92,.12); } .rp-line { fill: none; stroke: var(--brass); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+  .gps { display: inline-block; margin-top: 2cqw; padding: 1.2cqw 2cqw; border: 1px solid var(--brass); color: var(--brass); text-decoration: none; font-size: clamp(9px, 1.05cqw, 12px); letter-spacing: .3em; text-transform: uppercase; align-self: flex-start; }
+  .gps:hover { background: var(--brass); color: var(--bg); }
+  .route-pg .note { font-family: var(--serif); font-style: italic; font-size: clamp(12px, 1.25cqw, 15px); color: var(--mute); line-height: 1.5; margin-top: 2cqw; }
+  .route-pg .note a { color: var(--cream); }
+  .leg { margin-top: 1.2cqw; font-size: clamp(9px, 1.05cqw, 12px); letter-spacing: .14em; text-transform: uppercase; color: var(--cream); display: flex; gap: .8em; align-items: baseline; }
+  .leg i { font-style: normal; color: var(--brass); font-size: 1.4em; }
+  .addr a { color: var(--brass); text-decoration: none; margin-left: 1em; }
+  .rlink { position: fixed; right: 26px; top: calc(14px + env(safe-area-inset-top)); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--brass); text-decoration: none; z-index: 60; }
+
   /* chrome */
   .ticks { position: fixed; top: calc(18px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 50; }
   .ticks i { width: 14px; height: 2px; background: rgba(236,228,211,.18); transition: background .4s; }
@@ -95,6 +119,12 @@
     .end .bike { width: 26cqw; } .end h2 { font-size: 13cqw; } .end p { font-size: 11px; max-width: 80%; }
     .ticks { gap: 3px; } .ticks i { width: 9px; }
     .count, .home-link { display: none; }
+    .rlink { display: none; }
+    .route-pg .mapbox { padding: 12cqw 4cqw 0; }
+    .stats b { font-size: 7cqw; } .stats span, .leg, .gps { font-size: 10px; }
+    .rprof { height: 10cqw; }
+    .route-pg .note { font-size: 13px; }
+    .gps { padding: 3cqw 4cqw; }
   }
 </style>
 </head>
@@ -102,15 +132,17 @@
 <div class="ticks" id="ticks"></div>
 <div class="stage"><div id="book"></div></div>
 <a class="home-link" href="../../">← Directions</a>
+<a class="rlink" href="https://ridewithgps.com/routes/54307217" target="_blank" rel="noopener">Ride with GPS ↗</a>
 <div class="count" id="count"></div>
 
 <script>window.MCR_ROOT = '../../';</script>
-<script src="../../data/homes.js"></script>
-<script src="../../assets/img/manifest.js" onerror="void 0"></script>
-<script src="../../shared/common.js"></script>
-<script src="../../shared/flipbook.js"></script>
+<script src="../../data/homes.js?v=3"></script>
+<script src="../../data/route.js?v=3"></script>
+<script src="../../assets/img/manifest.js?v=3" onerror="void 0"></script>
+<script src="../../shared/common.js?v=3"></script>
+<script src="../../shared/flipbook.js?v=3"></script>
 <script>
-  const { esc, pad, hero, bike, stats, isStop } = MCR;
+  const { esc, pad, hero, bike, stats, isStop, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R } = MCR;
   const H = HOMES, S = stats(), N = H.length;
   const road = (a) => a.replace(/^\d+\s+/, '').replace(/\bRd\b/, 'Road');
   const glass = H.find((h) => h.order === 12);
@@ -120,22 +152,39 @@
     <div class="in">
       <div class="kicker"><span>The Ridgefield Bicycle Club</span><span>New Canaan, CT</span></div>
       <h1>Glass <em>&amp;</em><br>Stone</h1>
-      <p>The modern houses of New Canaan, by bicycle<br>${N} houses · ${S.first}–${S.last} · Hosted by Bill Adamsen</p>
+      <p>The modern houses of New Canaan, by bicycle<br>${N} houses · ${R.distanceMi.toFixed(1)} miles · Hosted by Bill Adamsen</p>
       <p class="hint">Turn the page →</p>
     </div>` }];
 
+  pages.push({ cls: 'pg route-pg', html: `
+    <div class="mapbox">${routeMap({ labels: true, w: 400, h: 400, pad: 18 })}</div>
+    <div class="txt">
+      <div class="kicker"><span>The Route</span><span>${esc(R.type)}</span></div>
+      <h2 style="margin-top:2.4cqw">${esc(R.name)}</h2>
+      <div class="stats">
+        <div><b>${R.distanceMi.toFixed(1)} mi</b><span>Distance</span></div>
+        <div><b>${R.gainFt.toLocaleString()} ft</b><span>Climbing</span></div>
+        <div><b>${S.stops} of ${N}</b><span>Stops</span></div>
+        <div><b style="text-transform:capitalize">${esc(R.terrain)}</b><span>${esc(R.surface)}</span></div>
+      </div>
+      ${profile({ w: 400, h: 50 })}
+      <a class="gps" href="${R.url}" target="_blank" rel="noopener">Open in Ride with GPS ↗</a>
+      <p class="note">Starts and finishes at Irwin Park on Weed Street. Filled dots are stops. The × marks Noyes House 1 (1947), now demolished. References: <a href="${R.reference.url}" target="_blank" rel="noopener">2009 New Canaan survey</a>.</p>
+    </div>` });
+
   H.forEach((h) => {
-    const stop = isStop(h);
+    const stop = isStop(h), L = leg(h), first = L.cues[0];
     pages.push({ cls: 'pg', html: `
       ${hero(h)}
       <div class="txt">
-        <div class="kicker"><span>On ${esc(road(h.address))}</span><span>${h.year}</span></div>
-        <div class="no">No. ${h.order}<small class="${stop ? 'stop' : ''}">${stop ? 'Stop' : 'Ride by'}</small></div>
+        <div class="kicker"><span>Mile ${h.mile.toFixed(1)} · On ${esc(road(h.address))}</span><span>${h.year}</span></div>
+        <div class="no">No. ${h.order}<small class="${stop ? 'stop' : ''}">${stop ? (h.stopAt ? `Stop on ${esc(h.stopAt)}` : 'Stop') : 'Ride by'}</small></div>
         <h2>${esc(h.name)}</h2>
         <div class="who">${esc(h.architect)}</div>
         <div class="body" data-nodrag-y><p>${esc(h.notes)}</p></div>
         <button class="read">Continue reading</button>
-        <div class="addr">${esc(h.address)}</div>
+        <div class="addr">${esc(h.address)}<a href="${gmaps(h)}" target="_blank" rel="noopener">Map ↗</a></div>
+        <div class="leg"><i>${first ? arrow(first.turn) : '↑'}</i><span>${L.next ? `${mi(L.dist)} to No. ${L.next.order}${first ? ` · ${esc(first.text)}` : ''}` : `${mi(L.dist)} to the finish`}</span></div>
       </div>` });
   });
 
@@ -146,15 +195,23 @@
   const tickEls = [...ticks.children];
   const count = document.getElementById('count');
 
+  const FIRST = 2; // page index of the first house
   const book = new Flipbook(document.getElementById('book'), {
     pages, axis: 'x', spread: 'not all',
     onChange: (b) => {
-      tickEls.forEach((t, i) => t.classList.toggle('on', i < b.page));
-      count.innerHTML = b.page >= 1 && b.page <= N ? `<b>${b.page}</b> of ${N}` : '';
+      const hi = b.page - FIRST;
+      tickEls.forEach((t, i) => t.classList.toggle('on', i <= hi));
+      count.innerHTML = hi >= 0 && hi < N ? `<b>${hi + 1}</b> of ${N}` : '';
+      hash.write(H[hi] ? H[hi].order : null);
       document.querySelectorAll('.pg.reading').forEach((p) => { p.classList.remove('reading'); const r = p.querySelector('.read'); if (r) r.textContent = 'Continue reading'; });
     },
   });
+  const start = hash.initial;
+  if (start) book.goTo(H.findIndex((h) => h.order === start) + FIRST);
+  addEventListener('hashchange', () => { const o = hash.read(); if (o) book.goTo(H.findIndex((h) => h.order === o) + FIRST); });
   document.getElementById('book').addEventListener('click', (e) => {
+    const d = e.target.closest('[data-goto-house]');
+    if (d) return book.goTo(H.findIndex((h) => h.order === +d.dataset.gotoHouse) + FIRST);
     const r = e.target.closest('.read');
     if (!r) return;
     const pg = r.closest('.pg');

@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../shared/flipbook.css">
+<link rel="stylesheet" href="../../shared/flipbook.css?v=3">
 <style>
   :root {
     --card: #F8F4EA; --table: #E6E0D2; --ink: #141414; --orange: #E4572E; --teal: #1E6B73; --mustard: #E8A923; --mute: #7C776C; --rule: #DDD6C6;
@@ -90,6 +90,43 @@
   .finish p { font-size: 3.4cqw; line-height: 1.5; color: #BDB6A6; margin: 0 0 3cqw; }
   .finish .bike { width: 24cqw; color: var(--mustard); }
 
+  /* route */
+  .rmap { width: 100%; height: 100%; display: block; }
+  .rm-path { fill: none; stroke: #CFC7B5; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .rm-done { fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round; stroke-linecap: round; }
+  .rm-dot { fill: var(--card); stroke: var(--ink); stroke-width: 2; }
+  .rm-stop { fill: var(--orange); }
+  .rm-by { fill: var(--teal); stroke: var(--teal); }
+  .rm-cur { stroke-width: 3; }
+  .rm-lbl { font: 700 11px var(--f); fill: var(--ink); paint-order: stroke; stroke: var(--card); stroke-width: 3px; }
+  .rm-start { fill: var(--ink); }
+  .rm-extra path { stroke: var(--mute); stroke-width: 2; }
+  .route-card .rm-path { stroke: var(--ink); }
+  .route-card .mapbox { flex: 1; min-height: 0; margin: 2cqw -3cqw 0; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
+  .stats div { padding: 2cqw 0; }
+  .stats b { display: block; font-weight: 800; font-stretch: 70%; font-size: 8.4cqw; line-height: 1; }
+  .stats span { font-size: 2.5cqw; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .rprof { width: 100%; height: 9cqw; display: block; }
+  .rp-fill { fill: rgba(30,107,115,.18); } .rp-line { fill: none; stroke: var(--teal); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+  .rp-cur { stroke: var(--orange); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .rwgps { display: flex; align-items: center; justify-content: space-between; gap: 3cqw; margin-top: 3cqw; background: var(--ink); color: var(--card); text-decoration: none; border-radius: 99px; padding: 3cqw 5cqw; font-size: 3.2cqw; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .rwgps span:last-child { color: var(--mustard); }
+  .mini { width: 22cqw; flex-shrink: 0; align-self: stretch; margin: -1cqw -1cqw 0 0; }
+  .mini .rm-dot:not(.rm-cur) { display: none; }
+  .mini .rm-path { stroke-width: 5; } .mini .rm-done { stroke-width: 6; } .mini .rm-cur { stroke-width: 5; }
+  .act small .mile { color: var(--ink); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .sheet h4 { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; margin: 22px 0 8px; }
+  .sheet ol { list-style: none; padding: 0; margin: 0; border-top: 2px solid var(--ink); }
+  .sheet li { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
+  .sheet li i { font-style: normal; font-size: 18px; color: var(--orange); }
+  .sheet li small { color: var(--mute); font-variant-numeric: tabular-nums; }
+  .sheet .links { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .sheet .links a { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1.5px solid var(--ink); border-radius: 99px; padding: 7px 14px; font-weight: 700; }
+  .idx .mi { color: var(--mute); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+  .idx button { grid-template-columns: 17px 26px 1fr auto; }
+  .idx .rlink { display: inline-block; margin-top: 16px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--orange); }
+
   /* story sheet */
   .sheet { position: fixed; inset: auto 0 0 0; max-height: 78dvh; background: var(--card); border-radius: 22px 22px 0 0; box-shadow: 0 -20px 60px rgba(0,0,0,.25); padding: 26px 26px calc(30px + env(safe-area-inset-bottom)); transform: translateY(105%); transition: transform .45s cubic-bezier(.3,.8,.25,1); z-index: 200; overflow: auto; max-width: 620px; margin: 0 auto; }
   .sheet.open { transform: none; }
@@ -123,12 +160,13 @@
 <section class="sheet" id="sheet" aria-hidden="true"><div class="grab"></div><button id="close" aria-label="Close">×</button><div id="sheet-body"></div></section>
 
 <script>window.MCR_ROOT = '../../';</script>
-<script src="../../data/homes.js"></script>
-<script src="../../assets/img/manifest.js" onerror="void 0"></script>
-<script src="../../shared/common.js"></script>
-<script src="../../shared/flipbook.js"></script>
+<script src="../../data/homes.js?v=3"></script>
+<script src="../../data/route.js?v=3"></script>
+<script src="../../assets/img/manifest.js?v=3" onerror="void 0"></script>
+<script src="../../shared/common.js?v=3"></script>
+<script src="../../shared/flipbook.js?v=3"></script>
 <script>
-  const { esc, pad, hero, bike, stats, isStop, excerpt } = MCR;
+  const { esc, pad, hero, bike, stats, isStop, excerpt, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R } = MCR;
   const H = HOMES, S = stats(), N = H.length;
   document.querySelector('.bike-slot').outerHTML = bike();
 
@@ -145,30 +183,38 @@
     });
     return s + '</svg>';
   };
-  const maps = (h) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${h.address}, New Canaan, CT 06840`);
-
+  
   const pages = [{ cls: 'card cover', html: `
     <div class="head"><span>Ridgefield Bicycle Club</span><span>Cue deck</span></div>
     <div class="num">${N}</div>
     <h1>Modern<br>New Canaan</h1>
-    <p>${N} houses, ${S.first}–${S.last}. ${S.stops} stops, the rest ridden past.<br>Hosted by Bill Adamsen.</p>
+    <p>${N} houses, ${S.first}–${S.last}. A ${R.distanceMi.toFixed(1)}-mile loop with ${S.stops} stops; the rest we ride past.<br>Hosted by Bill Adamsen.</p>
     <div class="go">${bike()}<span>Swipe up to roll out ↑</span></div>` }];
 
+  pages.push({ cls: 'card route-card', html: `
+    <div class="head"><span>The route</span><span>Loop · ${esc(R.terrain)}</span></div>
+    <div class="mapbox">${routeMap({ labels: true, w: 400, h: 470, pad: 20 })}</div>
+    <div class="stats"><div><b>${R.distanceMi.toFixed(1)}</b><span>Miles</span></div><div><b>${R.gainFt.toLocaleString()}</b><span>Ft climb</span></div><div><b>${S.stops}</b><span>Stops</span></div><div><b>${N}</b><span>Houses</span></div></div>
+    ${profile({ w: 400, h: 40 })}
+    <a class="rwgps" href="${R.url}" target="_blank" rel="noopener"><span>Ride with GPS route</span><span>Open ↗</span></a>
+    <div class="next"><i>↑</i><span>Start <b>Irwin Park, Weed Street</b> · square on the map</span></div>` });
+
   H.forEach((h, i) => {
-    const nx = H[i + 1];
+    const L = leg(h), nx = L.next, first = L.cues[0];
     const stop = isStop(h);
     pages.push({ cls: `card ${stop ? 'stop-card' : 'ride-card'}`, html: `
       <div class="head"><span>Cue ${pad(h.order)}</span><span>${pad(h.order)} / ${N}</span></div>
       ${line(h.order)}
       <div class="big"><div class="num">${pad(h.order)}</div>
-        <div class="act"><b>${stop ? 'Stop' : 'Ride by'}</b><small>${stop ? 'Pull over, regroup &amp; look' : 'Slow roll, stay single file'}</small></div></div>
+        <div class="act"><b>${stop ? 'Stop' : 'Ride by'}</b><small><span class="mile">Mile ${h.mile.toFixed(1)}</span><br>${stop ? (h.stopAt ? `Regroup on ${esc(h.stopAt)}` : 'Pull over &amp; regroup') : 'Slow roll, single file'}</small></div>
+        <div class="mini">${routeMap({ cur: h.order, w: 160, h: 200, pad: 12 })}</div></div>
       ${hero(h)}
       <h2>${esc(h.name)}</h2>
       <div class="by">${esc(h.architect)} <span>· ${h.year}</span></div>
-      <div class="addr"><span>${esc(h.address)}</span><a href="${maps(h)}" target="_blank" rel="noopener">Map ↗</a></div>
+      <div class="addr"><span>${esc(h.address)}</span><a href="${gmaps(h)}" target="_blank" rel="noopener">Map ↗</a></div>
       <p class="ex">${esc(excerpt(h.notes, 200))}</p>
-      <button class="more" data-story="${i}">Read the story +</button>
-      <div class="next"><i>↑</i>${nx ? `<span>Next <b>${pad(nx.order)} ${esc(nx.name)}</b> · ${esc(nx.address)}</span>` : `<span><b>Last house.</b> Roll home.</span>`}</div>` });
+      <button class="more" data-story="${i}">Story &amp; directions +</button>
+      <div class="next"><i>${first ? arrow(first.turn) : '↑'}</i>${nx ? `<span><b>${mi(L.dist)}</b>${first ? ` · ${esc(first.text)}` : ''} → <b>${pad(nx.order)} ${esc(nx.name)}</b></span>` : `<span><b>${mi(L.dist)}</b> back to Irwin Park. Finish.</span>`}</div>` });
   });
 
   pages.push({ cls: 'card finish', html: `
@@ -179,20 +225,32 @@
     ${bike()}` });
 
   const idx = document.getElementById('idx');
-  idx.innerHTML = H.map((h, i) => `<li><button data-goto="${i + 1}"><span class="stn ${isStop(h) ? 'stop' : ''}"></span><span class="n">${pad(h.order)}</span><span class="nm">${esc(h.name)}</span></button></li>`).join('');
+  const FIRST = 2; // card index of the first house
+  idx.innerHTML = H.map((h, i) => `<li><button data-goto="${i + FIRST}"><span class="stn ${isStop(h) ? 'stop' : ''}"></span><span class="n">${pad(h.order)}</span><span class="nm">${esc(h.name)}</span><span class="mi">${h.mile.toFixed(1)}</span></button></li>`).join('');
+  idx.insertAdjacentHTML('afterend', `<a class="rlink" href="${R.url}" target="_blank" rel="noopener">Open in Ride with GPS ↗</a>`);
   const idxBtns = [...idx.querySelectorAll('button')];
 
   const deck = new Flipbook(document.getElementById('deck'), {
     pages, axis: 'y', spread: 'not all',
     verso: () => '',
-    onChange: (b) => idxBtns.forEach((el, i) => el.classList.toggle('on', i + 1 === b.page)),
+    onChange: (b) => {
+      idxBtns.forEach((el, i) => el.classList.toggle('on', i + FIRST === b.page));
+      const h = H[b.page - FIRST];
+      hash.write(h ? h.order : null);
+    },
   });
+  const start = hash.initial;
+  if (start) deck.goTo(H.findIndex((h) => h.order === start) + FIRST);
+  addEventListener('hashchange', () => { const o = hash.read(); if (o) deck.goTo(H.findIndex((h) => h.order === o) + FIRST); });
   idx.addEventListener('click', (e) => { const g = e.target.closest('[data-goto]'); if (g) deck.goTo(+g.dataset.goto); });
 
   const sheet = document.getElementById('sheet'), scrim = document.getElementById('scrim');
   const open = (i) => {
-    const h = H[i];
-    document.getElementById('sheet-body').innerHTML = `<h3>${pad(h.order)} · ${esc(h.name)}</h3><div class="by">${esc(h.architect)} <span>· ${h.year} · ${esc(h.address)}</span></div><p>${esc(h.notes)}</p><div class="src">Survey No. ${h.surveyId} · p. ${h.surveyPage}</div>`;
+    const h = H[i], L = leg(h);
+    document.getElementById('sheet-body').innerHTML = `<h3>${pad(h.order)} · ${esc(h.name)}</h3><div class="by">${esc(h.architect)} <span>· ${h.year} · ${esc(h.address)}</span></div><p>${esc(h.notes)}</p>
+      <h4>${L.next ? `To ${pad(L.next.order)} ${esc(L.next.name)} · ${mi(L.dist)}` : `To the finish · ${mi(L.dist)}`}</h4>
+      ${L.cues.length ? `<ol>${L.cues.map((c) => `<li><i>${arrow(c.turn)}</i><span>${esc(c.text)}</span><small>mi ${c.mile.toFixed(1)}</small></li>`).join('')}</ol>` : `<ol><li><i>↑</i><span>Continue on the same road</span><small></small></li></ol>`}
+      <div class="links"><a href="${gmaps(h)}" target="_blank" rel="noopener">Map ↗</a><a href="${R.url}" target="_blank" rel="noopener">Ride with GPS ↗</a><a href="${R.reference.url}" target="_blank" rel="noopener">Survey No. ${h.surveyId} · p. ${h.surveyPage} ↗</a></div>`;
     sheet.classList.add('open'); scrim.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); sheet.scrollTop = 0;
   };
   const close = () => { sheet.classList.remove('open'); scrim.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); };

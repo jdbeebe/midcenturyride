@@ -75,5 +75,98 @@
 
   const isStop = (h) => /stop/i.test(h.visit);
 
-  window.MCR = { esc, pad, images, excerpt, drawing, hero, bike, stats, isStop };
+  // ---------- Ride with GPS route ----------
+  // Merge route data into each house: position, mile marker, stop/ride-by (the route wins),
+  // where to stop, and the turn-by-turn cues that lead on to the next house.
+  const R = window.ROUTE;
+  if (R) {
+    const H = window.HOMES;
+    H.forEach((h, i) => {
+      const r = R.houses[h.order];
+      if (!r) return;
+      Object.assign(h, { lat: r.lat, lng: r.lng, mile: r.mile, ti: r.ti, stopAt: r.stopAt });
+      if (r.visit) h.visit = r.visit;
+      const nx = H[i + 1] && R.houses[H[i + 1].order];
+      h.cuesOut = nx ? nx.cuesIn : R.finishCues;
+    });
+    // Cumulative miles along the track, for the elevation profile.
+    let d = 0;
+    R.track.forEach((p, i) => {
+      if (i) {
+        const q = R.track[i - 1], k = Math.cos(p[0] * Math.PI / 180);
+        d += Math.hypot((p[0] - q[0]) * 69.05, (p[1] - q[1]) * 69.05 * k);
+      }
+      p[3] = d;
+    });
+  }
+
+  const mi = (m) => (m < 0.1 ? '0.1' : m.toFixed(1)) + ' mi';
+  const gmaps = (h) => 'https://www.google.com/maps/search/?api=1&query=' + (h.lat ? `${h.lat},${h.lng}` : encodeURIComponent(`${h.address}, New Canaan, CT`));
+  const ARROWS = { 'Left': '←', 'Right': '→', 'Slight Left': '↖', 'Slight Right': '↗', 'Sharp Left': '↙', 'Sharp Right': '↘', 'Uturn': '↩', 'Straight': '↑' };
+  const arrow = (t) => ARROWS[t] || '↑';
+  // Leg to the next house: distance, the first named turn, and the full cue list.
+  function leg(h) {
+    const H = window.HOMES, i = H.indexOf(h), nx = H[i + 1];
+    const end = nx ? nx.mile : (R ? R.distanceMi : 0);
+    const cues = (h.cuesOut || []).filter((c) => /onto/.test(c.text));
+    return { next: nx, dist: Math.max(0, end - (h.mile || 0)), cues };
+  }
+
+  // Route map as SVG. opts: { cur: order to highlight, labels: bool, pad, w, h }
+  function routeMap(opts = {}) {
+    if (!R) return '';
+    const { cur = null, labels = false, w = 400, h = 520, pad: P = 28, numbers = labels } = opts;
+    const lats = R.track.map((p) => p[0]), lngs = R.track.map((p) => p[1]);
+    const lat0 = (Math.min(...lats) + Math.max(...lats)) / 2, k = Math.cos(lat0 * Math.PI / 180);
+    const x0 = Math.min(...lngs) * k, x1 = Math.max(...lngs) * k, y0 = Math.min(...lats), y1 = Math.max(...lats);
+    const s = Math.min((w - 2 * P) / (x1 - x0), (h - 2 * P) / (y1 - y0));
+    const ox = (w - (x1 - x0) * s) / 2, oy = (h - (y1 - y0) * s) / 2;
+    const X = (lng) => (ox + (lng * k - x0) * s).toFixed(1), Y = (lat) => (oy + (y1 - lat) * s).toFixed(1);
+    const path = (pts) => 'M' + pts.map((p) => `${X(p[1])} ${Y(p[0])}`).join('L');
+    const H = window.HOMES;
+    const c = cur != null ? H.find((x) => x.order === cur) : null;
+    let out = `<svg class="rmap" viewBox="0 0 ${w} ${h}" role="img" aria-label="Route map, ${R.distanceMi} miles">`;
+    out += `<path class="rm-path" d="${path(R.track)}"/>`;
+    if (c && c.ti != null) out += `<path class="rm-done" d="${path(R.track.slice(0, c.ti + 1))}"/>`;
+    (R.extras || []).forEach((e) => { out += `<g class="rm-extra"><path d="M${X(e.lng) - 4} ${Y(e.lat) - 4}l8 8m0-8l-8 8"/></g>`; });
+    H.forEach((x) => {
+      if (x.lat == null) return;
+      const here = c && x.order === c.order;
+      const cls = `rm-dot ${isStop(x) ? 'rm-stop' : 'rm-by'} ${here ? 'rm-cur' : ''} ${c && x.order < c.order ? 'rm-past' : ''}`;
+      out += `<circle class="${cls}" cx="${X(x.lng)}" cy="${Y(x.lat)}" r="${here ? 9 : isStop(x) ? 4.6 : 3.4}" data-goto-house="${x.order}"/>`;
+    });
+    if (numbers) {
+      // Label every house, nudging labels for tight clusters so they don't sit on the line.
+      H.forEach((x, i) => {
+        if (x.lat == null) return;
+        const side = i % 2 ? 1 : -1;
+        out += `<text class="rm-lbl" x="${+X(x.lng) + side * 9}" y="${+Y(x.lat) + 3.5}" text-anchor="${side > 0 ? 'start' : 'end'}">${x.order}</text>`;
+      });
+    }
+    out += `<rect class="rm-start" x="${X(R.start.lng) - 5}" y="${Y(R.start.lat) - 5}" width="10" height="10"/>`;
+    return out + '</svg>';
+  }
+
+  // Elevation profile as SVG.
+  function profile(opts = {}) {
+    if (!R) return '';
+    const { w = 400, h = 70, cur = null } = opts;
+    const E = R.track.map((p) => p[2]), lo = Math.min(...E), hi = Math.max(...E), D = R.track[R.track.length - 1][3];
+    const X = (d) => (d / D * w).toFixed(1), Y = (e) => (h - 4 - (e - lo) / (hi - lo || 1) * (h - 10)).toFixed(1);
+    const line = R.track.map((p, i) => `${i ? 'L' : 'M'}${X(p[3])} ${Y(p[2])}`).join('');
+    let out = `<svg class="rprof" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path class="rp-fill" d="${line}L${w} ${h}L0 ${h}Z"/><path class="rp-line" d="${line}"/>`;
+    const c = cur != null && window.HOMES.find((x) => x.order === cur);
+    if (c && c.ti != null) out += `<line class="rp-cur" x1="${X(R.track[c.ti][3])}" x2="${X(R.track[c.ti][3])}" y1="0" y2="${h}"/>`;
+    return out + '</svg>';
+  }
+
+  // Deep links: #house-12 opens that house; directions keep the hash in sync as you turn.
+  const hash = {
+    read: () => { const m = location.hash.match(/house-(\d+)/); return m ? +m[1] : null; },
+    write: (order) => history.replaceState(null, '', order ? `#house-${order}` : location.pathname + location.search),
+  };
+
+  hash.initial = hash.read(); // captured before any book layout rewrites the URL
+
+  window.MCR = { esc, pad, images, excerpt, drawing, hero, bike, stats, isStop, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R };
 })();

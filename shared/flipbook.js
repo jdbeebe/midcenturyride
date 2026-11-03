@@ -149,7 +149,7 @@
     bind() {
       let s = null;
       const pt = (e) => ({ x: e.clientX, y: e.clientY, t: performance.now() });
-      const interactive = (t) => t.closest('a, button, input, select, textarea, [data-nodrag]');
+      const interactive = (t) => t.closest('a, button, input, select, textarea, [data-nodrag], [data-goto], [data-goto-house]');
 
       this.el.addEventListener('pointerdown', (e) => {
         if (this.busy || e.button > 0 || interactive(e.target)) return;
