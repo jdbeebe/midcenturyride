@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Modern New Canaan · page-turn video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/flipbook.css">
+<link rel="stylesheet" href="cards.css">
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #2B2925; }
+  #book { position: absolute; inset: 0; perspective: 3400px !important; }
+  #book .card { margin: 0; }
+  .fb-verso { background: #EDE7DA; }
+  .fb-verso::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(0,0,0,.02) 11px 12px); }
+  /* Softer, wider lighting for a full-screen leaf. */
+  .fb-x .fb-front::after { background: linear-gradient(to left, rgba(0,0,0,.42), rgba(0,0,0,.06) 60%, rgba(255,255,255,.08)); }
+  .fb-lifted .fb-face { box-shadow: 0 0 80px rgba(0,0,0,.35); }
+  #book .fb-stage { transition: none !important; transform-origin: 50% 50%; }
+  /* The resting page sits on the table with a soft contact shadow while the camera pulls back. */
+  #book .fb-leaf .fb-front { box-shadow: 0 30px 90px rgba(0,0,0, var(--sh, 0)); }
+</style>
+</head>
+<body>
+<div id="book"></div>
+<script>window.MCR_ROOT = '../';</script>
+<script src="../data/homes.js"></script>
+<script src="../data/route.js"></script>
+<script src="../assets/img/manifest.js"></script>
+<script src="../shared/common.js"></script>
+<script src="../shared/flipbook.js"></script>
+<script src="cards.js"></script>
+<script>
+  const cards = buildCards();
+  const book = new Flipbook(document.getElementById('book'), {
+    pages: cards.map((html) => ({ html, cls: 'vpage' })), axis: 'x', spread: 'not all', verso: () => '',
+  });
+  const faces = () => book.leaves.map((l) => l.querySelector('.fb-front'));
+
+  // Timeline (seconds): hold each card, then turn its page.
+  const HOLD = [3.2, 2.8, 2.8, 2.8, 3.0, 3.0, 2.8, 3.8];
+  const TURN = 1.6;
+  window.DURATION = HOLD.reduce((a, b) => a + b, 0) + TURN * (HOLD.length - 1);
+  const ease = (x) => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+
+  // Render the state at time t. Photos drift slowly (Ken Burns) while each card holds.
+  window.frame = (t) => {
+    let acc = 0;
+    const F = faces();
+    for (let i = 0; i < HOLD.length; i++) {
+      if (t < acc + HOLD[i] || i === HOLD.length - 1) {
+        book.k = i; book.layout();
+        book.stage.style.transform = 'none';
+        book.el.style.setProperty('--sh', 0);
+        F[i].style.setProperty('--kb', Math.min(1, (t - acc) / HOLD[i]).toFixed(4));
+        return;
+      }
+      acc += HOLD[i];
+      if (t < acc + TURN) {
+        const u = (t - acc) / TURN, p = ease(u);
+        // Camera: ease back to 86% while the page turns, then settle in on the next card.
+        const pull = Math.sin(Math.PI * Math.min(1, u * 1.08));
+        book.stage.style.transform = `scale(${(1 - 0.14 * pull).toFixed(4)})`;
+        book.el.style.setProperty('--sh', (0.45 * pull).toFixed(3));
+        book.k = i; book.layout();
+        F[i].style.setProperty('--kb', '1');
+        F[i + 1].style.setProperty('--kb', '0');
+        book.lift(book.leaves[i]);
+        book.set(book.leaves[i], p * 180);
+        return;
+      }
+      acc += TURN;
+    }
+  };
+  window.videoReady = Promise.all([document.fonts.ready, ...[...document.images].map((i) => i.decode().catch(() => {}))]);
+</script>
+</body>
+</html>
