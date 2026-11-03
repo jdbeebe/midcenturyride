@@ -1,7 +1,8 @@
 // The eight social cards, shared by cards.html (stills) and video.html (page-turn video).
 // Edit RIDE when the date and short link are set, then re-render.
 window.RIDE = {
-  date: 'Date to be announced',
+  date: 'Tuesday, November 10 · 10 am',
+  meet: 'Irwin Park, Weed Street',
   url: 'midcenturyride-production.up.railway.app/book',
 };
 
@@ -43,7 +44,7 @@ window.buildCards = function () {
       <div class="art">${bike()}<div class="sun"></div><div class="glass"></div><div class="slab"></div></div>
       <h1>Modern<em>New Canaan</em></h1>
       <p class="sub">A bicycle tour of ${S.count} mid-century modern houses, ${S.first}–${S.last}.</p>
-      <div class="when"><span>${esc(RIDE.date)}</span><span>Hosted by Bill Adamsen</span></div>
+      <div class="when"><span>${esc(RIDE.date)}</span><span>Meet at ${esc(RIDE.meet)}</span><span>Hosted by Bill Adamsen</span></div>
       ${foot(1).replace('class="foot"', 'class="foot" style="color:#1C1B18"')}
     </section>`,
 
@@ -58,7 +59,7 @@ window.buildCards = function () {
         <div><b>${S.stops}</b><span>Stops</span></div>
         <div><b>${S.count}</b><span>Houses</span></div>
       </div>
-      <p class="line">From Irwin Park on Weed Street. Rolling, all paved, and full of glass, steel and fieldstone.</p>
+      <p class="line">${esc(RIDE.date)} from Irwin Park.<br>Rolling, all paved, and full of glass and steel.</p>
       ${foot(2)}
     </section>`,
 
@@ -137,6 +138,7 @@ window.buildCards = function () {
         <div class="bar">12 · Glass House</div>
       </div></div>
       <p class="sub">All ${S.count} houses, the route map and turn-by-turn directions, in a flip book for your phone.</p>
+      <div class="when-site">${esc(RIDE.date)}</div>
       <div class="pill"><span>${esc(RIDE.url)}</span><i>→</i></div>
       ${foot(8)}
     </section>`,

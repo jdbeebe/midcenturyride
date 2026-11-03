@@ -121,6 +121,7 @@ body { margin: 0; background: #111; font-family: var(--sans); color: var(--ink);
 .screen .leaf::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to left, rgba(0,0,0,.45), rgba(0,0,0,.05) 70%); opacity: calc(var(--turn, 72) / 90); }
 .screen .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; background: var(--table); display: flex; align-items: center; padding: 0 30px; font-size: 15px; letter-spacing: .16em; color: #E9E3D6; z-index: 3; text-transform: uppercase; }
 .site .sub { font-family: var(--serif); font-size: 38px; line-height: 1.45; color: #D9D2C3; margin: 54px 40px 0; }
-.site .pill { margin-top: 40px; font-size: 26px; background: var(--rust); color: var(--paper); }
+.site .when-site { margin-top: 34px; font-size: 30px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; color: var(--paper); }
+.site .pill { margin-top: 26px; font-size: 26px; background: var(--rust); color: var(--paper); }
 .site .pill i { color: var(--ink); }
 .site .foot { text-align: left; }

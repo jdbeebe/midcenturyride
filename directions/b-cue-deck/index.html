@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../shared/flipbook.css?v=6">
+<link rel="stylesheet" href="../../shared/flipbook.css?v=7">
 <style>
   :root {
     --card: #F8F4EA; --table: #E6E0D2; --ink: #141414; --orange: #E4572E; --teal: #1E6B73; --mustard: #E8A923; --mute: #7C776C; --rule: #DDD6C6;
@@ -39,7 +39,7 @@
   .idx button:hover .nm { color: var(--orange); }
 
   /* ---------- card ---------- */
-  .card { position: absolute; inset: 0; background: var(--card); padding: 7cqw 7cqw 6cqw; display: flex; flex-direction: column; border-radius: 18px; }
+  .card { position: absolute; inset: 0; background: var(--card); padding: 7% 7% 6%; display: flex; flex-direction: column; border-radius: 18px; }
   .fb-verso { background: var(--teal); border-radius: 18px; }
   .fb-verso::before { content: ''; position: absolute; inset: 0; border-radius: 18px; background-image: radial-gradient(circle, rgba(255,255,255,.14) 22%, transparent 24%); background-size: 6cqw 6cqw; }
 
@@ -160,11 +160,11 @@
 <section class="sheet" id="sheet" aria-hidden="true"><div class="grab"></div><button id="close" aria-label="Close">×</button><div id="sheet-body"></div></section>
 
 <script>window.MCR_ROOT = '../../';</script>
-<script src="../../data/homes.js?v=6"></script>
-<script src="../../data/route.js?v=6"></script>
-<script src="../../assets/img/manifest.js?v=6" onerror="void 0"></script>
-<script src="../../shared/common.js?v=6"></script>
-<script src="../../shared/flipbook.js?v=6"></script>
+<script src="../../data/homes.js?v=7"></script>
+<script src="../../data/route.js?v=7"></script>
+<script src="../../assets/img/manifest.js?v=7" onerror="void 0"></script>
+<script src="../../shared/common.js?v=7"></script>
+<script src="../../shared/flipbook.js?v=7"></script>
 <script>
   const { esc, pad, hero, bike, stats, isStop, excerpt, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R } = MCR;
   const H = HOMES, S = stats(), N = H.length;

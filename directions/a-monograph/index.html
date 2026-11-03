@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../shared/flipbook.css?v=6">
+<link rel="stylesheet" href="../../shared/flipbook.css?v=7">
 <style>
   :root {
     --paper: #F3EEE3; --ink: #1C1B18; --rust: #CF5127; --mute: #857F73; --rule: #D3CBBA;
@@ -19,12 +19,13 @@
   body { background: radial-gradient(120% 90% at 50% 40%, #3A3732, var(--table)); }
 
   .wrap { position: fixed; inset: 0; display: grid; place-items: center; padding-bottom: 64px; }
-  #book { --ph: min(84dvh - 64px, 46vw / .72); height: var(--ph); width: calc(var(--ph) * .72 * 2); }
+  #book { --ph: min(100dvh - 150px, 47vw / .72); height: var(--ph); width: calc(var(--ph) * .72 * 2); }
   #book .fb-face { container-type: size; }
   #book.fb-spread .fb-stage { filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
 
   /* ---------- page primitives ---------- */
-  .pg { position: absolute; inset: 0; background: var(--paper); padding: 8cqw 8cqw 7cqw; display: flex; flex-direction: column; }
+  /* Page margins in % of the page width: cqw on the page element itself would resolve against the viewport. */
+  .pg { position: absolute; inset: 0; background: var(--paper); padding: 8% 8% 7%; display: flex; flex-direction: column; }
   .fb-verso { background: var(--paper); }
   .fb-verso::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(0,0,0,.018) 11px 12px); }
   .folio { margin-top: auto; display: flex; justify-content: space-between; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .18em; text-transform: uppercase; color: var(--mute); padding-top: 3cqw; }
@@ -53,7 +54,8 @@
   .cv-art .bike { position: absolute; left: 0; top: 4cqw; width: 22cqw; color: var(--ink); }
   .cv-title { font-weight: 500; font-size: 15cqw; line-height: .9; letter-spacing: -.02em; margin: 0; }
   .cv-title em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; display: block; font-size: .78em; margin-top: .12em; }
-  .cv-sub { margin: 4cqw 0 0; font-size: clamp(11px, 3cqw, 15px); line-height: 1.45; letter-spacing: .02em; }
+  .cv-when { margin: 4cqw 0 0; font-size: clamp(10px, 2.7cqw, 14px); letter-spacing: .2em; text-transform: uppercase; font-weight: 600; line-height: 1.7; }
+  .cv-sub { margin: 3cqw 0 0; font-size: clamp(11px, 3cqw, 15px); line-height: 1.45; letter-spacing: .02em; }
 
   /* ---------- intro ---------- */
   .intro h2 { font-weight: 400; font-size: 9cqw; line-height: 1; margin: 5cqw 0 6cqw; letter-spacing: -.01em; }
@@ -86,7 +88,7 @@
   .meta { display: grid; grid-template-columns: auto 1fr; gap: 1cqw 4cqw; font-size: clamp(10px, 2.7cqw, 14px); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 2.6cqw 0; }
   .meta dt { letter-spacing: .16em; text-transform: uppercase; color: var(--mute); font-size: .82em; padding-top: .15em; }
   .meta dd { margin: 0; }
-  .notes { font-family: var(--serif); font-size: clamp(13px, 3.25cqw, 17px); line-height: 1.55; overflow: auto; flex: 1; margin-top: 4cqw; padding-right: 1cqw; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent); mask-image: linear-gradient(to bottom, #000 82%, transparent); padding-bottom: 3em; overscroll-behavior: contain; }
+  .notes { font-family: var(--serif); font-size: clamp(15px, 3.2cqw, 19px); line-height: 1.6; overflow: auto; flex: 1; margin-top: 4cqw; padding-right: 1cqw; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent); mask-image: linear-gradient(to bottom, #000 82%, transparent); padding-bottom: 3em; overscroll-behavior: contain; }
   .notes p { margin: 0; }
   .notes p::first-letter { font-family: var(--sans); font-weight: 500; float: left; font-size: 3.1em; line-height: .82; padding: .06em .08em 0 0; color: var(--rust); }
 
@@ -111,7 +113,7 @@
   .rm-lbl { font: 500 10px var(--sans); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 3px; }
   .rm-start { fill: var(--ink); }
   .rm-extra path { stroke: var(--mute); stroke-width: 1.6; }
-  .map-pg { padding: 6cqw; }
+  .map-pg { padding: 6%; }
   .map-pg .mapbox { flex: 1; min-height: 0; margin: 2cqw -2cqw 0; }
   .map-key { display: flex; flex-wrap: wrap; gap: 1.5cqw 4cqw; font-size: clamp(8px, 2.1cqw, 11px); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
   .map-key span { display: inline-flex; align-items: center; gap: 1.4cqw; }
@@ -178,11 +180,11 @@
 </nav>
 
 <script>window.MCR_ROOT = '../../';</script>
-<script src="../../data/homes.js?v=6"></script>
-<script src="../../data/route.js?v=6"></script>
-<script src="../../assets/img/manifest.js?v=6" onerror="void 0"></script>
-<script src="../../shared/common.js?v=6"></script>
-<script src="../../shared/flipbook.js?v=6"></script>
+<script src="../../data/homes.js?v=7"></script>
+<script src="../../data/route.js?v=7"></script>
+<script src="../../assets/img/manifest.js?v=7" onerror="void 0"></script>
+<script src="../../shared/common.js?v=7"></script>
+<script src="../../shared/flipbook.js?v=7"></script>
 <script>
   const { esc, pad, hero, bike, stats, isStop, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R } = MCR;
   const S = stats();
@@ -194,6 +196,7 @@
     <div class="cv-meta"><span>The Ridgefield Bicycle Club</span><span>New Canaan, CT</span></div>
     <div class="cv-art">${bike()}<div class="sun"></div><div class="glass"></div><div class="slab"></div></div>
     <h1 class="cv-title">Modern<em>New Canaan</em></h1>
+    <p class="cv-when">Tuesday, November 10 · 10 am<br>Irwin Park, Weed Street</p>
     <p class="cv-sub">${S.count} houses by bicycle, ${S.first}–${S.last}<br>A ride hosted by Bill Adamsen</p>` });
 
   pages.push({ cls: 'pg intro', html: `
