@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modern New Canaan · Direction B: The Cue Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/flipbook.css">
+<style>
+  :root {
+    --card: #F8F4EA; --table: #E6E0D2; --ink: #141414; --orange: #E4572E; --teal: #1E6B73; --mustard: #E8A923; --mute: #7C776C; --rule: #DDD6C6;
+    --f: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--table); font-family: var(--f); color: var(--ink); }
+  body { display: grid; grid-template-columns: 1fr; place-items: center; }
+
+  .desk { position: fixed; inset: 0; display: grid; grid-template-columns: minmax(260px, 340px) auto; gap: 64px; align-items: center; justify-content: center; padding: 40px; }
+  .holder { position: relative; padding-top: 22px; }
+  #deck { width: min(440px, calc((100dvh - 120px) * .52)); aspect-ratio: .52; }
+  #deck .fb-face { container-type: size; border-radius: 18px; }
+  .rings { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: center; gap: 46%; z-index: 100; pointer-events: none; }
+  .rings i { width: 16px; height: 40px; border-radius: 10px; border: 4px solid #2B2B2B; border-bottom-color: transparent; background: transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.15); }
+  .holder::after { content: ''; position: absolute; left: 4%; right: 4%; bottom: -18px; height: 30px; background: radial-gradient(50% 50% at 50% 50%, rgba(0,0,0,.22), transparent); z-index: -1; }
+
+  /* ---------- index (desktop) ---------- */
+  .idx h1 { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; margin: 0 0 18px; display: flex; gap: 10px; align-items: center; }
+  .idx h1 .bike { width: 34px; color: var(--orange); }
+  .idx ol { list-style: none; margin: 0; padding: 0; position: relative; max-height: calc(100dvh - 160px); overflow: auto; }
+  .idx ol::before { content: ''; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 3px; background: var(--ink); }
+  .idx button { all: unset; cursor: pointer; display: grid; grid-template-columns: 17px 26px 1fr; align-items: center; gap: 10px; padding: 4px 0; font-size: 13.5px; width: 100%; font-stretch: 85%; }
+  .idx .stn { width: 11px; height: 11px; border-radius: 50%; background: var(--card); border: 3px solid var(--ink); position: relative; z-index: 1; margin-left: 1px; }
+  .idx .stn.stop { width: 17px; height: 17px; margin-left: -2px; background: var(--orange); border-color: var(--ink); }
+  .idx .n { color: var(--mute); font-variant-numeric: tabular-nums; font-size: 12px; }
+  .idx button.on .nm { font-weight: 700; }
+  .idx button.on .n { color: var(--ink); }
+  .idx button:hover .nm { color: var(--orange); }
+
+  /* ---------- card ---------- */
+  .card { position: absolute; inset: 0; background: var(--card); padding: 7cqw 7cqw 6cqw; display: flex; flex-direction: column; border-radius: 18px; }
+  .fb-verso { background: var(--teal); border-radius: 18px; }
+  .fb-verso::before { content: ''; position: absolute; inset: 0; border-radius: 18px; background-image: radial-gradient(circle, rgba(255,255,255,.14) 22%, transparent 24%); background-size: 6cqw 6cqw; }
+
+  .head { display: flex; justify-content: space-between; font-size: 3cqw; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; }
+  .head span:last-child { color: var(--mute); font-variant-numeric: tabular-nums; }
+  .line { width: 100%; height: 6cqw; margin: 3cqw 0 4cqw; display: block; overflow: visible; }
+
+  .big { display: flex; align-items: stretch; gap: 4cqw; }
+  .num { font-weight: 800; font-stretch: 62%; font-size: 34cqw; line-height: .76; letter-spacing: -.02em; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .stop-card .num { color: var(--orange); }
+  .act { flex: 1; display: flex; flex-direction: column; justify-content: space-between; border-top: 1.2cqw solid var(--teal); padding-top: 2.4cqw; }
+  .stop-card .act { border-color: var(--orange); }
+  .act b { font-size: 8.4cqw; font-weight: 800; font-stretch: 75%; text-transform: uppercase; line-height: .92; letter-spacing: .01em; }
+  .act small { font-size: 3.1cqw; color: var(--mute); letter-spacing: .04em; line-height: 1.3; }
+
+  .hero { position: relative; margin: 5cqw 0 0; aspect-ratio: 16 / 9; border-radius: 3cqw; overflow: hidden; background: var(--rule); flex-shrink: 0; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero .credit { position: absolute; left: 2.4cqw; bottom: 1.8cqw; font-size: 2.2cqw; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+  .hero-drawn { background: #EFE8D8; }
+  .hero-drawn .credit { color: var(--mute); text-shadow: none; }
+  .ph { width: 100%; height: 100%; display: block; }
+  .ph-line { fill: none; stroke: var(--ink); stroke-width: 3; }
+  .ph-fill { fill: var(--card); } .ph-glass { fill: #9CC3C2; } .ph-solid, .ph-core { fill: var(--ink); } .ph-sun { fill: var(--mustard); }
+
+  .card h2 { font-size: 7.6cqw; font-weight: 800; font-stretch: 78%; text-transform: uppercase; line-height: .95; margin: 4.4cqw 0 1.6cqw; letter-spacing: .005em; }
+  .by { font-size: 3.5cqw; color: var(--ink); }
+  .by span { color: var(--mute); }
+  .addr { display: flex; justify-content: space-between; align-items: center; margin-top: 3cqw; padding: 2.4cqw 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); font-size: 3.6cqw; font-weight: 600; }
+  .addr a { font-size: 2.8cqw; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1.5px solid var(--ink); border-radius: 99px; padding: 1.2cqw 2.6cqw; font-weight: 700; }
+  .ex { font-size: 3.5cqw; line-height: 1.45; margin: 3cqw 0 0; color: #3A3833; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+  .more { all: unset; cursor: pointer; font-size: 3cqw; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: 2cqw; color: var(--orange); }
+  .ride-card .more { color: var(--teal); }
+  .next { margin-top: auto; display: flex; align-items: center; gap: 3cqw; padding-top: 3cqw; font-size: 3.1cqw; color: var(--mute); }
+  .next i { font-style: normal; width: 7cqw; height: 7cqw; border-radius: 50%; background: var(--ink); color: var(--card); display: grid; place-items: center; font-size: 3.6cqw; flex-shrink: 0; }
+  .next b { color: var(--ink); font-weight: 700; }
+
+  /* cover + finish */
+  .cover { background: var(--orange); color: var(--ink); }
+  .cover .head span:last-child { color: var(--ink); opacity: .6; }
+  .cover .num { color: var(--ink); font-size: 74cqw; line-height: .74; margin: 6cqw 0 0 -2cqw; }
+  .cover h1 { font-size: 11cqw; font-weight: 800; font-stretch: 70%; text-transform: uppercase; line-height: .9; margin: 6cqw 0 3cqw; }
+  .cover p { font-size: 3.6cqw; line-height: 1.4; margin: 0; }
+  .cover .bike { width: 26cqw; color: var(--card); margin-top: auto; }
+  .cover .go { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+  .cover .go span { font-size: 3cqw; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; }
+  .finish { background: var(--ink); color: var(--card); }
+  .finish h1 { font-size: 15cqw; font-weight: 800; font-stretch: 65%; text-transform: uppercase; line-height: .88; margin: auto 0 5cqw; }
+  .finish p { font-size: 3.4cqw; line-height: 1.5; color: #BDB6A6; margin: 0 0 3cqw; }
+  .finish .bike { width: 24cqw; color: var(--mustard); }
+
+  /* story sheet */
+  .sheet { position: fixed; inset: auto 0 0 0; max-height: 78dvh; background: var(--card); border-radius: 22px 22px 0 0; box-shadow: 0 -20px 60px rgba(0,0,0,.25); padding: 26px 26px calc(30px + env(safe-area-inset-bottom)); transform: translateY(105%); transition: transform .45s cubic-bezier(.3,.8,.25,1); z-index: 200; overflow: auto; max-width: 620px; margin: 0 auto; }
+  .sheet.open { transform: none; }
+  .sheet .grab { width: 44px; height: 5px; border-radius: 3px; background: var(--rule); margin: -10px auto 18px; }
+  .sheet h3 { font-size: 26px; font-weight: 800; font-stretch: 75%; text-transform: uppercase; margin: 0 0 4px; }
+  .sheet .by { font-size: 14px; margin-bottom: 16px; }
+  .sheet p { font-size: 16px; line-height: 1.6; margin: 0; }
+  .sheet .src { margin-top: 18px; font-size: 12px; color: var(--mute); letter-spacing: .06em; }
+  .sheet button { all: unset; cursor: pointer; position: absolute; right: 18px; top: 16px; font-size: 22px; padding: 4px 10px; }
+  .scrim { position: fixed; inset: 0; background: rgba(20,20,20,.35); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 150; }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+
+  .home-link { position: fixed; left: 18px; top: 14px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); text-decoration: none; z-index: 120; }
+
+  @media (max-width: 900px) {
+    .desk { grid-template-columns: 1fr; padding: 0; gap: 0; place-items: start center; }
+    .idx { display: none; }
+    .holder { padding-top: calc(26px + env(safe-area-inset-top)); }
+    #deck { height: calc(100dvh - 40px - env(safe-area-inset-top)); width: min(calc(100vw - 20px), calc((100dvh - 40px - env(safe-area-inset-top)) * .52)); aspect-ratio: auto; }
+    .home-link { display: none; }
+  }
+</style>
+</head>
+<body>
+<a class="home-link" href="../../">← Directions</a>
+<div class="desk">
+  <aside class="idx"><h1><span class="bike-slot"></span>Cue Deck · Route</h1><ol id="idx"></ol></aside>
+  <div class="holder"><div class="rings"><i></i><i></i></div><div id="deck"></div></div>
+</div>
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="sheet" aria-hidden="true"><div class="grab"></div><button id="close" aria-label="Close">×</button><div id="sheet-body"></div></section>
+
+<script>window.MCR_ROOT = '../../';</script>
+<script src="../../data/homes.js"></script>
+<script src="../../assets/img/manifest.js" onerror="void 0"></script>
+<script src="../../shared/common.js"></script>
+<script src="../../shared/flipbook.js"></script>
+<script>
+  const { esc, pad, hero, bike, stats, isStop, excerpt } = MCR;
+  const H = HOMES, S = stats(), N = H.length;
+  document.querySelector('.bike-slot').outerHTML = bike();
+
+  // Transit-style route line: every house a station, stops drawn larger.
+  const line = (cur) => {
+    const W = 300, step = W / (N - 1);
+    let s = `<svg class="line" viewBox="-8 -8 ${W + 16} 16" preserveAspectRatio="none"><line x1="0" y1="0" x2="${W}" y2="0" stroke="#D3CBB9" stroke-width="2.5"/>`;
+    if (cur > 1) s += `<line x1="0" y1="0" x2="${(cur - 1) * step}" y2="0" stroke="#141414" stroke-width="2.5"/>`;
+    H.forEach((h, i) => {
+      const x = i * step, done = i < cur - 1, here = i === cur - 1;
+      if (here) s += `<circle cx="${x}" cy="0" r="6.5" fill="${isStop(h) ? '#E4572E' : '#1E6B73'}" stroke="#141414" stroke-width="2"/>`;
+      else if (isStop(h)) s += `<circle cx="${x}" cy="0" r="3.6" fill="${done ? '#141414' : '#F8F4EA'}" stroke="${done ? '#141414' : '#BDB4A1'}" stroke-width="1.8"/>`;
+      else s += `<line x1="${x}" y1="-3.5" x2="${x}" y2="3.5" stroke="${done ? '#141414' : '#BDB4A1'}" stroke-width="1.8"/>`;
+    });
+    return s + '</svg>';
+  };
+  const maps = (h) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(`${h.address}, New Canaan, CT 06840`);
+
+  const pages = [{ cls: 'card cover', html: `
+    <div class="head"><span>Ridgefield Bicycle Club</span><span>Cue deck</span></div>
+    <div class="num">${N}</div>
+    <h1>Modern<br>New Canaan</h1>
+    <p>${N} houses, ${S.first}–${S.last}. ${S.stops} stops, the rest ridden past.<br>Hosted by Bill Adamsen.</p>
+    <div class="go">${bike()}<span>Swipe up to roll out ↑</span></div>` }];
+
+  H.forEach((h, i) => {
+    const nx = H[i + 1];
+    const stop = isStop(h);
+    pages.push({ cls: `card ${stop ? 'stop-card' : 'ride-card'}`, html: `
+      <div class="head"><span>Cue ${pad(h.order)}</span><span>${pad(h.order)} / ${N}</span></div>
+      ${line(h.order)}
+      <div class="big"><div class="num">${pad(h.order)}</div>
+        <div class="act"><b>${stop ? 'Stop' : 'Ride by'}</b><small>${stop ? 'Pull over, regroup &amp; look' : 'Slow roll, stay single file'}</small></div></div>
+      ${hero(h)}
+      <h2>${esc(h.name)}</h2>
+      <div class="by">${esc(h.architect)} <span>· ${h.year}</span></div>
+      <div class="addr"><span>${esc(h.address)}</span><a href="${maps(h)}" target="_blank" rel="noopener">Map ↗</a></div>
+      <p class="ex">${esc(excerpt(h.notes, 200))}</p>
+      <button class="more" data-story="${i}">Read the story +</button>
+      <div class="next"><i>↑</i>${nx ? `<span>Next <b>${pad(nx.order)} ${esc(nx.name)}</b> · ${esc(nx.address)}</span>` : `<span><b>Last house.</b> Roll home.</span>`}</div>` });
+  });
+
+  pages.push({ cls: 'card finish', html: `
+    <div class="head"><span>Finish</span><span>${N} / ${N}</span></div>
+    <h1>That’s the<br>ride.</h1>
+    <p>Thanks for riding with the Ridgefield Bicycle Club. Hosted by Bill Adamsen.</p>
+    <p>All of these are private homes. Please enjoy them from the road.</p>
+    ${bike()}` });
+
+  const idx = document.getElementById('idx');
+  idx.innerHTML = H.map((h, i) => `<li><button data-goto="${i + 1}"><span class="stn ${isStop(h) ? 'stop' : ''}"></span><span class="n">${pad(h.order)}</span><span class="nm">${esc(h.name)}</span></button></li>`).join('');
+  const idxBtns = [...idx.querySelectorAll('button')];
+
+  const deck = new Flipbook(document.getElementById('deck'), {
+    pages, axis: 'y', spread: 'not all',
+    verso: () => '',
+    onChange: (b) => idxBtns.forEach((el, i) => el.classList.toggle('on', i + 1 === b.page)),
+  });
+  idx.addEventListener('click', (e) => { const g = e.target.closest('[data-goto]'); if (g) deck.goTo(+g.dataset.goto); });
+
+  const sheet = document.getElementById('sheet'), scrim = document.getElementById('scrim');
+  const open = (i) => {
+    const h = H[i];
+    document.getElementById('sheet-body').innerHTML = `<h3>${pad(h.order)} · ${esc(h.name)}</h3><div class="by">${esc(h.architect)} <span>· ${h.year} · ${esc(h.address)}</span></div><p>${esc(h.notes)}</p><div class="src">Survey No. ${h.surveyId} · p. ${h.surveyPage}</div>`;
+    sheet.classList.add('open'); scrim.classList.add('open'); sheet.setAttribute('aria-hidden', 'false'); sheet.scrollTop = 0;
+  };
+  const close = () => { sheet.classList.remove('open'); scrim.classList.remove('open'); sheet.setAttribute('aria-hidden', 'true'); };
+  document.getElementById('deck').addEventListener('click', (e) => { const m = e.target.closest('[data-story]'); if (m) open(+m.dataset.story); });
+  scrim.onclick = close; document.getElementById('close').onclick = close;
+  addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); }, true);
+</script>
+</body>
+</html>

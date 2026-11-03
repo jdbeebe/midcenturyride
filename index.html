@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mid-Century Ride · Three directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Archivo:wdth,wght@62..125,700..800&family=Bodoni+Moda:ital,opsz@1,6..96&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F3EEE3; color: #1C1B18; font-family: 'Jost', system-ui, sans-serif; }
+  header { padding: 56px 6vw 24px; max-width: 1280px; margin: 0 auto; }
+  .eyebrow { font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: #857F73; }
+  h1 { font-weight: 400; font-size: clamp(34px, 5vw, 64px); line-height: 1; margin: 14px 0 12px; letter-spacing: -.02em; }
+  header p { max-width: 640px; font-size: 17px; line-height: 1.55; color: #4A463F; margin: 0; }
+  main { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 28px 6vw 72px; max-width: 1280px; margin: 0 auto; }
+  a.card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border-radius: 4px; overflow: hidden; transition: transform .3s; }
+  a.card:hover { transform: translateY(-4px); }
+  .sw { aspect-ratio: 4 / 5; position: relative; overflow: hidden; }
+  .info { padding: 18px 2px 0; }
+  .info .eyebrow { margin-bottom: 6px; }
+  .info h2 { font-size: 24px; font-weight: 500; margin: 0 0 8px; }
+  .info p { font-size: 15px; line-height: 1.5; color: #4A463F; margin: 0 0 10px; }
+  .info ul { margin: 0; padding: 0 0 0 18px; font-size: 14px; line-height: 1.6; color: #4A463F; }
+
+  .a { background: #CF5127; }
+  .a .sun { position: absolute; width: 42%; aspect-ratio: 1; border-radius: 50%; background: #F3EEE3; right: 10%; top: 10%; }
+  .a .slab { position: absolute; left: -5%; right: 22%; top: 46%; height: 2.4%; background: #1C1B18; }
+  .a .gl { position: absolute; left: 8%; right: 34%; top: 48.4%; height: 20%; border: 2px solid #1C1B18; border-top: 0; background: repeating-linear-gradient(90deg, transparent 0 18px, #1C1B18 18px 20px); }
+  .a .t { position: absolute; left: 8%; bottom: 8%; font-size: clamp(26px, 3.4vw, 44px); font-weight: 500; line-height: .9; color: #1C1B18; }
+  .a .t em { font-family: 'Bodoni Moda', serif; font-weight: 400; display: block; font-size: .8em; }
+
+  .b { background: #E6E0D2; display: grid; place-items: center; }
+  .b .cd { width: 62%; aspect-ratio: .56; background: #F8F4EA; border-radius: 12px; box-shadow: 0 16px 30px rgba(0,0,0,.15); padding: 9%; font-family: 'Archivo', sans-serif; position: relative; }
+  .b .cd::before { content: ''; position: absolute; inset: 7% 7% auto; height: 3px; background: #141414; top: 14%; }
+  .b .n { font-weight: 800; font-stretch: 62%; font-size: clamp(60px, 8vw, 110px); line-height: .8; color: #E4572E; margin-top: 18%; }
+  .b .l { font-weight: 800; font-stretch: 75%; text-transform: uppercase; font-size: clamp(14px, 1.6vw, 20px); line-height: 1; margin-top: 10%; }
+  .b .ph { margin-top: 8%; aspect-ratio: 16/10; background: #9CC3C2; border-radius: 6px; }
+
+  .c { background: #0F0E0D; }
+  .c .glow { position: absolute; left: 10%; right: 10%; top: 34%; height: 24%; border: 1px solid #C9A35C; background: linear-gradient(rgba(236,196,120,.5), rgba(236,196,120,.25)); box-shadow: 0 0 60px rgba(236,196,120,.25); }
+  .c .glow::before { content: ''; position: absolute; left: -6%; right: -6%; top: -4px; height: 3px; background: #C9A35C; }
+  .c .t { position: absolute; left: 10%; bottom: 9%; font-family: 'Bodoni Moda', serif; font-style: italic; color: #ECE4D3; font-size: clamp(30px, 4vw, 54px); line-height: .9; }
+  .c .t span { color: #C9A35C; }
+
+  @media (max-width: 860px) { main { grid-template-columns: 1fr; } .sw { aspect-ratio: 16 / 11; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Ridgefield Bicycle Club · New Canaan Modern Ride · Hosted by Bill Adamsen</div>
+  <h1>Three directions</h1>
+  <p>Each one is a working prototype built from all 26 houses on the ride sheet. Open them on your phone too: drag a page edge, swipe, or tap the sides to turn.</p>
+</header>
+<main>
+  <a class="card" href="directions/a-monograph/">
+    <div class="sw a"><div class="sun"></div><div class="slab"></div><div class="gl"></div><div class="t">Modern<em>New Canaan</em></div></div>
+    <div class="info"><div class="eyebrow">Direction A</div><h2>The Monograph</h2>
+      <p>A cream-paper architecture book in the spirit of 1950s design monographs. Futura-style type, one persimmon accent, and generous margins.</p>
+      <ul><li>Two-page spreads on desktop, photo left and story right</li><li>On a phone, each page turns like a real leaf from the left edge</li><li>An index of the full route up front</li></ul></div>
+  </a>
+  <a class="card" href="directions/b-cue-deck/">
+    <div class="sw b"><div class="cd"><div class="n">12</div><div class="l">Glass House</div><div class="ph"></div></div></div>
+    <div class="info"><div class="eyebrow">Direction B</div><h2>The Cue Deck</h2>
+      <p>A rider’s cue sheet reimagined as a flip calendar on the handlebars. Swiss type, an Eames palette, and a transit-map route line.</p>
+      <ul><li>Cards flip up from a top hinge, the most tactile option on mobile</li><li>Stop or Ride-by status, Map links, and a “Next house” cue on every card</li><li>Full stories in a pull-up sheet</li></ul></div>
+  </a>
+  <a class="card" href="directions/c-after-dark/">
+    <div class="sw c"><div class="glow"></div><div class="t">Glass <span>&amp;</span><br>Stone</div></div>
+    <div class="info"><div class="eyebrow">Direction C</div><h2>After Dark</h2>
+      <p>Cinematic and photography-led. Glass houses glowing at dusk, warm brass on charcoal, and Bodoni headlines. A keepsake rather than a tool.</p>
+      <ul><li>Full-bleed photo per house, landscape on desktop and portrait on phone</li><li>Grouped by road as you ride</li><li>“Continue reading” opens the full story on the page</li></ul></div>
+  </a>
+</main>
+</body>
+</html>

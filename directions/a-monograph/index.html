@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modern New Canaan · Direction A: The Monograph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/flipbook.css">
+<style>
+  :root {
+    --paper: #F3EEE3; --ink: #1C1B18; --rust: #CF5127; --mute: #857F73; --rule: #D3CBBA;
+    --table: #2B2925;
+    --sans: 'Jost', system-ui, sans-serif; --serif: 'Newsreader', Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--table); overflow: hidden; font-family: var(--sans); color: var(--ink); }
+  body { background: radial-gradient(120% 90% at 50% 40%, #3A3732, var(--table)); }
+
+  .wrap { position: fixed; inset: 0; display: grid; place-items: center; padding-bottom: 64px; }
+  #book { --ph: min(84dvh - 64px, 46vw / .72); height: var(--ph); width: calc(var(--ph) * .72 * 2); }
+  #book .fb-face { container-type: size; }
+  #book.fb-spread .fb-stage { filter: drop-shadow(0 30px 40px rgba(0,0,0,.45)); }
+
+  /* ---------- page primitives ---------- */
+  .pg { position: absolute; inset: 0; background: var(--paper); padding: 8cqw 8cqw 7cqw; display: flex; flex-direction: column; }
+  .fb-verso { background: var(--paper); }
+  .fb-verso::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(0,0,0,.018) 11px 12px); }
+  .folio { margin-top: auto; display: flex; justify-content: space-between; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .18em; text-transform: uppercase; color: var(--mute); padding-top: 3cqw; }
+  .eyebrow { font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .24em; text-transform: uppercase; color: var(--mute); font-weight: 500; }
+
+  .hero { position: absolute; inset: 0; margin: 0; background: #CFC6B2; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.85) contrast(1.02); }
+  .hero .credit { position: absolute; right: 3cqw; bottom: 2.4cqw; font-size: clamp(8px, 1.9cqw, 10px); color: rgba(255,255,255,.8); letter-spacing: .04em; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+  .hero-drawn { background: #E4DCCB; }
+  .hero-drawn .credit { color: var(--mute); text-shadow: none; }
+  .ph { width: 100%; height: 100%; display: block; }
+  .ph-line { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+  .ph-fill { fill: var(--paper); }
+  .ph-glass { fill: #B9C3BE; }
+  .ph-solid, .ph-core { fill: var(--ink); }
+  .ph-sun { fill: var(--rust); }
+
+  /* ---------- cover ---------- */
+  .cover { background: var(--rust); color: var(--ink); }
+  .cv-meta { display: flex; justify-content: space-between; font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .22em; text-transform: uppercase; font-weight: 500; }
+  .cv-art { position: relative; flex: 1; margin: 6cqw 0; }
+  .cv-art .sun { position: absolute; width: 34cqw; height: 34cqw; border-radius: 50%; background: var(--paper); right: 4cqw; top: 2cqw; }
+  .cv-art .slab { position: absolute; left: -8cqw; right: 14cqw; bottom: 22cqw; height: 2.4cqw; background: var(--ink); }
+  .cv-art .glass { position: absolute; left: 6cqw; right: 26cqw; bottom: 0; height: 22cqw; border: .5cqw solid var(--ink); border-top: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 calc(8cqw - .5cqw), var(--ink) calc(8cqw - .5cqw) 8cqw); }
+  .cv-art .bike { position: absolute; left: 0; top: 4cqw; width: 22cqw; color: var(--ink); }
+  .cv-title { font-weight: 500; font-size: 15cqw; line-height: .9; letter-spacing: -.02em; margin: 0; }
+  .cv-title em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; display: block; font-size: .78em; margin-top: .12em; }
+  .cv-sub { margin: 4cqw 0 0; font-size: clamp(11px, 3cqw, 15px); line-height: 1.45; letter-spacing: .02em; }
+
+  /* ---------- intro ---------- */
+  .intro h2 { font-weight: 400; font-size: 9cqw; line-height: 1; margin: 5cqw 0 6cqw; letter-spacing: -.01em; }
+  .intro h2 em { font-family: var(--serif); color: var(--rust); }
+  .intro p { font-family: var(--serif); font-size: clamp(13px, 3.4cqw, 18px); line-height: 1.55; margin: 0 0 1em; }
+  .figs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); margin-top: auto; }
+  .figs div { padding: 3cqw 0 0; }
+  .figs b { display: block; font-weight: 300; font-size: 11cqw; line-height: 1; }
+  .figs span { font-size: clamp(8px, 2.1cqw, 11px); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+
+  .index ol { list-style: none; margin: 4cqw 0 0; padding: 0; columns: 2; column-gap: 5cqw; flex: 1; }
+  .index li { break-inside: avoid; }
+  .index button { all: unset; cursor: pointer; display: grid; grid-template-columns: 5.5cqw 1fr auto; gap: 1.6cqw; align-items: baseline; width: 100%; padding: .9cqw 0; border-bottom: 1px solid var(--rule); font-size: clamp(9px, 2.55cqw, 13px); line-height: 1.2; }
+  .index button:hover .nm { color: var(--rust); }
+  .index .no { color: var(--mute); font-variant-numeric: tabular-nums; }
+  .dot { width: 1.7cqw; height: 1.7cqw; border-radius: 50%; border: 1.5px solid var(--ink); align-self: center; }
+  .dot.stop { background: var(--rust); border-color: var(--rust); }
+  .legend { display: flex; gap: 5cqw; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-top: 3cqw; }
+  .legend span { display: inline-flex; align-items: center; gap: 1.5cqw; }
+
+  /* ---------- home spread ---------- */
+  .photo-pg { padding: 0; background: #CFC6B2; }
+  .plate { position: absolute; left: 6cqw; top: 6cqw; z-index: 2; background: var(--paper); padding: 2cqw 3cqw; font-size: clamp(9px, 2.3cqw, 12px); letter-spacing: .2em; text-transform: uppercase; font-weight: 500; }
+
+  .text-pg .top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .num { font-weight: 300; font-size: 30cqw; line-height: .78; letter-spacing: -.04em; margin-left: -1.2cqw; }
+  .tag { font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .2em; text-transform: uppercase; font-weight: 600; padding: 1.6cqw 2.8cqw; border: 1.5px solid var(--ink); margin-top: 1cqw; }
+  .tag.stop { background: var(--rust); border-color: var(--rust); color: var(--paper); }
+  .text-pg h2 { font-weight: 500; font-size: 8.4cqw; line-height: 1.02; letter-spacing: -.01em; margin: 5cqw 0 4cqw; }
+  .meta { display: grid; grid-template-columns: auto 1fr; gap: 1cqw 4cqw; font-size: clamp(10px, 2.7cqw, 14px); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 2.6cqw 0; }
+  .meta dt { letter-spacing: .16em; text-transform: uppercase; color: var(--mute); font-size: .82em; padding-top: .15em; }
+  .meta dd { margin: 0; }
+  .notes { font-family: var(--serif); font-size: clamp(13px, 3.25cqw, 17px); line-height: 1.55; overflow: auto; flex: 1; margin-top: 4cqw; padding-right: 1cqw; -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent); mask-image: linear-gradient(to bottom, #000 82%, transparent); padding-bottom: 3em; overscroll-behavior: contain; }
+  .notes p { margin: 0; }
+  .notes p::first-letter { font-family: var(--sans); font-weight: 500; float: left; font-size: 3.1em; line-height: .82; padding: .06em .08em 0 0; color: var(--rust); }
+
+  /* ---------- end matter ---------- */
+  .colophon h3 { font-weight: 500; font-size: 6cqw; margin: 4cqw 0; }
+  .colophon p { font-family: var(--serif); font-size: clamp(12px, 3cqw, 16px); line-height: 1.5; margin: 0 0 .8em; }
+  .finish { background: var(--ink); color: var(--paper); align-items: flex-start; }
+  .finish .bike { width: 30cqw; color: var(--rust); margin-top: auto; }
+  .finish h3 { font-weight: 300; font-size: 12cqw; line-height: .95; margin: 5cqw 0 3cqw; }
+  .finish p { font-size: clamp(11px, 3cqw, 15px); line-height: 1.5; letter-spacing: .02em; color: #CFC8BA; margin: 0 0 auto; }
+  .back-cover { background: var(--ink); color: var(--paper); justify-content: center; align-items: center; text-align: center; }
+  .back-cover .ring { width: 26cqw; height: 26cqw; border-radius: 50%; background: var(--rust); margin-bottom: 6cqw; }
+  .back-cover p { font-size: clamp(9px, 2.4cqw, 12px); letter-spacing: .24em; text-transform: uppercase; line-height: 2; margin: 0; }
+
+  /* ---------- chrome ---------- */
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; height: 64px; display: flex; align-items: center; gap: 18px; padding: 0 max(20px, env(safe-area-inset-left)) env(safe-area-inset-bottom); color: #E9E3D6; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+  .bar a { color: inherit; text-decoration: none; opacity: .7; }
+  .bar .where { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .bar .where span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .track { height: 2px; background: rgba(255,255,255,.15); position: relative; }
+  .track i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--rust); transition: width .5s; }
+  .bar button { all: unset; cursor: pointer; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; font-size: 16px; letter-spacing: 0; }
+  .bar button:hover { border-color: var(--rust); color: var(--rust); }
+
+  @media (max-width: 959px) {
+    .wrap { padding: 0; place-items: start center; }
+    #book { width: 100vw; height: calc(100dvh - 56px); }
+    .bar { height: 56px; background: var(--table); }
+    .bar a.back { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap"><div id="book" aria-label="Modern New Canaan, a book of houses"></div></div>
+<nav class="bar">
+  <a class="back" href="../../">← Directions</a>
+  <div class="where"><span id="where">Cover</span><div class="track"><i id="track"></i></div></div>
+  <button id="prev" aria-label="Previous page">←</button>
+  <button id="next" aria-label="Next page">→</button>
+</nav>
+
+<script>window.MCR_ROOT = '../../';</script>
+<script src="../../data/homes.js"></script>
+<script src="../../assets/img/manifest.js" onerror="void 0"></script>
+<script src="../../shared/common.js"></script>
+<script src="../../shared/flipbook.js"></script>
+<script>
+  const { esc, pad, hero, bike, stats, isStop } = MCR;
+  const S = stats();
+  const H = HOMES;
+  const pages = [];
+  const homeStart = 3;
+
+  pages.push({ cls: 'pg cover', html: `
+    <div class="cv-meta"><span>The Ridgefield Bicycle Club</span><span>New Canaan, CT</span></div>
+    <div class="cv-art">${bike()}<div class="sun"></div><div class="glass"></div><div class="slab"></div></div>
+    <h1 class="cv-title">Modern<em>New Canaan</em></h1>
+    <p class="cv-sub">${S.count} houses by bicycle, ${S.first}–${S.last}<br>A ride hosted by Bill Adamsen</p>` });
+
+  pages.push({ cls: 'pg intro', html: `
+    <div class="eyebrow">The Ride</div>
+    <h2>A town that became a <em>laboratory</em> for the modern house.</h2>
+    <p>After the war, a handful of young architects, among them Philip Johnson, Marcel Breuer, Eliot Noyes and Landis Gores, settled in New Canaan and began building glass, steel and fieldstone houses in its woods.</p>
+    <p>This ride threads ${S.count} of them along Weed Street, Chichester, Ponus Ridge, Laurel and Oenoke Ridge. We stop at ${S.stops}. The rest we ride past slowly.</p>
+    <div class="figs"><div><b>${S.count}</b><span>Houses</span></div><div><b>${S.stops}</b><span>Stops</span></div><div><b>${S.architects}</b><span>Architects</span></div></div>
+    <div class="folio"><span>Modern New Canaan</span><span>i</span></div>` });
+
+  pages.push({ cls: 'pg index', html: `
+    <div class="eyebrow">The Route, in order</div>
+    <ol>${H.map((h, i) => `<li><button data-goto="${homeStart + i * 2}"><span class="no">${pad(h.order)}</span><span class="nm">${esc(h.name)}</span><span class="dot ${isStop(h) ? 'stop' : ''}"></span></button></li>`).join('')}</ol>
+    <div class="legend"><span><i class="dot stop"></i>Stop</span><span><i class="dot"></i>Ride by</span></div>
+    <div class="folio"><span>Index</span><span>ii</span></div>` });
+
+  H.forEach((h, i) => {
+    pages.push({ cls: 'pg photo-pg', html: `<div class="plate">No. ${pad(h.order)}</div>${hero(h)}` });
+    pages.push({ cls: 'pg text-pg', html: `
+      <div class="top"><div class="num">${pad(h.order)}</div><div class="tag ${isStop(h) ? 'stop' : ''}">${isStop(h) ? 'Stop' : 'Ride by'}</div></div>
+      <h2>${esc(h.name)}</h2>
+      <dl class="meta"><dt>Architect</dt><dd>${esc(h.architect)}</dd><dt>Built</dt><dd>${h.year}</dd><dt>Address</dt><dd>${esc(h.address)}</dd></dl>
+      <div class="notes"><p>${esc(h.notes)}</p></div>
+      <div class="folio"><span>Survey No. ${h.surveyId} · p. ${h.surveyPage}</span><span>${pad(h.order)} / ${S.count}</span></div>` });
+  });
+
+  pages.push({ cls: 'pg colophon', html: `
+    <div class="eyebrow">Colophon</div>
+    <h3>About this book</h3>
+    <p>House notes are from the ride’s research sheet. Survey numbers refer to the New Canaan modern house survey the sheet cites.</p>
+    <p>Photographs are credited on each plate. Houses still awaiting a photograph are shown as drawings.</p>
+    <p>All of these are private homes. Please stay on the road and enjoy them from the street.</p>
+    <div class="folio"><span>Modern New Canaan</span><span>iii</span></div>` });
+  pages.push({ cls: 'pg finish', html: `
+    <div class="eyebrow" style="color:#9C9585">Finish</div>
+    <h3>Thanks for riding.</h3>
+    <p>The Ridgefield Bicycle Club<br>Hosted by Bill Adamsen</p>
+    ${bike()}` });
+  pages.push({ cls: 'pg back-cover', html: `<div class="ring"></div><p>Modern New Canaan<br>${S.first} – ${S.last}</p>` });
+
+  const where = document.getElementById('where');
+  const track = document.getElementById('track');
+  const label = (p) => {
+    if (p === 0) return 'Cover';
+    if (p < homeStart) return 'The Ride';
+    const i = Math.floor((p - homeStart) / 2);
+    if (i < H.length) return `${pad(H[i].order)} · ${H[i].name}`;
+    return 'Finish';
+  };
+
+  const book = new Flipbook(document.getElementById('book'), {
+    pages, axis: 'x', spread: '(min-width: 960px)',
+    onChange: (b) => {
+      const p = b.spread ? Math.min(b.page + 1, pages.length - 1) : b.page;
+      where.textContent = label(p);
+      track.style.width = (b.k / b.n * 100) + '%';
+    },
+  });
+  document.getElementById('next').onclick = () => book.next();
+  document.getElementById('prev').onclick = () => book.prev();
+  document.getElementById('book').addEventListener('click', (e) => {
+    const g = e.target.closest('[data-goto]');
+    if (g) book.goTo(+g.dataset.goto);
+  });
+</script>
+</body>
+</html>

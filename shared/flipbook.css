@@ -1,0 +1,82 @@
+/* Flipbook core: 3D leaves hinged on the left (x) or top (y) edge. */
+@property --a { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+.fb {
+  position: relative;
+  perspective: 2000px;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.fb-y { touch-action: none; perspective: 1600px; }
+
+.fb-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.25, .8, .25, 1);
+}
+/* A closed book sits centred: shift by half a page at the covers. */
+.fb-x.fb-spread.fb-at-start .fb-stage { transform: translateX(-25%); }
+.fb-x.fb-spread.fb-at-end .fb-stage { transform: translateX(25%); }
+
+.fb-leaf {
+  position: absolute;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.fb-x .fb-leaf { top: 0; bottom: 0; left: 0; width: 100%; transform-origin: left center; }
+.fb-x.fb-spread .fb-leaf { left: 50%; width: 50%; }
+.fb-y .fb-leaf { left: 0; right: 0; top: 0; height: 100%; transform-origin: center top; }
+.fb-y.fb-spread .fb-leaf { top: 50%; height: 50%; }
+.fb-far { visibility: hidden; }
+
+.fb-anim {
+  transition:
+    transform var(--fb-dur, .7s) cubic-bezier(.3, .75, .25, 1),
+    --a var(--fb-dur, .7s) cubic-bezier(.3, .75, .25, 1);
+}
+
+.fb-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.fb-x .fb-back { transform: rotateY(180deg); }
+.fb-y .fb-back { transform: rotateX(180deg); }
+
+/* Lighting: the front darkens as it lifts, the back brightens as it lands. */
+.fb-face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+.fb-x .fb-front::after { background: linear-gradient(to left, rgba(0,0,0,.55), rgba(0,0,0,.08) 70%, rgba(255,255,255,.06)); opacity: calc(var(--a) * 1.5); }
+.fb-x .fb-back::after  { background: linear-gradient(to right, rgba(0,0,0,.5), rgba(0,0,0,.05) 70%); opacity: calc((1 - var(--a)) * 1.5); }
+.fb-y .fb-front::after { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.08) 70%); opacity: calc(var(--a) * 1.5); }
+.fb-y .fb-back::after  { background: linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,.05) 70%); opacity: calc((1 - var(--a)) * 1.5); }
+
+/* Gutter shadow along the spine in spread mode. */
+.fb-spread.fb-x .fb-face::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; width: 9%;
+  pointer-events: none;
+  z-index: 49;
+}
+.fb-spread.fb-x .fb-front::before { left: 0; background: linear-gradient(to right, rgba(0,0,0,.16), transparent); }
+.fb-spread.fb-x .fb-back::before  { right: 0; background: linear-gradient(to left, rgba(0,0,0,.16), transparent); }
+
+/* A lifted leaf casts a soft shadow. */
+.fb-lifted .fb-face { box-shadow: 0 0 40px rgba(0,0,0,.25); }
+
+.fb-jump .fb-leaf { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fb-anim { --fb-dur: .01s !important; }
+}

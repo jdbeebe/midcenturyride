@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F0E0D">
+<title>Glass &amp; Stone · Direction C: After Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/flipbook.css">
+<style>
+  :root {
+    --bg: #0F0E0D; --page: #191715; --brass: #C9A35C; --cream: #ECE4D3; --mute: #8D8576; --walnut: #3A2A1F; --olive: #5E5C35;
+    --serif: 'Bodoni Moda', 'Didot', Georgia, serif; --sans: 'Josefin Sans', 'Futura', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--cream); font-family: var(--sans); }
+
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; }
+  #book { width: min(92vw, calc((100dvh - 120px) * 1.6)); aspect-ratio: 1.6; }
+  #book .fb-face { container-type: size; }
+  .fb-verso { background: #0B0A09; }
+  .fb-verso::before { content: ''; position: absolute; inset: 6%; border: 1px solid rgba(201,163,92,.18); }
+
+  .pg { position: absolute; inset: 0; background: var(--page); display: grid; grid-template-columns: 60% 40%; }
+  .hero { position: relative; margin: 0; overflow: hidden; background: #24211D; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.8) contrast(1.05) brightness(.92); }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 70%, var(--page)); pointer-events: none; }
+  .hero .credit { position: absolute; left: 1.6cqw; bottom: 1.4cqw; font-size: clamp(8px, .9cqw, 11px); color: rgba(236,228,211,.6); letter-spacing: .06em; z-index: 2; }
+  .hero-drawn { background: radial-gradient(80% 70% at 40% 40%, #2C2823, #1A1816); }
+  .ph { width: 100%; height: 100%; display: block; }
+  .ph-line { fill: none; stroke: var(--brass); stroke-width: 1.6; }
+  .ph-fill { fill: #221F1B; } .ph-glass { fill: rgba(236, 196, 120, .55); } .ph-solid, .ph-core { fill: #0F0E0D; } .ph-sun { fill: none; stroke: rgba(201,163,92,.35); stroke-width: 1.2; }
+  .ph-ground { stroke: rgba(201,163,92,.5); }
+
+  .txt { position: relative; padding: 5cqw 4.5cqw 4cqw 3cqw; display: flex; flex-direction: column; min-height: 0; background: var(--page); }
+  .kicker { font-size: clamp(9px, 1.05cqw, 12px); letter-spacing: .32em; text-transform: uppercase; color: var(--mute); display: flex; justify-content: space-between; }
+  .no { font-family: var(--serif); font-style: italic; color: var(--brass); font-size: 9cqw; line-height: 1; margin: 2.6cqw 0 1cqw; }
+  .no small { font-family: var(--sans); font-style: normal; font-size: clamp(9px, 1cqw, 12px); letter-spacing: .3em; text-transform: uppercase; vertical-align: middle; margin-left: 1.2cqw; color: var(--cream); display: inline-flex; align-items: center; gap: .8em; }
+  .no small::before { content: ''; width: .8em; height: .8em; border-radius: 50%; border: 1px solid var(--brass); }
+  .no small.stop::before { background: var(--brass); }
+  .txt h2 { font-family: var(--serif); font-weight: 400; font-size: 3.7cqw; line-height: 1.04; margin: 0 0 1.6cqw; letter-spacing: -.005em; }
+  .who { font-size: clamp(10px, 1.2cqw, 14px); letter-spacing: .14em; text-transform: uppercase; color: var(--cream); padding-bottom: 1.8cqw; border-bottom: 1px solid rgba(201,163,92,.35); }
+  .who span { color: var(--mute); }
+  .body { font-family: var(--serif); font-size: clamp(13px, 1.35cqw, 17px); line-height: 1.6; color: #D9D0BE; margin-top: 2cqw; overflow: hidden; flex: 1; position: relative; -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent); mask-image: linear-gradient(to bottom, #000 60%, transparent); }
+  .body p { margin: 0; }
+  .read { all: unset; cursor: pointer; font-size: clamp(9px, 1.05cqw, 12px); letter-spacing: .3em; text-transform: uppercase; color: var(--brass); padding-top: 1.2cqw; }
+  .addr { margin-top: 1.4cqw; font-size: clamp(9px, 1.05cqw, 12px); letter-spacing: .22em; text-transform: uppercase; color: var(--mute); }
+  .pg.reading .body { overflow: auto; -webkit-mask-image: none; mask-image: none; overscroll-behavior: contain; }
+
+  /* cover */
+  .cover { display: block; }
+  .cover .hero { position: absolute; inset: 0; }
+  .cover .hero::after { background: linear-gradient(to top, rgba(15,14,13,.92) 8%, rgba(15,14,13,.15) 55%, rgba(15,14,13,.5)); }
+  .cover .in { position: absolute; inset: 0; padding: 5cqw; display: flex; flex-direction: column; z-index: 3; }
+  .cover .kicker { color: var(--cream); }
+  .cover h1 { font-family: var(--serif); font-weight: 400; font-size: 13cqw; line-height: .86; margin: auto 0 2cqw; letter-spacing: -.02em; }
+  .cover h1 em { color: var(--brass); }
+  .cover p { font-size: clamp(10px, 1.4cqw, 15px); letter-spacing: .26em; text-transform: uppercase; margin: 0; line-height: 1.8; color: #CFC6B4; }
+  .cover .hint { margin-top: 3cqw; color: var(--brass); }
+
+  .end { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: var(--page); }
+  .end .bike { width: 9cqw; color: var(--brass); margin-bottom: 3cqw; }
+  .end h2 { font-family: var(--serif); font-weight: 400; font-style: italic; font-size: 6cqw; margin: 0 0 2cqw; }
+  .end p { font-size: clamp(10px, 1.2cqw, 14px); letter-spacing: .22em; text-transform: uppercase; color: var(--mute); line-height: 2; margin: 0; max-width: 60%; }
+
+  /* chrome */
+  .ticks { position: fixed; top: calc(18px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 50; }
+  .ticks i { width: 14px; height: 2px; background: rgba(236,228,211,.18); transition: background .4s; }
+  .ticks i.stop { height: 4px; margin-top: -1px; }
+  .ticks i.on { background: var(--brass); }
+  .count { position: fixed; right: 26px; bottom: 22px; font-family: var(--serif); font-style: italic; color: var(--mute); font-size: 15px; letter-spacing: .04em; }
+  .count b { color: var(--brass); font-weight: 400; }
+  .home-link { position: fixed; left: 26px; bottom: 24px; font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: var(--mute); text-decoration: none; }
+
+  /* ---------- portrait / phone ---------- */
+  @media (max-aspect-ratio: 1/1), (max-width: 760px) {
+    #book { width: 100vw; height: 100dvh; aspect-ratio: auto; }
+    .pg { grid-template-columns: 1fr; grid-template-rows: 54% 46%; }
+    .hero::after { background: linear-gradient(to bottom, transparent 55%, var(--page)); }
+    .hero .credit { font-size: 9px; left: 14px; bottom: auto; top: calc(34px + env(safe-area-inset-top)); }
+    .txt { padding: 0 7cqw calc(7cqw + env(safe-area-inset-bottom)); margin-top: -8cqw; background: transparent; z-index: 2; }
+    .no { font-size: 17cqw; margin: 0 0 1cqw; }
+    .no small, .kicker, .read, .addr { font-size: 10px; }
+    .txt h2 { font-size: 8.4cqw; margin-bottom: 2.4cqw; }
+    .who { font-size: 11px; padding-bottom: 3cqw; }
+    .body { font-size: 15px; margin-top: 3cqw; }
+    .pg.reading .hero { opacity: .15; }
+    .pg.reading .txt { position: absolute; inset: calc(56px + env(safe-area-inset-top)) 0 0; margin: 0; background: transparent; }
+    .cover h1 { font-size: 20cqw; }
+    .cover .in { padding: 14cqw 7cqw calc(10cqw + env(safe-area-inset-bottom)); }
+    .cover p { font-size: 11px; }
+    .cover .kicker { flex-direction: column; gap: 8px; }
+    .end .bike { width: 26cqw; } .end h2 { font-size: 13cqw; } .end p { font-size: 11px; max-width: 80%; }
+    .ticks { gap: 3px; } .ticks i { width: 9px; }
+    .count, .home-link { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="ticks" id="ticks"></div>
+<div class="stage"><div id="book"></div></div>
+<a class="home-link" href="../../">← Directions</a>
+<div class="count" id="count"></div>
+
+<script>window.MCR_ROOT = '../../';</script>
+<script src="../../data/homes.js"></script>
+<script src="../../assets/img/manifest.js" onerror="void 0"></script>
+<script src="../../shared/common.js"></script>
+<script src="../../shared/flipbook.js"></script>
+<script>
+  const { esc, pad, hero, bike, stats, isStop } = MCR;
+  const H = HOMES, S = stats(), N = H.length;
+  const road = (a) => a.replace(/^\d+\s+/, '').replace(/\bRd\b/, 'Road');
+  const glass = H.find((h) => h.order === 12);
+
+  const pages = [{ cls: 'pg cover', html: `
+    ${hero(glass)}
+    <div class="in">
+      <div class="kicker"><span>The Ridgefield Bicycle Club</span><span>New Canaan, CT</span></div>
+      <h1>Glass <em>&amp;</em><br>Stone</h1>
+      <p>The modern houses of New Canaan, by bicycle<br>${N} houses · ${S.first}–${S.last} · Hosted by Bill Adamsen</p>
+      <p class="hint">Turn the page →</p>
+    </div>` }];
+
+  H.forEach((h) => {
+    const stop = isStop(h);
+    pages.push({ cls: 'pg', html: `
+      ${hero(h)}
+      <div class="txt">
+        <div class="kicker"><span>On ${esc(road(h.address))}</span><span>${h.year}</span></div>
+        <div class="no">No. ${h.order}<small class="${stop ? 'stop' : ''}">${stop ? 'Stop' : 'Ride by'}</small></div>
+        <h2>${esc(h.name)}</h2>
+        <div class="who">${esc(h.architect)}</div>
+        <div class="body" data-nodrag-y><p>${esc(h.notes)}</p></div>
+        <button class="read">Continue reading</button>
+        <div class="addr">${esc(h.address)}</div>
+      </div>` });
+  });
+
+  pages.push({ cls: 'pg end', html: `${bike()}<h2>Fin.</h2><p>Thank you for riding with the Ridgefield Bicycle Club. These are private homes. Please enjoy them from the road.</p>` });
+
+  const ticks = document.getElementById('ticks');
+  ticks.innerHTML = H.map((h) => `<i class="${isStop(h) ? 'stop' : ''}"></i>`).join('');
+  const tickEls = [...ticks.children];
+  const count = document.getElementById('count');
+
+  const book = new Flipbook(document.getElementById('book'), {
+    pages, axis: 'x', spread: 'not all',
+    onChange: (b) => {
+      tickEls.forEach((t, i) => t.classList.toggle('on', i < b.page));
+      count.innerHTML = b.page >= 1 && b.page <= N ? `<b>${b.page}</b> of ${N}` : '';
+      document.querySelectorAll('.pg.reading').forEach((p) => { p.classList.remove('reading'); const r = p.querySelector('.read'); if (r) r.textContent = 'Continue reading'; });
+    },
+  });
+  document.getElementById('book').addEventListener('click', (e) => {
+    const r = e.target.closest('.read');
+    if (!r) return;
+    const pg = r.closest('.pg');
+    const on = pg.classList.toggle('reading');
+    r.textContent = on ? 'Close' : 'Continue reading';
+    if (!on) pg.querySelector('.body').scrollTop = 0;
+  });
+</script>
+</body>
+</html>
