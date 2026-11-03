@@ -85,9 +85,16 @@
         this.set(l, turned ? 180 : 0);
         l.style.zIndex = turned ? j + 1 : n - j + 1;
         // Single pages: landed leaves sit off-page, so hide them until they are dragged back.
-        l.classList.toggle('fb-far', this.spread ? (j < k - 2 || j > k + 1) : (j < k || j > k + 1));
+        l.classList.toggle('fb-turned', turned);
+        // At rest only the open page(s) are shown; the leaves underneath appear when a turn starts.
+        // (Coplanar 3D leaves otherwise intercept scrolling meant for the visible page.)
+        l.classList.toggle('fb-far', this.spread ? (j < k - 1 || j > k) : j !== k);
         l.classList.remove('fb-lifted');
+        // At rest on single pages, drop the 3D transform so the page can scroll natively
+        // (iOS Safari won't reliably scroll content inside a 3D-transformed layer).
+        if (!this.spread && j >= k) l.style.transform = 'none';
       });
+      this.el.classList.add('fb-rest');
       this.el.classList.toggle('fb-at-start', k === 0);
       this.el.classList.toggle('fb-at-end', k === n);
       this.page = this.spread ? Math.max(0, 2 * k - 1) : k;
@@ -95,8 +102,11 @@
     }
 
     lift(leaf) {
+      this.el.classList.remove('fb-rest');
+      if (leaf.style.transform === 'none') this.set(leaf, leaf._a ?? 0);
       leaf.style.zIndex = this.n + 5;
-      leaf.classList.remove('fb-far');
+      const j = this.leaves.indexOf(leaf);
+      [j - 1, j, j + 1].forEach((i) => this.leaves[i] && this.leaves[i].classList.remove('fb-far'));
       leaf.classList.add('fb-lifted');
     }
 

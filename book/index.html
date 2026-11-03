@@ -50,6 +50,13 @@
 .fb-y .fb-leaf { left: 0; right: 0; top: 0; height: 100%; transform-origin: center top; }
 .fb-y.fb-spread .fb-leaf { top: 50%; height: 50%; }
 .fb-far { visibility: hidden; }
+/* At rest, fully hide the side of each leaf that faces away. backface-visibility only hides
+   it visually; it still catches scroll and touch gestures meant for the visible page. */
+.fb-leaf:not(.fb-lifted):not(.fb-turned) .fb-back,
+.fb-leaf.fb-turned:not(.fb-lifted) .fb-front { visibility: hidden; }
+/* Single pages at rest render flat so their contents can scroll on touch devices. */
+.fb-rest:not(.fb-spread) .fb-stage,
+.fb-rest:not(.fb-spread) .fb-leaf { transform-style: flat; }
 
 .fb-anim {
   transition:
@@ -249,6 +256,12 @@
     #book { width: 100vw; height: calc(100dvh - 56px); }
     .bar { height: 56px; background: var(--table); }
     .bar a.back { display: none; }
+    /* Phones: the whole page scrolls, so long stories and lists are never cut off. */
+    .pg { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+    .photo-pg, .cover, .back-cover { overflow: hidden; }
+    .notes { flex: none; overflow: visible; -webkit-mask-image: none; mask-image: none; padding-bottom: 0; }
+    .index ol { flex: none; }
+    .map-pg .mapbox { flex: none; height: 118cqw; }
     .bar a.route-link { order: 3; font-size: 11px; }
   }
 </style>
@@ -757,9 +770,16 @@ window.HOME_IMAGES = {
         this.set(l, turned ? 180 : 0);
         l.style.zIndex = turned ? j + 1 : n - j + 1;
         // Single pages: landed leaves sit off-page, so hide them until they are dragged back.
-        l.classList.toggle('fb-far', this.spread ? (j < k - 2 || j > k + 1) : (j < k || j > k + 1));
+        l.classList.toggle('fb-turned', turned);
+        // At rest only the open page(s) are shown; the leaves underneath appear when a turn starts.
+        // (Coplanar 3D leaves otherwise intercept scrolling meant for the visible page.)
+        l.classList.toggle('fb-far', this.spread ? (j < k - 1 || j > k) : j !== k);
         l.classList.remove('fb-lifted');
+        // At rest on single pages, drop the 3D transform so the page can scroll natively
+        // (iOS Safari won't reliably scroll content inside a 3D-transformed layer).
+        if (!this.spread && j >= k) l.style.transform = 'none';
       });
+      this.el.classList.add('fb-rest');
       this.el.classList.toggle('fb-at-start', k === 0);
       this.el.classList.toggle('fb-at-end', k === n);
       this.page = this.spread ? Math.max(0, 2 * k - 1) : k;
@@ -767,8 +787,11 @@ window.HOME_IMAGES = {
     }
 
     lift(leaf) {
+      this.el.classList.remove('fb-rest');
+      if (leaf.style.transform === 'none') this.set(leaf, leaf._a ?? 0);
       leaf.style.zIndex = this.n + 5;
-      leaf.classList.remove('fb-far');
+      const j = this.leaves.indexOf(leaf);
+      [j - 1, j, j + 1].forEach((i) => this.leaves[i] && this.leaves[i].classList.remove('fb-far'));
       leaf.classList.add('fb-lifted');
     }
 

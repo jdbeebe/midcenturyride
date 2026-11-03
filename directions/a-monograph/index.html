@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../shared/flipbook.css?v=3">
+<link rel="stylesheet" href="../../shared/flipbook.css?v=6">
 <style>
   :root {
     --paper: #F3EEE3; --ink: #1C1B18; --rust: #CF5127; --mute: #857F73; --rule: #D3CBBA;
@@ -157,6 +157,12 @@
     #book { width: 100vw; height: calc(100dvh - 56px); }
     .bar { height: 56px; background: var(--table); }
     .bar a.back { display: none; }
+    /* Phones: the whole page scrolls, so long stories and lists are never cut off. */
+    .pg { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+    .photo-pg, .cover, .back-cover { overflow: hidden; }
+    .notes { flex: none; overflow: visible; -webkit-mask-image: none; mask-image: none; padding-bottom: 0; }
+    .index ol { flex: none; }
+    .map-pg .mapbox { flex: none; height: 118cqw; }
     .bar a.route-link { order: 3; font-size: 11px; }
   }
 </style>
@@ -172,11 +178,11 @@
 </nav>
 
 <script>window.MCR_ROOT = '../../';</script>
-<script src="../../data/homes.js?v=3"></script>
-<script src="../../data/route.js?v=3"></script>
-<script src="../../assets/img/manifest.js?v=3" onerror="void 0"></script>
-<script src="../../shared/common.js?v=3"></script>
-<script src="../../shared/flipbook.js?v=3"></script>
+<script src="../../data/homes.js?v=6"></script>
+<script src="../../data/route.js?v=6"></script>
+<script src="../../assets/img/manifest.js?v=6" onerror="void 0"></script>
+<script src="../../shared/common.js?v=6"></script>
+<script src="../../shared/flipbook.js?v=6"></script>
 <script>
   const { esc, pad, hero, bike, stats, isStop, mi, gmaps, arrow, leg, routeMap, profile, hash, route: R } = MCR;
   const S = stats();
