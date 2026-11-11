@@ -54,3 +54,14 @@ python3 scripts/build-standalone.py
 ```
 
 The `book/` folder can be copied to any static host as-is.
+
+## Recap and "ride it again?" vote
+
+`recap/` is the post-ride recap. Its vote is handled by `server.js`, a dependency-free Node server that
+serves the whole site and stores votes in `votes.json`. On Railway it writes to the attached volume
+(`RAILWAY_VOLUME_MOUNT_PATH`); locally it writes to `data-local/`. Run it with `npm start`.
+
+- `GET /api/votes` returns the tally.
+- `POST /api/vote` with `{ voter, choice: "yes" | "maybe" | "no" }` records one vote per browser, which can be changed.
+
+On GitHub Pages (static only) the recap page links to the Railway copy to vote.

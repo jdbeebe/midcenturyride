@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Ride, in Review · Modern New Canaan</title>
+<meta name="description" content="A recap of the New Canaan mid-century modern bike tour with the Ridgefield Bicycle Club, hosted by Bill Adamsen on November 10, 2026.">
+<meta name="theme-color" content="#2B2925">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The ride, in review · Modern New Canaan">
+<meta property="og:description" content="26 houses, 17.4 miles, and a bright November morning. See the route, the photos and what riders said, and vote on riding it again.">
+<meta property="og:image" content="https://midcenturyride-production.up.railway.app/assets/recap/group-steps.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23CF5127'/%3E%3Ccircle cx='42' cy='22' r='12' fill='%23F3EEE3'/%3E%3Crect x='6' y='36' width='44' height='4' fill='%231C1B18'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3EEE3; --paper-2: #EAE3D4; --ink: #1C1B18; --rust: #CF5127; --mute: #857F73; --rule: #D3CBBA; --table: #2B2925;
+    --sans: 'Jost', system-ui, sans-serif; --serif: 'Newsreader', Georgia, serif;
+    --wrap: min(1120px, 100% - 48px);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; height: auto; }
+  .wrap { width: var(--wrap); margin: 0 auto; }
+  .eyebrow { font-size: 12px; letter-spacing: .26em; text-transform: uppercase; font-weight: 500; color: var(--mute); }
+  .rule { border: 0; border-top: 1px solid var(--ink); margin: 0; }
+
+  /* masthead */
+  .mast { background: var(--rust); padding: 28px 0 0; overflow: hidden; }
+  .mast .top { display: flex; justify-content: space-between; gap: 16px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 500; }
+  .mast .top a { text-decoration: none; border-bottom: 1px solid currentColor; }
+  .mast .grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: end; padding: 64px 0 56px; }
+  .mast h1 { font-weight: 500; font-size: clamp(48px, 8.5vw, 112px); line-height: .9; letter-spacing: -.025em; margin: 0; }
+  .mast h1 em { display: block; font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.01em; }
+  .mast .lede { font-size: clamp(17px, 1.8vw, 21px); line-height: 1.5; margin: 0 0 18px; max-width: 34ch; }
+  .mast .when { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; line-height: 1.9; }
+  .mast .art { position: relative; height: 120px; }
+  .mast .sun { position: absolute; right: 0; top: -40px; width: 150px; height: 150px; border-radius: 50%; background: var(--paper); }
+  .mast .slab { position: absolute; left: -10vw; right: 120px; top: 52px; height: 10px; background: var(--ink); }
+  .mast .glass { position: absolute; left: 24px; right: 220px; top: 62px; height: 58px; border: 3px solid var(--ink); border-top: 0; border-bottom: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 46px, var(--ink) 46px 49px); }
+
+  /* hero photo */
+  .hero { margin: 0; background: var(--table); }
+  .hero img { width: 100%; max-height: 82vh; object-fit: cover; object-position: 50% 45%; }
+  figcaption { font-size: 13px; color: var(--mute); padding: 12px 0; letter-spacing: .02em; }
+  .hero figcaption { width: var(--wrap); margin: 0 auto; color: #B8B0A0; }
+
+  section { padding: 96px 0; }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  h2 { font-weight: 400; font-size: clamp(34px, 4.6vw, 58px); line-height: 1; letter-spacing: -.015em; margin: 14px 0 0; }
+  h2 em { font-family: var(--serif); color: var(--rust); }
+
+  /* scores */
+  .scores { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
+  .scores div { padding: 22px 0 0; }
+  .scores b { display: block; font-weight: 300; font-size: clamp(56px, 8vw, 104px); line-height: .95; letter-spacing: -.03em; }
+  .scores .up b { color: var(--rust); }
+  .scores span { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+  .scores i { font-style: normal; font-size: 22px; margin-right: 6px; vertical-align: -3px; }
+  .note { font-family: var(--serif); font-size: 17px; color: #4A463F; margin: 22px 0 0; }
+
+  /* featured quote */
+  .feature { background: var(--table); color: var(--paper); }
+  .feature .grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: start; }
+  .feature .who { font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #B8B0A0; margin-top: 18px; }
+  .feature blockquote { margin: 0; }
+  .feature .big { font-family: var(--serif); font-style: italic; font-size: clamp(36px, 5.4vw, 72px); line-height: 1.04; letter-spacing: -.01em; margin: 0; }
+  .feature .big::before { content: '“'; color: var(--rust); }
+  .feature .big::after { content: '”'; color: var(--rust); }
+  .feature .full { font-family: var(--serif); font-size: 20px; line-height: 1.6; color: #D9D2C3; margin: 30px 0 0; max-width: 56ch; }
+  .feature .full mark { background: none; color: var(--paper); border-bottom: 2px solid var(--rust); }
+
+  /* reactions */
+  .quotes { display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+  .q { background: #FAF7F0; border-top: 4px solid var(--ink); padding: 28px 28px 30px; grid-column: span 2; display: flex; flex-direction: column; }
+  .q.wide { grid-column: span 3; }
+  .q.rust { border-top-color: var(--rust); }
+  .q p { font-family: var(--serif); font-size: 20px; line-height: 1.5; margin: 0; flex: 1; }
+  .q p strong { font-weight: 400; background: linear-gradient(transparent 60%, rgba(207,81,39,.22) 60%); }
+  .q .name { margin-top: 22px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  .q .name::before { content: ''; width: 22px; height: 2px; background: var(--rust); }
+
+  /* route */
+  .route .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+  .mapbox { aspect-ratio: 1 / 1; background: #FAF7F0; padding: 18px; }
+  .rmap { width: 100%; height: 100%; display: block; }
+  .rm-path { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+  .rm-dot { fill: var(--paper); stroke: var(--ink); stroke-width: 1.6; }
+  .rm-stop { fill: var(--rust); }
+  .rm-lbl { font: 500 10px var(--sans); fill: var(--ink); paint-order: stroke; stroke: #FAF7F0; stroke-width: 3px; }
+  .rm-start { fill: var(--ink); }
+  .rm-extra path { stroke: var(--mute); stroke-width: 1.6; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); margin-top: 28px; }
+  .stats div { padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .stats b { display: block; font-weight: 300; font-size: 44px; line-height: 1; }
+  .stats span { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+  .route h2 { font-size: clamp(34px, 3.6vw, 48px); }
+  .route h2 em { white-space: nowrap; }
+  .route p { font-family: var(--serif); font-size: 19px; line-height: 1.6; color: #3A3732; margin: 22px 0 0; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; padding: 16px 22px; border: 2px solid var(--ink); }
+  .btn.dark { background: var(--ink); color: var(--paper); }
+  .btn:hover { background: var(--rust); border-color: var(--rust); color: var(--paper); }
+
+  .interior { margin: 0; }
+  .interior img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+  /* vote */
+  .vote { background: var(--rust); }
+  .vote .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .vote h2 { font-size: clamp(44px, 6.4vw, 84px); }
+  .vote h2 em { color: var(--paper); }
+  .vote .eyebrow { color: var(--ink); opacity: .7; }
+  .vote .ask { font-family: var(--serif); font-size: 21px; line-height: 1.55; margin: 22px 0 0; max-width: 40ch; }
+  .vote .aside { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.5; margin: 22px 0 0; max-width: 44ch; opacity: .85; }
+  .choices { display: grid; gap: 12px; }
+  .choice { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 20px 22px; background: var(--paper); border: 2px solid var(--ink); font-size: 18px; font-weight: 500; position: relative; overflow: hidden; }
+  .choice:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .choice .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: rgba(28,27,24,.08); transition: width .6s cubic-bezier(.3,.8,.25,1); }
+  .choice .lbl, .choice .pct { position: relative; }
+  .choice .pct { font-size: 15px; font-weight: 400; color: var(--mute); font-variant-numeric: tabular-nums; }
+  .choice:hover { background: #FFFDF8; }
+  .choice.on { background: var(--ink); color: var(--paper); }
+  .choice.on .bar { background: rgba(255,255,255,.12); }
+  .choice.on .pct { color: #CFC8BA; }
+  .choice.on .lbl::after { content: '  ✓'; color: var(--rust); }
+  .vote-status { font-size: 14px; letter-spacing: .04em; margin-top: 14px; min-height: 1.4em; }
+  .vote-off { font-family: var(--serif); font-size: 18px; line-height: 1.5; background: var(--paper); padding: 22px; border: 2px solid var(--ink); }
+
+  /* footer */
+  footer { background: var(--table); color: #CFC8BA; padding: 64px 0 80px; }
+  footer .grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
+  footer h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(32px, 4vw, 48px); color: var(--paper); margin: 0 0 12px; }
+  footer p { margin: 0; font-size: 15px; line-height: 1.7; }
+  footer .links { display: flex; flex-direction: column; gap: 10px; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; }
+  footer .links a { text-decoration: none; color: var(--paper); }
+  footer .links a:hover { color: var(--rust); }
+  footer .bike { width: 70px; color: var(--rust); margin-bottom: 18px; }
+  .credits { font-size: 12px; color: #8E877A; margin-top: 28px; line-height: 1.6; }
+
+  @media (max-width: 860px) {
+    :root { --wrap: calc(100% - 32px); }
+    .mast .grid, .feature .grid, .route .grid, .vote .grid, footer .grid { grid-template-columns: 1fr; gap: 28px; }
+    .mast .grid { padding: 40px 0 36px; }
+    .mast .top span:nth-child(2) { display: none; }
+    .mast .art { height: 96px; } .mast .sun { width: 110px; height: 110px; top: -24px; } .mast .slab { right: 70px; top: 40px; } .mast .glass { right: 120px; top: 50px; height: 46px; }
+    section { padding: 64px 0; }
+    .scores { grid-template-columns: 1fr 1fr; }
+    .quotes { grid-template-columns: 1fr; }
+    .q, .q.wide { grid-column: auto; }
+    .q p { font-size: 18px; }
+    .feature .full { font-size: 18px; }
+    .hero img { max-height: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="top"><span>Ridgefield Bicycle Club</span><span>New Canaan, CT</span><a href="../book/">The flip book ↗</a></div>
+    <div class="grid">
+      <h1>The ride,<em>in review.</em></h1>
+      <div>
+        <p class="lede">Twenty-six modern houses, 17.4 miles, and one bright November morning. Thank you for riding.</p>
+        <div class="when">Tuesday, November 10, 2026<br>Hosted by Bill Adamsen</div>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true"><div class="sun"></div><div class="glass"></div><div class="slab"></div></div>
+  </div>
+</header>
+
+<figure class="hero">
+  <img src="../assets/recap/group-steps.jpg" alt="The riders gathered on the stone steps of a modern house along the route" width="2000" height="1500">
+  <figcaption>The riders, on the steps of one of the houses on the route.</figcaption>
+</figure>
+
+<section class="score-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">The verdict</div><h2>Ten thumbs up. <em>None down.</em></h2></div></div>
+    <div class="scores">
+      <div class="up"><b>10</b><span><i>👍</i>Thumbs up</span></div>
+      <div><b>0</b><span><i>🙂</i>Neutral</span></div>
+      <div><b>0</b><span><i>👎</i>Thumbs down</span></div>
+      <div><b>12</b><span>Riders asked</span></div>
+    </div>
+    <p class="note">From the club’s post-ride survey.</p>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="wrap grid">
+    <div><div class="eyebrow" style="color:#B8B0A0">Rider reactions</div><div class="who">Kristen</div></div>
+    <blockquote>
+      <p class="big">You usually have to travel to Europe for tours like these!</p>
+      <p class="full">“Bill, thank you for this fascinating tour of New Canaan architecture. I have always heard about the many mid-century houses, but I admit to only having visited the Glass House. <mark>Seeing it all from the bike was just perfect!</mark> You usually have to travel to Europe for tours like these! I loved the flip book too. Thank you!!”</p>
+    </blockquote>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">In their words</div><h2>What riders <em>said.</em></h2></div></div>
+    <div class="quotes">
+      <article class="q wide rust"><p>“<strong>Phenomenal tour!</strong> Thank you Bill. So much fun, and I am sure a lot of work for you that was much appreciated 👏”</p><div class="name">Monika</div></article>
+      <article class="q wide"><p>“Thanks for putting together this wonderful mid century architecture tour. <strong>Such a great fun experience.</strong>”</p><div class="name">Joan</div></article>
+      <article class="q"><p>“Thanks for the <strong>booklet and tour</strong> of all these houses I ride past”</p><div class="name">Keith</div></article>
+      <article class="q"><p>“Great, <strong>very well researched.</strong>”</p><div class="name">A rider</div></article>
+      <article class="q rust"><p>“Just that we thank Bill for all the research and route planning, <strong>this could turn into a local tour-guy on bikes thing</strong>, as they have in Charleston and other popular visiting destinations. What could he charge....? ;)”</p><div class="name">Chris</div></article>
+    </div>
+  </div>
+</section>
+
+<figure class="interior">
+  <img src="../assets/recap/glass-living-room.jpg" alt="Riders inside a glass-walled living room with a fieldstone fireplace" width="2000" height="1500" loading="lazy">
+  <figcaption class="wrap">Inside one of the glass-walled houses on the tour.</figcaption>
+</figure>
+
+<section class="route">
+  <div class="wrap grid">
+    <div class="mapbox" id="map"></div>
+    <div>
+      <div class="eyebrow">The route</div>
+      <h2>One loop. <em>Twenty-six</em> houses.</h2>
+      <div class="stats" id="stats"></div>
+      <p>From Irwin Park on Weed Street, past the Glass House on Ponus Ridge, up to Landis Gores’s own house on Cross Ridge, and home along Oenoke Ridge and Sunset Hill. Every house is still in the flip book.</p>
+      <div class="btns">
+        <a class="btn dark" href="../book/">Open the flip book</a>
+        <a class="btn" href="https://ridewithgps.com/routes/54307217" target="_blank" rel="noopener">Route on Ride with GPS ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vote" id="vote">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">One question</div>
+      <h2>Ride it <em>again?</em></h2>
+      <p class="ask">Should the Ridgefield Bicycle Club host the New Canaan modern tour again? Tell us, and see how everyone else voted.</p>
+      <p class="aside">Chris already floated the idea of a local tour guide on bikes, “as they have in Charleston.”</p>
+    </div>
+    <div>
+      <div class="choices" id="choices" role="group" aria-label="Ride it again?">
+        <button class="choice" data-choice="yes"><span class="bar"></span><span class="lbl">Yes, count me in</span><span class="pct"></span></button>
+        <button class="choice" data-choice="maybe"><span class="bar"></span><span class="lbl">Maybe, depending on the date</span><span class="pct"></span></button>
+        <button class="choice" data-choice="no"><span class="bar"></span><span class="lbl">Once was enough</span><span class="pct"></span></button>
+      </div>
+      <div class="vote-status" id="vote-status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap grid">
+    <div>
+      <div class="bike-slot"></div>
+      <h3>Thank you, Bill.</h3>
+      <p>For the research, the route and the morning. And thank you to everyone who rode.</p>
+      <p class="credits">House photos in the flip book are credited on each page. Ride photos by riders on the day. All of these are private homes, enjoyed from the road.</p>
+    </div>
+    <div class="links">
+      <a href="../book/">The flip book ↗</a>
+      <a href="https://ridewithgps.com/routes/54307217" target="_blank" rel="noopener">Ride with GPS route ↗</a>
+      <a href="#vote">Vote on riding again ↓</a>
+    </div>
+  </div>
+</footer>
+
+<script>window.MCR_ROOT = '../';</script>
+<script src="../data/homes.js"></script>
+<script src="../data/route.js"></script>
+<script src="../shared/common.js"></script>
+<script>
+  const { routeMap, bike, stats, route: R } = MCR;
+  const S = stats();
+  document.getElementById('map').innerHTML = routeMap({ labels: true, w: 400, h: 400, pad: 12 });
+  document.getElementById('stats').innerHTML =
+    `<div><b>${R.distanceMi.toFixed(1)}</b><span>Miles</span></div><div><b>${R.gainFt}</b><span>Feet of climbing</span></div>` +
+    `<div><b>${S.count}</b><span>Houses</span></div><div><b>${S.first}–${String(S.last).slice(2)}</b><span>Built</span></div>`;
+  document.querySelector('.bike-slot').outerHTML = bike();
+
+  // ---------- Ride it again? ----------
+  const LABEL = { yes: 'yes', maybe: 'maybe', no: 'no' };
+  const status = document.getElementById('vote-status');
+  const buttons = [...document.querySelectorAll('.choice')];
+  const voter = (() => {
+    const make = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36));
+    try {
+      let id = localStorage.getItem('mcr-voter');
+      if (!id) { id = make(); localStorage.setItem('mcr-voter', id); }
+      return id;
+    } catch { return make(); }
+  })();
+
+  function show(t) {
+    buttons.forEach((b) => {
+      const c = b.dataset.choice, n = t[c] || 0, pct = t.total ? Math.round(n / t.total * 100) : 0;
+      b.classList.toggle('on', t.mine === c);
+      b.setAttribute('aria-pressed', t.mine === c);
+      if (t.mine) {
+        b.querySelector('.bar').style.width = pct + '%';
+        b.querySelector('.pct').textContent = `${pct}% · ${n}`;
+      }
+    });
+    status.textContent = t.mine
+      ? `${t.total} ${t.total === 1 ? 'vote' : 'votes'} so far. You voted ${LABEL[t.mine]}; tap another answer to change it.`
+      : (t.total ? `${t.total} ${t.total === 1 ? 'rider has' : 'riders have'} voted. Vote to see the results.` : 'Be the first to vote.');
+  }
+
+  function offline() {
+    document.getElementById('choices').outerHTML =
+      `<div class="vote-off">Voting lives on the main site. <a href="https://midcenturyride-production.up.railway.app/recap/#vote">Vote here ↗</a></div>`;
+    status.textContent = '';
+  }
+
+  fetch('/api/votes?voter=' + encodeURIComponent(voter))
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then(show)
+    .catch(offline);
+
+  buttons.forEach((b) => b.addEventListener('click', async () => {
+    buttons.forEach((x) => (x.disabled = true));
+    status.textContent = 'Saving your vote…';
+    try {
+      const r = await fetch('/api/vote', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ voter, choice: b.dataset.choice }) });
+      const t = await r.json();
+      if (!r.ok) throw new Error(t.error || 'Could not save your vote');
+      show(t);
+    } catch (e) {
+      status.textContent = e.message || 'Could not save your vote. Please try again.';
+    } finally {
+      buttons.forEach((x) => (x.disabled = false));
+    }
+  }));
+</script>
+</body>
+</html>

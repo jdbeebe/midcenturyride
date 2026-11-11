@@ -1,0 +1,12 @@
+{
+  "name": "midcenturyride",
+  "private": true,
+  "type": "module",
+  "description": "Flip-book guide and recap for the New Canaan mid-century modern bike ride",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
