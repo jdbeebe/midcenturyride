@@ -56,6 +56,22 @@
   h2 { font-weight: 400; font-size: clamp(34px, 4.6vw, 58px); line-height: 1; letter-spacing: -.015em; margin: 14px 0 0; }
   h2 em { font-family: var(--serif); color: var(--rust); }
 
+  /* ride leader */
+  .leader { background: var(--paper-2); }
+  .leader .grid { display: grid; grid-template-columns: 1fr 1.9fr; gap: 64px; align-items: start; }
+  .leader .byline { display: flex; align-items: center; gap: 18px; margin-top: 26px; }
+  .leader .mono { width: 72px; height: 72px; border-radius: 50%; background: var(--rust); color: var(--paper); display: grid; place-items: center; font-size: 24px; font-weight: 500; letter-spacing: .04em; flex-shrink: 0; }
+  .leader .who b { display: block; font-size: 20px; font-weight: 500; }
+  .leader .who span { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+  .leader .facts { list-style: none; padding: 0; margin: 36px 0 0; border-top: 2px solid var(--ink); }
+  .leader .facts li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 15px; }
+  .leader .facts li span { color: var(--mute); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; padding-top: 2px; }
+  .letter p { font-family: var(--serif); font-size: clamp(19px, 1.8vw, 23px); line-height: 1.65; margin: 0 0 1em; max-width: 60ch; }
+  .letter p:first-child::first-letter { float: left; font-family: var(--sans); font-weight: 500; font-size: 4.1em; line-height: .8; padding: .08em .1em 0 0; color: var(--rust); }
+  .letter mark { background: linear-gradient(transparent 62%, rgba(207,81,39,.22) 62%); color: inherit; }
+  .letter .close { font-style: italic; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.3; color: var(--ink); margin-top: 1.4em; }
+  .letter .sig { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--rust); margin: 0; }
+
   /* scores */
   .scores { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--ink); }
   .scores div { padding: 22px 0 0; }
@@ -146,7 +162,7 @@
 
   @media (max-width: 860px) {
     :root { --wrap: calc(100% - 32px); }
-    .mast .grid, .feature .grid, .route .grid, .vote .grid, footer .grid { grid-template-columns: 1fr; gap: 28px; }
+    .mast .grid, .feature .grid, .route .grid, .vote .grid, .leader .grid, footer .grid { grid-template-columns: 1fr; gap: 28px; }
     .mast .grid { padding: 40px 0 36px; }
     .mast .top span:nth-child(2) { display: none; }
     .mast .art { height: 96px; } .mast .sun { width: 110px; height: 110px; top: -24px; } .mast .slab { right: 70px; top: 40px; } .mast .glass { right: 120px; top: 50px; height: 46px; }
@@ -180,6 +196,30 @@
   <img src="../assets/recap/group-steps.jpg" alt="The riders gathered on the stone steps of a modern house along the route" width="2000" height="1500">
   <figcaption>The riders, on the steps of one of the houses on the route.</figcaption>
 </figure>
+
+<section class="leader">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">From the ride leader</div>
+      <div class="byline">
+        <div class="mono" aria-hidden="true">BA</div>
+        <div class="who"><b>Bill Adamsen</b><span>Ride leader · Ridgefield Bicycle Club</span></div>
+      </div>
+      <ul class="facts">
+        <li><span>Riders</span>15</li>
+        <li><span>Houses</span>26</li>
+        <li><span>Distance</span>17 miles</li>
+        <li><span>Inside tour</span>Landis Gores</li>
+      </ul>
+    </div>
+    <div class="letter">
+      <p>Tuesday brought fair weather and fifteen cyclists together to experience the RBC Mid-Century Modern cycling tour of New Canaan. We visited 26 houses in 17 miles with <mark>a full inside tour of one of the most important houses designed by Harvard Five architect Landis Gores.</mark></p>
+      <p>The tour was enhanced by the attendance of local architect and cyclist Peter Cole, with his expertise on Mid-Century Modern architecture. Cyclist Jon Swallen <mark>had grown up in one of the featured homes</mark> and added color both about what it was like to build and live in one of the homes, and about the lifestyle of the times.</p>
+      <p class="close">It was well received, and we hope this ride becomes a regular feature!</p>
+      <p class="sig">— Bill</p>
+    </div>
+  </div>
+</section>
 
 <section class="score-sec">
   <div class="wrap">
