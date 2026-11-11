@@ -70,6 +70,10 @@ async function readBody(req, max = 2048) {
 }
 
 async function api(req, res, url) {
+  // Reports whether votes persist on the Railway volume (no paths exposed).
+  if (url.pathname === '/api/health' && req.method === 'GET') {
+    return json(res, 200, { ok: true, storage: process.env.RAILWAY_VOLUME_MOUNT_PATH ? 'volume' : 'ephemeral' });
+  }
   if (url.pathname === '/api/votes' && req.method === 'GET') {
     return json(res, 200, tally(url.searchParams.get('voter')));
   }

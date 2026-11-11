@@ -62,6 +62,7 @@ serves the whole site and stores votes in `votes.json`. On Railway it writes to 
 (`RAILWAY_VOLUME_MOUNT_PATH`); locally it writes to `data-local/`. Run it with `npm start`.
 
 - `GET /api/votes` returns the tally.
+- `GET /api/health` reports whether votes persist on the volume (`storage: "volume"`).
 - `POST /api/vote` with `{ voter, choice: "yes" | "maybe" | "no" }` records one vote per browser, which can be changed.
 
 On GitHub Pages (static only) the recap page links to the Railway copy to vote.
